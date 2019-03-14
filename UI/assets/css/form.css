@@ -1,9 +1,9 @@
 /* main div of the landing page. */
 .main-div{
     height: 100%;
-    background-color: #001628;
+    background-color: #4772cf;
     width: 82%;
-    overflow-x: auto;
+    overflow: hidden;
     margin: 40px auto;
     border-radius: 5px;
     box-shadow: 0 0 50px rgb(14, 13, 13);
@@ -16,16 +16,15 @@
     float: left;
     border-radius: 5px;
     overflow: hidden;
-    background-color: #0a8ffc;
-    background: rgb(0, 0, 0, .5)
+    position: relative;
+    background-color: #4772cf;
 }
 .brand-ad{
-    /* background: rgb(0, 0, 0, .2); */
     padding: 0%;
     margin: 0%;
     width: 100%;
     height: 100%;
-    background-color: #010a13;
+    background-color: #4772cf;
     padding: 5px;
 }
 .brand-ad p {
@@ -42,7 +41,8 @@
     width: 50%;
     float: right;
     border-radius: 5px;
-    background: #284491;
+    overflow: hidden;
+    background: #4772ef;
 }
 /* all headings. */
 h2, h3 {
@@ -59,7 +59,7 @@ h2, h3 {
 p{
     text-align: center;
     color: white;
-    padding: 8px;
+    padding: 2px;
     font-family: cursive;
     font-size: 20px;
 }
@@ -75,11 +75,12 @@ form{
 }
 
 .input-form input[type="email"],
+.input-form input[type="text"],
+.input-form input[type="tel"],
 .input-form input[type="password"]{
-    margin: 4px 2px;
-    padding: 8px 5px;
+    margin: 0.5px 2px;
+    padding: 6px 5px;
     border: 1px solid #ff652f;
-    /* border-bottom: 1px solid red; */
     outline: 2px;
     font-size: 20px;
     height: 40%;
@@ -96,6 +97,12 @@ form{
 .input-form input[type="email"]:hover{
     width: 65%;
 }
+.input-form input[type="text"]:hover{
+    width: 65%;
+}
+.input-form input[type="tel"]:hover{
+    width: 65%;
+}
 
 .input-form input[type="submit"]{
     background: #ff652f;
@@ -104,11 +111,12 @@ form{
     border-radius: 20px;
     width: 55%;
     height: 40px;
+    margin-bottom: 15px;
     font-family: Arial, Helvetica, sans-serif;
     color: rgb(3, 0, 15);
 }
 .input-form input[type="submit"]:hover{
-    background-color: #47cf73;
+    background-color: #4772cf;
     color: white;
 }
 /* links */
@@ -121,4 +129,8 @@ a{
 /* change link text color */ 
 a:hover{
     color: #ff652f;
+}
+.mylink a:hover{
+    color: rgb(250, 7, 7);
+    /* background-color: white; */
 }
