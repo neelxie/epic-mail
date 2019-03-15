@@ -11,5 +11,13 @@ function checkAdminEmail(){
 }
 function resetPassword(){
     //confirmaton for reset password
-    alert("Link has been sent to your email");
+    alert("Link has been sent to your email.");
+}
+function saveDraft(){
+    //confirmaton for mail has been saved
+    alert("Mail has been saved.");
+}
+function deleteDraft(){
+    //confirmaton for draft has been deleted
+    alert("Draft has been deleted.");
 }
