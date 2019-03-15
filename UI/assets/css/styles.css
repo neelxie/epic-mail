@@ -66,9 +66,126 @@ h3{
     background-color: #4772cf;
     color: white;
 }
+.main{
+    /* display: flex; */
+    flex-direction: column;
+    justify-content: space-evenly;
+    background-color: #4772ff;
+    height: 80vh;
+    width: 100%;
+    margin: 0px auto;
+    
+    text-align: center;
+    color:white;;
+    overflow: hidden;
+    box-shadow: 0 0 50px #111111;
+    
+}
+/* dash board */
+.menu{
+    float: left;
+    width: 20%;
+    height: 100%;
+    overflow: hidden;
+    background-color: rgb(0, 0, 0, 0.5)
+}
+ul, ol{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+ul li{
+    display: block;
+    height: 50px;
+    width: 100%;
+    padding-top: 10px;
+}
+h5{
+    font-size: 15px;
+    padding-bottom: 2px;
+}
+label{
+    display: block;
+    margin-top: 10px;
+    font-size: 20px;
+    font-family: cursive;
+}
+#contact, #subject, #message{
+    border: 1px solid #000;
+    font-size: 20px;
+    width: 80%;
+    margin-top: 15px;
+}
+#contact, #subject{
+    height: 30px;
+}
+#message{
+    height: 150px;
+}
+.content{
+    float: left;
+    width: 80%;
+    height: 100%;
+    background: #4772ff;
+}
+.mails{
+    background-color: #4772cf;
+    color: #e2f8f1;
+    text-decoration: none;
+    position: relative;
+    padding: 10px 20px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border-radius: 2px;
+    
+  }
+  .mails:hover{
+    background:#ff652f;
+  }
+  .mails .badge{
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    padding: 5px 10px;
+    border-radius: 50%;
+    background: red;
+    color: #f1f1f1;
+  }
+
+textarea{
+    overflow: auto;
+    white-space: nowrap;
+    resize: none;
+    height: 58%;
+    width: 80%;
+    outline: none;
+    border: 1px solid #ff652f;
+}
+li input[type="submit"]{
+    background: #ff652f;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    height: 40px;
+    width: 20%;
+    margin-bottom: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: rgb(3, 0, 15);
+}
+li input[type="submit"]:hover{
+    background-color: #4772cf;
+    color: white;
+}
+li input[type="text"]:hover{
+    outline: 1px solid yellow;
+}
+li input[type="email"]:hover{
+    outline: 1px solid yellow;
+}
+textarea:hover{
+    outline: 1px solid yellow;
+}
 /* page footer */
 .footer{
-    /* height: 0.5%; */
     text-align: center;
     font-size: 15px;
     font-family: 'Times New Roman', Times, serif;
