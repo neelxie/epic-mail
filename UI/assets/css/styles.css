@@ -137,10 +137,10 @@ label{
     font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     border-radius: 2px;
     
-  }
-  .mails:hover{
-    background:#ff652f;
-  }
+}
+.mails:hover{
+   background:#ff652f;
+}
   .mails .badge{
     position: absolute;
     top: -10px;
@@ -183,6 +183,43 @@ li input[type="email"]:hover{
 }
 textarea:hover{
     outline: 1px solid yellow;
+}
+.read{
+    display: flex;
+    /* justify-content: space-between; */
+    background-color: rgb(0, 0, 0, 0.1);
+    padding: 1px;
+    margin: 8px;
+}
+.from{
+    padding-left: 55px;
+    display: inline;
+    margin-right: 365px;
+}
+li .read{
+    
+    border-bottom: 1px solid #555;
+    align-items: baseline;
+}
+  
+li:last-child .read{
+    border-bottom: none;
+}
+
+.read a{
+    text-decoration: none;
+    color: aliceblue;
+}
+.read a:hover{
+    color: #000;
+}
+.full-message{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding-right: 20px;
+    width: 400px;
+    float: left;
 }
 /* page footer */
 .footer{
