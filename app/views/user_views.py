@@ -18,3 +18,10 @@ def sign_up():
     register up as app user
     """
     return user_controller.register_user()
+
+@auth_bp.route('/login', methods=['POST'])
+def sign_in():
+    """ 
+    log in as app user
+    """
+    return user_controller.log_in()

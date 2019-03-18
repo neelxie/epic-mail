@@ -30,7 +30,7 @@ class TestValidClass(unittest.TestCase):
         self.assertEqual(
             test_valid.check_base(
                 "asdhddgob", "sdsdsds", "matz"),
-            "Phone number must be only digits and no white spaces.")
+            "Phone number has to be 10 numbers in quotes.")
 
     def test_check_other(self):
         """ user credentials method test."""

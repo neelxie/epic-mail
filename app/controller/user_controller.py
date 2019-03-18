@@ -101,12 +101,39 @@ class User_Controller:
                             "is_admin": is_admin,
                             'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=20)},
                            my_secret_key).decode('UTF-8')
-
-        payload = jwt.decode(token, my_secret_key)
-
+        # payload = jwt.decode(token, my_secret_key)
         return jsonify({
             "status": 201,
             'data': [{
                 'token': token
             }]
         }), 201
+
+
+    def log_in(self):
+        """ Class method to log in user
+        """
+        login = request.get_json()
+
+        email = login.get("email")
+        password = login.get("password")
+
+        error = self.user_db.check_credentials(email, password)
+
+        if error:
+            return jsonify({
+                'message': error,
+                "status": 403
+            }), 403
+
+        token = jwt.encode(
+            {"email": email, 'exp': datetime.datetime.utcnow(
+            ) + datetime.timedelta(minutes=20)}, my_secret_key).decode('UTF-8')
+        # payload = jwt.decode(token, my_secret_key)
+        return jsonify({
+            'status': 200,
+            'user logged in': [{
+                'token': token
+            }]
+        }), 200
+
