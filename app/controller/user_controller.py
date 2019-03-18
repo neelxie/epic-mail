@@ -5,27 +5,15 @@ import datetime
 import jwt
 from ..utils.validation import Valid
 from ..utils.auth import my_secret_key
-
 from ..models.user_model import (
     Base, User, UserDB)
 
-class User_Controller:
+class UserController:
     """ Class that implements all app logic for users."""
 
     user_db = UserDB()
     validator = Valid()
-
-    def __init__(self):
-        pass
-
-    def index(self):
-        """ function for the index route."""
-
-        data = [{'message': 'Welcome to Epic Mail.'}]
-        return jsonify({
-            'data': data,
-            'status': 200
-        }), 200
+    
 
     def register_user(self):
         """ Controller logic for signup method.
