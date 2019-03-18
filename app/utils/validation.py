@@ -86,13 +86,12 @@ class Valid:
         error = None
 
         if self.validate_string(first_name) is False:
-            error = "Firstname should have only letters between 2 and 15 chaarcters."
+            error = "Firstname should have only letters between 2 and 15 charcters."
 
         elif self.validate_string(last_name) is False:
-            error = "Last Name should have only letters between 2 and 15 chaarcters."
+            error = "Last Name should have only letters between 2 and 15 charcters."
 
-        # if not re.match(r"^[0-9]*$", phone_number):
-        elif not phone_number or isinstance(int(phone_number), int) is False:
+        elif not re.match(r"^[0-9]*$", phone_number):
             error = "Phone number must be only digits and no white spaces."
 
         return error
@@ -104,12 +103,13 @@ class Valid:
         credential = None
 
         if self.valid_email(email) is not None:
-            other = self.valid_email(email)
+            credential = self.valid_email(email)
         
         elif self.valid_password(pass_word) is not None:
-            other = self.valid_password(pass_word)
+            credential = self.valid_password(pass_word)
 
-        return credential
+        if credential is not None:
+            return "Login credentials are invalid."
 
     
     def check_for_invalid_function(self, func1, func2):
