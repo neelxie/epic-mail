@@ -5,6 +5,7 @@
     width: 82%;
     overflow: hidden;
     margin: 40px auto;
+    margin-top: 8%;
     border-radius: 5px;
     box-shadow: 0 0 50px rgb(14, 13, 13);
     display: block;
@@ -80,7 +81,7 @@ form{
 .input-form input[type="password"]{
     margin: 0.5px 2px;
     padding: 6px 5px;
-    border: 1px solid #ff652f;
+    border: 1px solid gray;
     outline: 2px;
     font-size: 20px;
     height: 40%;
@@ -105,7 +106,7 @@ form{
 }
 
 .input-form input[type="submit"]{
-    background: #ff652f;
+    background: #4772cf;
     font-size: 20px;
     cursor: pointer;
     border-radius: 20px;
@@ -113,11 +114,11 @@ form{
     height: 40px;
     margin-bottom: 15px;
     font-family: Arial, Helvetica, sans-serif;
-    color: rgb(3, 0, 15);
+    color: white;
 }
 .input-form input[type="submit"]:hover{
-    background-color: #4772cf;
-    color: white;
+    background-color: white;
+    color: #4772cf;
 }
 /* links */
 a{
@@ -128,9 +129,9 @@ a{
 }
 /* change link text color */ 
 a:hover{
-    color: #ff652f;
+    color: black;
 }
 .mylink a:hover{
-    color: rgb(250, 7, 7);
+    color: black;
     /* background-color: white; */
 }
