@@ -18,3 +18,11 @@ def send_email():
     compose an app email
     """
     return email_controller.compose_email()
+
+@email_bp.route('/messages', methods=['GET'])
+def inbox():
+    """ 
+    all received email
+    """
+    return email_controller.received()
+    
