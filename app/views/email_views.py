@@ -25,4 +25,11 @@ def inbox():
     all received email
     """
     return email_controller.received()
+
+@email_bp.route('/messages/unread', methods=['GET'])
+def unread_messages():
+    """ 
+    all unread email
+    """
+    return email_controller.unread()
     
