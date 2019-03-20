@@ -15,22 +15,22 @@ class Identity:
 class Data:
     """ This is the underlying class for the email class.
     """
-    def __init__(self, identity, subject, message, sender_status):
+    def __init__(self, identity, subject, message):
         """ Data class constructor.
         """
         self.identity = identity
         self.subject = subject
         self.message = message
-        self.sender_status = sender_status
-
+        
 
 class Email:
     """
     class for email message.
     """
-    def __init__(self, data, status, email_id):
+    def __init__(self, data, status, sender_status, email_id):
         self.data = data
         self.status = status
+        self.sender_status = sender_status
         self.email_id = email_id
         self.registered = str(datetime.now())
 
@@ -44,7 +44,7 @@ class Email:
             "receiver_id": self.data.identity.receiver_id,
             "parent_message_id": self.data.identity.parent_message_id,
             "status": self.status,
-            "sender_status": self.data.sender_status
+            "sender_status": self.sender_status
         }
 
 class EmailDB:
@@ -83,6 +83,16 @@ class EmailDB:
         """
         unread = []
         for not_yet in self.email_server:
-            if not_yet == 'unread': #more functionality to be added
+            if not_yet.status == 'unread': #more functionality to be added
                 unread.append(not_yet)
         return unread
+
+    def get_sent(self):
+        """
+        Get sent emails.
+        """
+        my_sent = []
+        for from_me in self.email_server:
+            if from_me.sender_status == 'sent':
+                my_sent.append(from_me)
+        return my_sent
