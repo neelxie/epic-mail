@@ -96,3 +96,13 @@ class EmailDB:
             if from_me.sender_status == 'sent':
                 my_sent.append(from_me)
         return my_sent
+
+    def read_message(self, message_id):
+        """
+        Read an email.
+        """
+        my_sent = []
+        for from_me in self.email_server:
+            if from_me.email_id == message_id:
+                my_sent.append(from_me)
+        return my_sent[0]

@@ -129,3 +129,20 @@ class EmailController:
             "status": 400,
             "error": "You have no sent messages."
         }), 400
+
+
+    def specific_email(self, email_id):
+        """
+        Read an email.
+        """
+        one_email = self.my_email_db.read_message(email_id)
+
+        if one_email:
+            return jsonify({
+                "data": [one_email.to_json()],
+                "status": 200
+            }), 200
+        return jsonify({
+            "error": "No email by that ID.",
+            "status": 400
+        }), 400

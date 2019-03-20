@@ -40,3 +40,9 @@ def sent_messages():
     """
     return email_controller.sent_emails()
     
+@email_bp.route('/messages/<int:message_id>', methods=['GET'])
+def read_one():
+    """ 
+    one email
+    """
+    return email_controller.specific_email(message_id)
