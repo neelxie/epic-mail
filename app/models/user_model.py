@@ -1,7 +1,7 @@
 """ This is the Users' models file."""
 from ..utils.validation import Valid
 
-class Base:
+class Person:
     """ This is the base class for a person and
         holds the person's names and phone number.
     """

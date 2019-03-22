@@ -6,7 +6,7 @@ import jwt
 from ..utils.validation import Valid
 from ..utils.auth import my_secret_key
 from ..models.user_model import (
-    Base, User, UserDB)
+    Person, User, UserDB)
 
 class UserController:
     """ Class that implements all app logic for users."""
