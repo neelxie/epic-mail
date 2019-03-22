@@ -3,6 +3,7 @@ import unittest
 from app.utils.validation import Valid
 
 test_valid = Valid()
+empty_lst = []
 
 class TestValidClass(unittest.TestCase):
     """ Test Class for validation used in utility."""
@@ -16,6 +17,30 @@ class TestValidClass(unittest.TestCase):
         self.assertEqual(
             test_valid.check_for_invalid_function(0, 0), None)
 
+    def test_valid_phone_number(self):
+        """ Test to validate check incident method."""
+        self.assertEqual(
+            test_valid.valid_phone_number(1), "Phone number has to be 10 numbers in quotes.")
+        self.assertEqual(
+            test_valid.valid_phone_number("gdhdgs"), "Phone number has to be 10 numbers in quotes.")
+        self.assertEqual(
+            test_valid.valid_phone_number("121"), "Phone number has to be 10 numbers in quotes.")
+
+    def test_check_for_space(self):
+        """ test check_for_space method."""
+        self.assertEqual(test_valid.check_for_space('dhsh dss'), False)
+
+    def test_validate_string(self): 
+        """ test validate string."""
+        self.assertEqual(test_valid.validate_string('bfhxbzchxzjvbhxzcvxvxzvzxvzx'), False)
+
+    def test_validate_attributes(self):
+        self.assertEqual(test_valid.validate_attributes("", empty_lst), "No data was entered.")
+
+    def test_validate_composed_msg(self):
+        self.assertEqual(test_valid.validate_composed_msg('', "gdshgdsh", 1), "The subject is invalid.")
+        self.assertEqual(test_valid.validate_composed_msg('gdhshdsg', 1, "dfhd"), "Receiver ID has to be a number.")
+        self.assertEqual(test_valid.validate_composed_msg('sdhshds', " ", 5), "Email message is has to be words.")
 
     def test_check_base(self):
         """ validation method check user base."""
@@ -54,6 +79,9 @@ class TestValidClass(unittest.TestCase):
         self.assertEqual(
             test_valid.validate_login(
                 "fake", ""),"Login credentials are invalid.")
+        self.assertEqual(
+            test_valid.validate_login(
+                "fake@gdshh.kjk", "fafdufhdf"), None)
 
     def test_token_strip(self):
         """ Test stripped token."""

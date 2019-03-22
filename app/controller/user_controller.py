@@ -4,7 +4,7 @@ from flask import request
 import datetime
 import jwt
 from ..utils.validation import Valid
-from ..utils.auth import my_secret_key
+from ..utils.auth import app_secret_key
 from ..models.user_model import (
     Base, User, UserDB)
 
@@ -13,7 +13,6 @@ class UserController:
 
     user_db = UserDB()
     validator = Valid()
-    
 
     def register_user(self):
         """ Controller logic for signup method.
@@ -24,7 +23,6 @@ class UserController:
         last_name = data.get("last_name")
         email = data.get("email")
         phone_number = data.get("phone_number")
-        user_name = data.get("user_name")
         password = data.get("password")
         is_admin = data.get("is_admin")
         user_id = len(self.user_db.all_users) + 1
@@ -54,9 +52,9 @@ class UserController:
                 first_name,
                 last_name,
                 phone_number), self.validator.check_other(
-            email,
-            password,
-            is_admin))
+                email,
+                password,
+                is_admin))
 
         if error:
             return jsonify({
@@ -88,7 +86,7 @@ class UserController:
         token = jwt.encode({"user_id": user_id,
                             "is_admin": is_admin,
                             'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=20)},
-                           my_secret_key).decode('UTF-8')
+                           app_secret_key).decode('UTF-8')
         # payload = jwt.decode(token, my_secret_key)
         return jsonify({
             "status": 201,
@@ -114,9 +112,11 @@ class UserController:
                 "status": 403
             }), 403
 
+        user_id = (self.user_db.verify_email(email)).to_dict().get('user_id')
+
         token = jwt.encode(
-            {"email": email, 'exp': datetime.datetime.utcnow(
-            ) + datetime.timedelta(minutes=20)}, my_secret_key).decode('UTF-8')
+            {"user_id": user_id, 'exp': datetime.datetime.utcnow(
+            ) + datetime.timedelta(minutes=20)}, app_secret_key).decode('UTF-8')
         # payload = jwt.decode(token, my_secret_key)
         return jsonify({
             'status': 200,

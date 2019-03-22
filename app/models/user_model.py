@@ -19,13 +19,13 @@ class User:
     """ Class for Users.
     """
 
-    def __init__(self, base, email, is_admin, user_id):
+    def __init__(self, base, email, user_id, is_admin=False):
         """ Constructor for the User class.
         """
         self.base = base
         self.email = email
-        self.is_admin = is_admin
         self.user_id = user_id
+        self.is_admin = is_admin
 
     def to_dict(self):
         """ Convert the user class to a JSON object at retrieval.
@@ -71,7 +71,7 @@ class UserDB:
         mail = [user for user in self.all_users if user.email == email]
 
         if len(mail) > 0:
-            return "Email already has an account."
+            return mail[0]
         return None
 
     def check_credentials(self, email, password):
