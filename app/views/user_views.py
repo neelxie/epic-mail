@@ -6,11 +6,6 @@ user_controller = UserController()
 
 auth_bp = Blueprint("auth_bp", __name__)
 
-@auth_bp.route('/')
-def home():
-    """ This is the index route.
-    """
-    return user_controller.index()
 
 @auth_bp.route('/signup', methods=['POST'])
 def sign_up():

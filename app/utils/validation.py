@@ -74,7 +74,7 @@ class Valid:
         """Method to validate list elements.
         """
         if data is None or len(data) < 1:
-            return "No data was entered or dict is empty."
+            return "No data was entered."
         error_list = [attr for attr in mylist if data.get(attr) is None]
         if len(error_list) > 0:
             return error_list
@@ -143,3 +143,19 @@ class Valid:
         elif error_two:
             none_func = error_two
         return none_func
+
+    def validate_composed_msg(self, subject, message, sender, receiver):
+        """ Function checks whether composed email is valid.
+        """
+        big_error = None
+
+        if not isinstance(subject, str) or subject.isspace() or len(subject) > 55 or len(subject) < 2:
+            big_error = "The subject is invalid."
+
+        elif not isinstance(sender, int) or not isinstance(receiver, int):
+            big_error = "Receiver and sender IDs have to be numbers."
+
+        elif not isinstance(message, str) or message.isspace():
+            big_error = "Email message is has to be words."
+
+        return big_error
