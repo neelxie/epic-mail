@@ -1,8 +1,8 @@
 """ users view file."""
 from flask import Blueprint
-from ..controller.user_controller import User_Controller
+from ..controller.user_controller import UserController
 
-user_controller = User_Controller()
+user_controller = UserController()
 
 auth_bp = Blueprint("auth_bp", __name__)
 
