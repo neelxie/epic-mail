@@ -86,7 +86,7 @@ class UserController:
             }), 401
 
         user = User(
-            Base(
+            Person(
                 first_name,
                 last_name,
                 phone_number,
