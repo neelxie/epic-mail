@@ -1,7 +1,7 @@
 """ This is the Users' models file."""
 from ..utils.validation import Valid
 
-class Base:
+class Person:
     """ This is the base class for a person and
         holds the person's names and phone number.
     """
@@ -19,10 +19,12 @@ class User:
     """ Class for Users.
     """
 
-    def __init__(self, base, email, user_id, is_admin=False):
+
+    def __init__(self, person, email, is_admin, user_id):
+
         """ Constructor for the User class.
         """
-        self.base = base
+        self.person = person
         self.email = email
         self.user_id = user_id
         self.is_admin = is_admin
@@ -31,10 +33,10 @@ class User:
         """ Convert the user class to a JSON object at retrieval.
         """
         return {
-            "first_name": self.base.first_name,
-            "last_name": self.base.last_name,
-            "phone_number": self.base.phone_number,
-            "password": self.base.password,
+            "first_name": self.person.first_name,
+            "last_name": self.person.last_name,
+            "phone_number": self.person.phone_number,
+            "password": self.person.password,
             "email": self.email,
             "is_admin": self.is_admin,
             "user_id": self.user_id,
@@ -86,7 +88,7 @@ class UserDB:
         if len(temp) != 1:
             return "Email not found. Please sign up."
 
-        if temp[0].base.password != password:
+        if temp[0].person.password != password:
             return "Wrong Password"
 
         return None
