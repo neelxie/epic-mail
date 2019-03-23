@@ -20,3 +20,10 @@ def sign_in():
     log in as app user
     """
     return user_controller.log_in()
+
+@auth_bp.route('/users', methods=['GET'])
+def all_app_users():
+    """ 
+    fetch all app users
+    """
+    return user_controller.app_users()
