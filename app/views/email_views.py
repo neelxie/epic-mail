@@ -29,6 +29,14 @@ def save_email():
     """
     return email_controller.compose_email("save")
 
+@email_bp.route('/messages/reply/<int:message_id>', methods=['POST'])
+@token_required
+def reply_email(message_id):
+    """ 
+    compose and reply to app email
+    """
+    return email_controller.compose_email(message_id)
+
 @email_bp.route('/messages', methods=['GET'])
 @token_required
 def inbox():

@@ -44,6 +44,23 @@ class EmailController:
             status = "draft"
             sender_status = 'saved'
 
+        elif isinstance(email_status, int):
+            msg = self.my_email_db.read_message(email_status)
+            if msg is None:
+                return jsonify({
+                    "status":404,
+                    "error": "You can not reply to a non existant email."
+                }), 404
+            parent_message_id = email_status
+            status = "unread"
+            sender_status = "sent"
+
+        else:
+            return jsonify({
+                "status": 400,
+                "error": "You entered wrong reply email ID."
+            }), 400
+
         email_list = ['subject', 'message', 'receiver_id']
 
         email_error = self.valid.validate_attributes(email_data, email_list)
