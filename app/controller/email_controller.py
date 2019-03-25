@@ -1,6 +1,7 @@
 """ email controller file. """
 from flask import request, jsonify
 from ..utils.validation import Valid
+from ..utils.auth import user_identity
 from ..models.email_model import (
     Email, EmailDB, Data, Identity)
 
@@ -11,7 +12,6 @@ class EmailController:
     """
     my_email_db = EmailDB()
     valid = Valid()
-
 
     def index(self):
         """ function for the index route."""
@@ -31,7 +31,6 @@ class EmailController:
         email_id = len(self.my_email_db.email_server) + 1
         subject = email_data.get("subject")
         message = email_data.get("message")
-        sender_id = email_data.get("sender_id")
         receiver_id = email_data.get("receiver_id")
 
         # only replies have this taking 0 as default value
@@ -39,7 +38,7 @@ class EmailController:
         status = "unread" # to the recepient
         sender_status = "sent" # to the sender
 
-        email_list = ['subject', 'message', "sender_id", 'receiver_id']
+        email_list = ['subject', 'message', 'receiver_id']
 
         email_error = self.valid.validate_attributes(email_data, email_list)
 
@@ -50,7 +49,8 @@ class EmailController:
                 "error": email_error
             }), 400
 
-        compose_error = self.valid.validate_composed_msg(subject, message, sender_id, receiver_id)
+        compose_error = self.valid.validate_composed_msg(
+            subject, message, receiver_id)
 
         if compose_error:
             return jsonify({
@@ -61,7 +61,6 @@ class EmailController:
         new_email = Email(
             Data(
                 Identity(
-                    sender_id,
                     receiver_id,
                     parent_message_id),
                 subject,
@@ -81,7 +80,8 @@ class EmailController:
         """
         show all received mails.
         """
-        new_mail_lst = self.my_email_db.get_received()
+        user_id = (user_identity()).get('user_id')
+        new_mail_lst = self.my_email_db.get_email(user_id, 'received')
 
         if new_mail_lst:
             return jsonify({
@@ -99,7 +99,8 @@ class EmailController:
         """
         show all unread mails.
         """
-        all_unread = self.my_email_db.get_unread()
+        logged_user = (user_identity()).get('user_id')
+        all_unread = self.my_email_db.get_email(logged_user, 'unread')
 
         if all_unread:
             return jsonify({
@@ -117,7 +118,8 @@ class EmailController:
         """
         show all user sent mails.
         """
-        user_sent = self.my_email_db.get_sent()
+        sender_id = (user_identity()).get('user_id')
+        user_sent = self.my_email_db.get_email(sender_id, 'sent')
 
         if user_sent:
             return jsonify({
@@ -129,3 +131,40 @@ class EmailController:
             "status": 400,
             "error": "You have no sent messages."
         }), 400
+
+
+    def specific_email(self, email_id):
+        """
+        Read an email.
+        """
+        one_email = self.my_email_db.read_message(email_id)
+
+        if one_email:
+            return jsonify({
+                "data": [one_email.to_json()],
+                "status": 200
+            }), 200
+        return jsonify({
+            "error": "No email by that ID.",
+            "status": 400
+        }), 400
+
+    def delete_email(self, email_id):
+        """ 
+        delete an email.
+        """
+        found = self.my_email_db.read_message(email_id)
+
+        if found:
+            self.delete_email(email_id)
+            return jsonify({
+                "status": 200,
+                "data": [{
+                    "message": "Successfully deleted."
+                }]
+            }), 200
+        return jsonify({
+            "error": "No email by that ID.",
+            "status": 400
+        }), 400
+

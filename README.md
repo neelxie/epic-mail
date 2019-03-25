@@ -7,3 +7,69 @@ The internet is increasingly becoming an integral part of lives. Ever since the 
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a439c5890cce4f94b3b50e53036c014e)](https://www.codacy.com/app/neelxie/epic-mail?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=neelxie/epic-mail&amp;utm_campaign=Badge_Grade)
 [![Coverage Status](https://coveralls.io/repos/github/neelxie/epic-mail/badge.svg?branch=develop)](https://coveralls.io/github/neelxie/epic-mail?branch=develop)
 [![Maintainability](https://api.codeclimate.com/v1/badges/a7d91faedd84ef10c429/maintainability)](https://codeclimate.com/github/neelxie/epic-mail/maintainability)
+
+#
+<b> Site has been built with these tools.</b>
+*   Language - Python
+*   Serverside Framework - Flask
+*   Testing Framework - Pytest
+*   Linting Framework - Pylint
+*   Style GuideLine - Autopep8
+
+## Application Demo 
+
+*   Check out the [User Interface](https://neelxie.github.io/epic-mail/UI/)
+
+## Features
+
+  | REQUESTS | APP ROUTES | FUNCTION
+  |----------|------------|----------
+  |  GET | /api/v1/ | Default/Home Page.
+  |  GET | /api/v1/messages | Fetch all recieved messages.
+  |  GET | /api/v1/messages/unread | Fetch all unread recieved messages.
+  |  GET | /api/v1/messages/sent | Fetch all sent messages.
+  |  GET | /api/v1/messages/[email_id] | Fetch a specific message by id.
+  |  DELETE | /api/v1/messages/[email_id] | Delete message.
+  |  POST | /api/v1/messages | Create a message record.
+  |  POST | /api/v1/auth/signup | Register for an account as a user.
+  |  POST | /api/v1/auth/login | Log into app account. 
+
+## Installation:
+
+*  Clone [this](https://github.com/neelxie/epic-mail.git) git repo to local directory.
+``` cd epic-mail ```
+*  Create a virtual environment:
+``` virtualenv venv ```
+*  Activate virtual environment:
+``` venv\Scripts\activate ```
+*  Install dependencies:
+``` pip install -r requirements.txt ```
+*  Do not forget to run this in the develop branch:
+``` git checkout develop ```
+
+## Running the application:
+
+Inside the iReport-api folder.
+``` python run.py ```
+
+## Running the tests:
+
+*  Run this command in the project directory.
+``` pytest --cov=.```
+
+## Deployment
+
+*  This app has been deployed on Heroku at the url [here.](https://my-epic-mail.herokuapp.com/api/v1/)
+
+## Contribute
+
+*  Join me [here](https://github.com/neelxie/epic-mail/tree/develop) and let you and me create super amazing stuff together.
+
+## Credits
+
+*  I thank GOD, to whom everything plays out ALWAYS.
+*  I would like to thank everyone that inspires me to be better everyday.
+
+## Author
+
+*  Sekidde Derrick

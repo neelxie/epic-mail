@@ -1,13 +1,13 @@
 """ Models' file for email_server and email messages."""
 from datetime import datetime
+from ..utils.auth import user_identity
 
 class Identity:
     """ Base class for the message class that contains meta data.
     """
-    def __init__(self, sender_id, receiver_id, parent_message_id):
+    def __init__(self, receiver_id, parent_message_id):
         """ Contsructor for the Identity class.
         """
-        self.sender_id = sender_id
         self.receiver_id = receiver_id
         self.parent_message_id = parent_message_id
 
@@ -33,6 +33,7 @@ class Email:
         self.sender_status = sender_status
         self.email_id = email_id
         self.registered = str(datetime.now())
+        self.sender_id = (user_identity()).get('user_id')
 
     def to_json(self):
         return {
@@ -40,7 +41,7 @@ class Email:
             "created_on": self.registered,
             "subject": self.data.subject,
             "message": self.data.message,
-            "sender_id": self.data.identity.sender_id,
+            "sender_id": self.sender_id,
             "receiver_id": self.data.identity.receiver_id,
             "parent_message_id": self.data.identity.parent_message_id,
             "status": self.status,
@@ -54,45 +55,48 @@ class EmailDB:
     def __init__(self):
         self.email_server = []
 
-    def get_all_emails(self):
-        """
-        fetch all emails in email_server
-        """
-        return self.email_server
-
     def add_email(self, email):
         """
         add email to email_server.
         """
         self.email_server.append(email)
 
-    def get_received(self):
+    def get_email(self, user_id, status):
         """
-        view received emails.
+        get emails.
         """
-        my_lst = []
-        for stuff in self.email_server:
-            if stuff.status == 'unread' or stuff.status == 'read':
-                my_lst.append(stuff)
-        # am assuming admin running this endpoint
-        return my_lst
+        required_emails = []
 
-    def get_unread(self):
-        """
-        view received emails.
-        """
-        unread = []
-        for not_yet in self.email_server:
-            if not_yet.status == 'unread': #more functionality to be added
-                unread.append(not_yet)
-        return unread
+        for one_email_record in self.email_server:
 
-    def get_sent(self):
+            if one_email_record.data.identity.receiver_id == user_id and status == 'received':
+                if one_email_record.status == 'unread' or one_email_record.status == 'read':
+                    required_emails.append(one_email_record)
+
+            elif one_email_record.data.identity.receiver_id == user_id and status == 'unread':
+                if one_email_record.status == 'unread':
+                    required_emails.append(one_email_record)
+
+            elif one_email_record.sender_id == user_id and status == 'sent':
+                if one_email_record.sender_status == 'sent':
+                    required_emails.append(one_email_record)
+
+            else:
+                pass
+
+        return required_emails
+
+    def read_message(self, message_id):
         """
-        Get sent emails.
+        Read an email.
         """
-        my_sent = []
         for from_me in self.email_server:
-            if from_me.sender_status == 'sent':
-                my_sent.append(from_me)
-        return my_sent
+            if from_me.email_id == message_id:
+                return from_me
+        return None
+
+    def remove_email(self, email_id):
+        """ delete email from email server.
+        """
+        del self.email_server[email_id - 1]
+

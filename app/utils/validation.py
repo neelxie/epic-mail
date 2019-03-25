@@ -10,7 +10,8 @@ class Valid:
         """ Validate password.
         """
         is_valid = None
-        if not isinstance(pass_word, str) or len(pass_word) < 6 or len(pass_word) > 15:
+        if not isinstance(pass_word, str) or len(
+                pass_word) < 6 or len(pass_word) > 15:
             is_valid = "Password has have 6 to 15 characters."
         return is_valid
 
@@ -19,7 +20,11 @@ class Valid:
         """ Validate email element.
         """
         bad_email = None
-        if not isinstance(email, str) or self.check_for_space(email) is False or not re.match(r"[^@.]+@[a-z]+\.[a-z]+", email):
+        if not isinstance(
+                email,
+                str) or self.check_for_space(email) is False or not re.match(
+                r"[^@.]+@[a-z]+\.[a-z]+",
+                email):
             bad_email = "Enter a valid email address."
         return bad_email
         
@@ -61,7 +66,8 @@ class Valid:
         """
         invalid_string = None
 
-        if not isinstance(my_string, str) or my_string.isalpha() is False or self.check_for_space(my_string) is False:
+        if not isinstance(my_string, str) or my_string.isalpha(
+        ) is False or self.check_for_space(my_string) is False:
             invalid_string = False
 
         elif my_string.isspace() or len(my_string) > 15 or len(my_string) < 2:
@@ -144,16 +150,17 @@ class Valid:
             none_func = error_two
         return none_func
 
-    def validate_composed_msg(self, subject, message, sender, receiver):
+    def validate_composed_msg(self, subject, message, receiver):
         """ Function checks whether composed email is valid.
         """
         big_error = None
 
-        if not isinstance(subject, str) or subject.isspace() or len(subject) > 55 or len(subject) < 2:
+        if not isinstance(subject, str) or subject.isspace() or len(
+                subject) > 55 or len(subject) < 2:
             big_error = "The subject is invalid."
 
-        elif not isinstance(sender, int) or not isinstance(receiver, int):
-            big_error = "Receiver and sender IDs have to be numbers."
+        elif not isinstance(receiver, int):
+            big_error = "Receiver ID has to be a number."
 
         elif not isinstance(message, str) or message.isspace():
             big_error = "Email message is has to be words."

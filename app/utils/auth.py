@@ -5,7 +5,7 @@ from .validation import Valid
 
 token_validation = Valid()
 
-my_secret_key = "#$^"
+app_secret_key = "#$^"
 
 def token_required(my_function):
     @wraps(my_function)
@@ -21,7 +21,7 @@ def token_required(my_function):
         token = token_validation.strip_token(headers)
 
         try:
-            data = jwt.decode(token, my_secret_key)
+            data = jwt.decode(token, app_secret_key)
             print(data)
 
         except (
@@ -34,3 +34,11 @@ def token_required(my_function):
         }), 401
         return my_function(*args, **kwargs)
     return decorate
+
+
+def user_identity():
+    """Get a user identity from token.
+    """
+    auth = request.headers.get('Authorization')
+    token = auth.lstrip('Bearer').strip(' ')
+    return jwt.decode(token, app_secret_key)
