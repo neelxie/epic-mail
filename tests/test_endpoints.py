@@ -98,6 +98,10 @@ class TestEmail(TestStructure):
         # value from within returned response
         self.assertEqual(response.get("status"), 201)
         # messages list is empty bse user hasnt receved any
+        save_msg = self.app.post(
+            "/api/v1/messages/save", content_type='application/json',
+            headers=self.headers, data=json.dumps(self.test_message))
+        self.assertEqual(save_msg.status_code, 201)
         response = self.app.get(
             '/api/v1/messages', headers=self.headers)
         self.assertEqual(response.status_code, 400)

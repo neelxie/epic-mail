@@ -31,8 +31,12 @@ The internet is increasingly becoming an integral part of lives. Ever since the 
   |  GET | /api/v1/messages/[email_id] | Fetch a specific message by id.
   |  DELETE | /api/v1/messages/[email_id] | Delete message.
   |  POST | /api/v1/messages | Create a message record.
+  |  POST | /api/v1/messages/save | Create a message record and save it.
   |  POST | /api/v1/auth/signup | Register for an account as a user.
-  |  POST | /api/v1/auth/login | Log into app account. 
+  |  POST | /api/v1/auth/login | Log into app account.
+  |  GET | /api/v1/auth/users | Get all app users.
+  |  GET | /api/v1/auth/users/[user_id] | Get one app user.
+  |  GET | /api/v1/docs | API documentation.
 
 ## Installation:
 

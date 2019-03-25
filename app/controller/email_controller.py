@@ -22,7 +22,7 @@ class EmailController:
             'status': 200
         }), 200
 
-    def compose_email(self):
+    def compose_email(self, email_status):
         """
         Class method to compose email
         """
@@ -34,9 +34,15 @@ class EmailController:
         receiver_id = email_data.get("receiver_id")
 
         # only replies have this taking 0 as default value
-        parent_message_id = 0 
-        status = "unread" # to the recepient
-        sender_status = "sent" # to the sender
+        parent_message_id = 0
+
+        if email_status == 'send':
+            status = "unread" # to the recepient
+            sender_status = "sent" # to the sender
+
+        elif email_status == 'save':
+            status = "draft"
+            sender_status = 'saved'
 
         email_list = ['subject', 'message', 'receiver_id']
 

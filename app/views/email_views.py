@@ -17,9 +17,17 @@ def home():
 @token_required
 def send_email():
     """ 
-    compose an app email
+    compose and send app email
     """
-    return email_controller.compose_email()
+    return email_controller.compose_email("send")
+
+@email_bp.route('/messages/save', methods=['POST'])
+@token_required
+def save_email():
+    """ 
+    compose and save app email
+    """
+    return email_controller.compose_email("save")
 
 @email_bp.route('/messages', methods=['GET'])
 @token_required
