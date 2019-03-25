@@ -93,3 +93,21 @@ class EmailController:
             "status": 400,
             "error": "No messages in the inbox."
         }), 400
+
+
+    def unread(self):
+        """
+        show all unread mails.
+        """
+        all_unread = self.my_email_db.get_received()
+
+        if all_unread:
+            return jsonify({
+                "status": 200,
+                "data": [one_msg.to_json() for one_msg in all_unread]
+            }), 200
+
+        return jsonify({
+            "error": "No unread messages.",
+            "status": 400,
+        }), 400

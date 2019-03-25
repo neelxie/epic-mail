@@ -76,3 +76,13 @@ class EmailDB:
                 my_lst.append(stuff)
         # am assuming admin running this endpoint
         return my_lst
+
+    def get_unread(self):
+        """
+        view received emails.
+        """
+        unread = []
+        for not_yet in self.email_server:
+            if not_yet == 'unread': #more functionality to be added
+                unread.append(not_yet)
+        return unread
