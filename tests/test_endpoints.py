@@ -61,8 +61,8 @@ class TestEmail(TestStructure):
             sent_error.data.decode(),
             '{"error":"No messages in the inbox.","status":400}\n')
         
-    def test_change(self):
-        """ Test method to validate status before update."""
+    def test_one_message(self):
+        """ Test method to one message."""
         resp = self.app.get(
             '/api/v1/messages/1', headers=self.headers)
         self.assertEqual(
@@ -79,7 +79,7 @@ class TestEmail(TestStructure):
 
 
     def test_delete_message_nonexistent(self):
-        """ Test for fetchng an item while incdents list is empty."""
+        """ Test for fetchng an item while list is empty."""
         response = self.app.delete(
             '/api/v1/messages/9',
             content_type='application/json',
@@ -113,6 +113,14 @@ class TestEmail(TestStructure):
         
         change_status = self.app.get('/api/v1/messages/2', headers=self.headers)
         self.assertEqual(change_status.status_code, 200)
+
+    def test_retrieve_all_users(self):
+        """ Test route for fetching all users on empty lst."""
+        response = self.app.get(
+            '/api/v1/auth/users',
+            content_type='application/json',
+            headers=self.headers)
+        self.assertEqual(response.status_code, 404)
         
 
     def test_signing_up(self):
@@ -123,6 +131,11 @@ class TestEmail(TestStructure):
             data=json.dumps(self.test_app_user))
         self.assertEqual(
             exist.status_code, 201)
+        response = self.app.get(
+            '/api/v1/auth/users',
+            content_type='application/json',
+            headers=self.headers)
+        self.assertEqual(response.status_code, 200)
         email_taken = self.app.post(
             "/api/v1/auth/signup",
             content_type='application/json',

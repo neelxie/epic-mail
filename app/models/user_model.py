@@ -19,8 +19,7 @@ class User:
     """ Class for Users.
     """
 
-
-    def __init__(self, person, email, is_admin, user_id):
+    def __init__(self, person, email, user_id, is_admin=False):
 
         """ Constructor for the User class.
         """

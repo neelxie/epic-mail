@@ -117,11 +117,27 @@ class UserController:
         token = jwt.encode(
             {"user_id": user_id, 'exp': datetime.datetime.utcnow(
             ) + datetime.timedelta(minutes=20)}, app_secret_key).decode('UTF-8')
-        # payload = jwt.decode(token, my_secret_key)
         return jsonify({
             'status': 200,
             'user logged in': [{
                 'token': token
             }]
         }), 200
+
+
+    def app_users(self):
+        """ fetch all users.
+        """
+        users = self.user_db.all_users
+
+        if len(users) > 0:
+            return jsonify({
+                "status": 200,
+                "data": [user.to_dict() for user in users]
+            }), 200
+        # this case is logically impossible but catered for.
+        return jsonify({
+            "status": 404,
+            "error": "No app users yet."
+        }), 404
 
