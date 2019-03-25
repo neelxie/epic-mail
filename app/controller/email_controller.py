@@ -179,7 +179,7 @@ class EmailController:
         found = self.my_email_db.read_message(email_id)
 
         if found:
-            self.delete_email(email_id)
+            self.my_email_db.remove_email(email_id)
             return jsonify({
                 "status": 200,
                 "data": [{

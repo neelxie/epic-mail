@@ -54,7 +54,7 @@ The internet is increasingly becoming an integral part of lives. Ever since the 
 
 ## Running the application:
 
-Inside the iReport-api folder.
+Inside the epic-mail folder.
 ``` python run.py ```
 
 ## Running the tests:
