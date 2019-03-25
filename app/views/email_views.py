@@ -32,4 +32,11 @@ def unread_messages():
     all unread email
     """
     return email_controller.unread()
+
+@email_bp.route('/messages/sent', methods=['GET'])
+def sent_messages():
+    """ 
+    all sent messages
+    """
+    return email_controller.sent_emails()
     

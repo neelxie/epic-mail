@@ -65,9 +65,9 @@ class EmailController:
                     receiver_id,
                     parent_message_id),
                 subject,
-                message,
-                sender_status),
+                message),
             status,
+            sender_status,
             email_id)
 
         self.my_email_db.add_email(new_email)
@@ -99,7 +99,7 @@ class EmailController:
         """
         show all unread mails.
         """
-        all_unread = self.my_email_db.get_received()
+        all_unread = self.my_email_db.get_unread()
 
         if all_unread:
             return jsonify({
@@ -110,4 +110,22 @@ class EmailController:
         return jsonify({
             "error": "No unread messages.",
             "status": 400,
+        }), 400
+
+
+    def sent_emails(self):
+        """
+        show all user sent mails.
+        """
+        user_sent = self.my_email_db.get_sent()
+
+        if user_sent:
+            return jsonify({
+                "status": 200,
+                "data": [my_sent.to_json() for my_sent in user_sent]
+            }), 200
+
+        return jsonify({
+            "status": 400,
+            "error": "You have no sent messages."
         }), 400
