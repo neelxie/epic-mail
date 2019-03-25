@@ -16,9 +16,8 @@ class EmailController:
     def index(self):
         """ function for the index route."""
 
-        data = [{'message': 'Welcome to Epic Mail.'}]
         return jsonify({
-            'data': data,
+            'message': 'Welcome to Epic Mail.',
             'status': 200
         }), 200
 
@@ -32,6 +31,8 @@ class EmailController:
         subject = email_data.get("subject")
         message = email_data.get("message")
         receiver_id = email_data.get("receiver_id")
+        payload = user_identity()
+        sender_id = payload.get('user_id')
 
         # only replies have this taking 0 as default value
         parent_message_id = 0
@@ -87,7 +88,8 @@ class EmailController:
                     receiver_id,
                     parent_message_id),
                 subject,
-                message),
+                message,
+                sender_id),
             status,
             sender_status,
             email_id)
@@ -101,9 +103,10 @@ class EmailController:
 
     def received(self):
         """
-        show all received mails.
+        function fetching received mails.
         """
-        user_id = (user_identity()).get('user_id')
+        get_user = user_identity()
+        user_id = get_user.get('user_id')
         new_mail_lst = self.my_email_db.get_email(user_id, 'received')
 
         if new_mail_lst:
@@ -122,8 +125,9 @@ class EmailController:
         """
         show all unread mails.
         """
-        logged_user = (user_identity()).get('user_id')
-        all_unread = self.my_email_db.get_email(logged_user, 'unread')
+        logged_user = user_identity()
+        got_the_user = logged_user.get('user_id')
+        all_unread = self.my_email_db.get_email(got_the_user, 'unread')
 
         if all_unread:
             return jsonify({
@@ -141,7 +145,8 @@ class EmailController:
         """
         show all user sent mails.
         """
-        sender_id = (user_identity()).get('user_id')
+        from_token = user_identity()
+        sender_id = from_token.get('user_id')
         user_sent = self.my_email_db.get_email(sender_id, 'sent')
 
         if user_sent:

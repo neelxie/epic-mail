@@ -78,8 +78,8 @@ class UserController:
                 phone_number,
                 password),
             email,
-            is_admin,
-            user_id)
+            user_id,
+            is_admin)
 
         self.user_db.add_user(user)
 
@@ -87,12 +87,10 @@ class UserController:
                             "is_admin": is_admin,
                             'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=20)},
                            app_secret_key).decode('UTF-8')
-        # payload = jwt.decode(token, my_secret_key)
         return jsonify({
             "status": 201,
-            'data': [{
-                'token': token
-            }]
+            'message': 'User successfully signed in.',
+            'token': token
         }), 201
 
 
@@ -112,16 +110,20 @@ class UserController:
                 "status": 403
             }), 403
 
-        user_id = (self.user_db.verify_email(email)).to_dict().get('user_id')
+        user = self.user_db.verify_email(email)
+        print(user)
+        user = user.to_dict()
+        print(user)
+        user_id = user.get('user_id')
+        print(user_id)
 
         token = jwt.encode(
             {"user_id": user_id, 'exp': datetime.datetime.utcnow(
             ) + datetime.timedelta(minutes=20)}, app_secret_key).decode('UTF-8')
         return jsonify({
             'status': 200,
-            'user logged in': [{
-                'token': token
-            }]
+            'message':'user logged in',
+            'token': token
         }), 200
 
 

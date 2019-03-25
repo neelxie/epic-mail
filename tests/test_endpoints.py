@@ -12,7 +12,7 @@ class TestEmail(TestStructure):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(
             response.data.decode(),
-            '{"data":[{"message":"Welcome to Epic Mail."}],"status":200}\n')
+            '{"message":"Welcome to Epic Mail.","status":200}\n')
 
     def test_unauthorized_fetch_all_messages(self):
         """ Test to check route to fetch all emails."""
