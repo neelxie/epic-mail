@@ -107,11 +107,16 @@ class TestEmail(TestStructure):
         read_msg = json.loads(read_msg.data.decode())
         self.assertEqual(read_msg.get("status"), 200)
         add_another = self.app.post(
-            "/api/v1/messages", content_type='application/json',
-            headers=self.headers, data=json.dumps(self.test_other_message))
-        change_status = self.app.get('/api/v1/messages/2', headers=self.headers)
+            "/api/v1/messages",
+            content_type='application/json',
+            headers=self.headers,
+            data=json.dumps(self.test_other_message))
+        change_status = self.app.get(
+            '/api/v1/messages/2', headers=self.headers)
         
-        change_status = self.app.get('/api/v1/messages/2', headers=self.headers)
+        change_status = self.app.get(
+            '/api/v1/messages/2',
+            headers=self.headers)
         self.assertEqual(change_status.status_code, 200)
 
     def test_retrieve_all_users(self):
@@ -121,6 +126,16 @@ class TestEmail(TestStructure):
             content_type='application/json',
             headers=self.headers)
         self.assertEqual(response.status_code, 404)
+
+    def test_fetch_user(self):
+        """ Fetch user. """
+        response = self.app.get(
+            '/api/v1/auth/users/1',
+            content_type='application/json',
+            headers=self.headers)
+        self.assertEqual(response.status_code, 404)
+        self.assertEqual(response.data.decode(),
+                         '{"error":"No user by that ID.","status":404}\n')
         
 
     def test_signing_up(self):

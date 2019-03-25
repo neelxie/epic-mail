@@ -27,3 +27,10 @@ def all_app_users():
     fetch all app users
     """
     return user_controller.app_users()
+
+@auth_bp.route('/users/<int:user_id>', methods=['GET'])
+def one_app_user(user_id):
+    """ 
+    fetch one app user
+    """
+    return user_controller.fetch_user(user_id)

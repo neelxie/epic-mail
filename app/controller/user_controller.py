@@ -141,3 +141,19 @@ class UserController:
             "error": "No app users yet."
         }), 404
 
+
+    def fetch_user(self, user_id):
+        """ fetch a single user.
+        """
+        user = self.user_db.one_user(user_id)
+
+        if user:
+            return jsonify({
+                "status": 200,
+                "data": [user.to_dict()]
+            }), 200
+        return jsonify({
+            "status": 404,
+            "error": "No user by that ID."
+        }), 404
+
