@@ -3,9 +3,9 @@ The internet is increasingly becoming an integral part of lives. Ever since the 
 
 #
 
-[![Build Status](https://travis-ci.org/neelxie/epic-mail.svg?branch=develop)](https://travis-ci.org/neelxie/epic-mail)
+[![Build Status](https://travis-ci.org/neelxie/epic-mail.svg?branch=challenge2)](https://travis-ci.org/neelxie/epic-mail)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a439c5890cce4f94b3b50e53036c014e)](https://www.codacy.com/app/neelxie/epic-mail?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=neelxie/epic-mail&amp;utm_campaign=Badge_Grade)
-[![Coverage Status](https://coveralls.io/repos/github/neelxie/epic-mail/badge.svg?branch=develop)](https://coveralls.io/github/neelxie/epic-mail?branch=develop)
+[![Coverage Status](https://coveralls.io/repos/github/neelxie/epic-mail/badge.svg?branch=challenge2)](https://coveralls.io/github/neelxie/epic-mail?branch=challenge2)
 [![Maintainability](https://api.codeclimate.com/v1/badges/a7d91faedd84ef10c429/maintainability)](https://codeclimate.com/github/neelxie/epic-mail/maintainability)
 
 #
