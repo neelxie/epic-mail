@@ -76,3 +76,20 @@ class EmailController:
             "status": 201,
             'data': [new_email.to_json()]
         }), 201
+
+    def received(self):
+        """
+        show all received mails.
+        """
+        new_mail_lst = self.my_email_db.get_received()
+
+        if new_mail_lst:
+            return jsonify({
+                "status": 200,
+                "data": [mail.to_json() for mail in new_mail_lst]
+            }), 200
+
+        return jsonify({
+            "status": 400,
+            "error": "No messages in the inbox."
+        }), 400

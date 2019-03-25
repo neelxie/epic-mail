@@ -65,3 +65,14 @@ class EmailDB:
         add email to email_server.
         """
         self.email_server.append(email)
+
+    def get_received(self):
+        """
+        view received emails.
+        """
+        my_lst = []
+        for stuff in self.email_server:
+            if stuff.status == 'unread' or stuff.status == 'read':
+                my_lst.append(stuff)
+        # am assuming admin running this endpoint
+        return my_lst
