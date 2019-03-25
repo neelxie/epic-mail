@@ -1,6 +1,5 @@
 """ Models' file for email_server and email messages."""
 from datetime import datetime
-from ..utils.auth import user_identity
 
 class Identity:
     """ Base class for the message class that contains meta data.
@@ -15,12 +14,13 @@ class Identity:
 class Data:
     """ This is the underlying class for the email class.
     """
-    def __init__(self, identity, subject, message):
+    def __init__(self, identity, subject, message, sender_id):
         """ Data class constructor.
         """
         self.identity = identity
         self.subject = subject
         self.message = message
+        self.sender_id = sender_id
         
 
 class Email:
@@ -33,7 +33,6 @@ class Email:
         self.sender_status = sender_status
         self.email_id = email_id
         self.registered = str(datetime.now())
-        self.sender_id = (user_identity()).get('user_id')
 
     def to_json(self):
         return {
@@ -41,7 +40,7 @@ class Email:
             "created_on": self.registered,
             "subject": self.data.subject,
             "message": self.data.message,
-            "sender_id": self.sender_id,
+            "sender_id": self.data.sender_id,
             "receiver_id": self.data.identity.receiver_id,
             "parent_message_id": self.data.identity.parent_message_id,
             "status": self.status,
@@ -77,7 +76,7 @@ class EmailDB:
                 if one_email_record.status == 'unread':
                     required_emails.append(one_email_record)
 
-            elif one_email_record.sender_id == user_id and status == 'sent':
+            elif one_email_record.data.sender_id == user_id and status == 'sent':
                 if one_email_record.sender_status == 'sent':
                     required_emails.append(one_email_record)
 

@@ -37,8 +37,8 @@ class User:
             "phone_number": self.person.phone_number,
             "password": self.person.password,
             "email": self.email,
-            "is_admin": self.is_admin,
             "user_id": self.user_id,
+            "is_admin": self.is_admin,
         }
 
 

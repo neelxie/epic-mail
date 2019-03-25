@@ -12,7 +12,7 @@ class TestEmail(TestStructure):
         self.assertEqual(response.status_code, 200)
         self.assertEqual(
             response.data.decode(),
-            '{"data":[{"message":"Welcome to Epic Mail."}],"status":200}\n')
+            '{"message":"Welcome to Epic Mail.","status":200}\n')
 
     def test_unauthorized_fetch_all_messages(self):
         """ Test to check route to fetch all emails."""
@@ -102,6 +102,18 @@ class TestEmail(TestStructure):
             "/api/v1/messages/save", content_type='application/json',
             headers=self.headers, data=json.dumps(self.test_message))
         self.assertEqual(save_msg.status_code, 201)
+        reply_msg = self.app.post(
+            "/api/v1/messages/reply/1", content_type='application/json',
+            headers=self.headers, data=json.dumps(self.test_message))
+        self.assertEqual(reply_msg.status_code, 201)
+        wrong_reply_msg = self.app.post(
+            "/api/v1/messages/reply/x", content_type='application/json',
+            headers=self.headers, data=json.dumps(self.test_message))
+        self.assertEqual(wrong_reply_msg.status_code, 404)
+        reply_nonexstant_msg = self.app.post(
+            "/api/v1/messages/reply/200", content_type='application/json',
+            headers=self.headers, data=json.dumps(self.test_message))
+        self.assertEqual(reply_nonexstant_msg.status_code, 404)
         response = self.app.get(
             '/api/v1/messages', headers=self.headers)
         self.assertEqual(response.status_code, 400)

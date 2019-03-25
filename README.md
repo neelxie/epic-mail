@@ -32,6 +32,7 @@ The internet is increasingly becoming an integral part of lives. Ever since the 
   |  DELETE | /api/v1/messages/[email_id] | Delete message.
   |  POST | /api/v1/messages | Create a message record.
   |  POST | /api/v1/messages/save | Create a message record and save it.
+  |  POST | /api/v1/messages/reply/[email_id] | Create a message as a reply to an email.
   |  POST | /api/v1/auth/signup | Register for an account as a user.
   |  POST | /api/v1/auth/login | Log into app account.
   |  GET | /api/v1/auth/users | Get all app users.
@@ -53,7 +54,7 @@ The internet is increasingly becoming an integral part of lives. Ever since the 
 
 ## Running the application:
 
-Inside the iReport-api folder.
+Inside the epic-mail folder.
 ``` python run.py ```
 
 ## Running the tests:
@@ -64,6 +65,10 @@ Inside the iReport-api folder.
 ## Deployment
 
 *  This app has been deployed on Heroku at the url [here.](https://my-epic-mail.herokuapp.com/api/v1/)
+
+##
+
+* The API documentation can be accessed via the app url at ```https://my-epic-mail.herokuapp.com/api/v1/docs``` or [here](https://app.swaggerhub.com/apis-docs/GreatestCoderEverApi/Epic-mail/1.0.0)
 
 ## Contribute
 
