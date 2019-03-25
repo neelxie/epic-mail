@@ -20,6 +20,7 @@ class User:
     """
 
     def __init__(self, person, email, user_id, is_admin=False):
+
         """ Constructor for the User class.
         """
         self.person = person
