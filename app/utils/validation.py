@@ -24,6 +24,24 @@ class Valid:
         return bad_email
         
 
+    def valid_phone_number(self, phone_number):
+        """ Validate phone number.
+        """
+        phone_number_format = None
+
+        if not isinstance(phone_number, str):
+            phone_number_format = False
+        elif phone_number.isdigit() is False:
+            phone_number_format = False
+        elif len(phone_number) != 10:
+            phone_number_format = False
+
+        if phone_number_format is False:
+            phone_number_format = "Phone number has to be 10 numbers in quotes."
+
+        return phone_number_format
+
+
     def strip_token(self, token):
         """ Authentication helper function to strip the token.
         """
@@ -56,7 +74,7 @@ class Valid:
         """Method to validate list elements.
         """
         if data is None or len(data) < 1:
-            return "No data was entered or dict is empty."
+            return "No data was entered."
         error_list = [attr for attr in mylist if data.get(attr) is None]
         if len(error_list) > 0:
             return error_list
@@ -91,8 +109,8 @@ class Valid:
         elif self.validate_string(last_name) is False:
             error = "Last Name should have only letters between 2 and 15 charcters."
 
-        elif not re.match(r"^[0-9]*$", phone_number):
-            error = "Phone number must be only digits and no white spaces."
+        elif self.valid_phone_number(phone_number) is not None:
+            error = self.valid_phone_number(phone_number)
 
         return error
 
@@ -105,8 +123,8 @@ class Valid:
         if self.valid_email(email) is not None:
             credential = self.valid_email(email)
         
-        elif self.valid_password(pass_word) is not None:
-            credential = self.valid_password(pass_word)
+        elif self.valid_password(password) is not None:
+            credential = self.valid_password(password)
 
         if credential is not None:
             return "Login credentials are invalid."
@@ -125,3 +143,19 @@ class Valid:
         elif error_two:
             none_func = error_two
         return none_func
+
+    def validate_composed_msg(self, subject, message, sender, receiver):
+        """ Function checks whether composed email is valid.
+        """
+        big_error = None
+
+        if not isinstance(subject, str) or subject.isspace() or len(subject) > 55 or len(subject) < 2:
+            big_error = "The subject is invalid."
+
+        elif not isinstance(sender, int) or not isinstance(receiver, int):
+            big_error = "Receiver and sender IDs have to be numbers."
+
+        elif not isinstance(message, str) or message.isspace():
+            big_error = "Email message is has to be words."
+
+        return big_error

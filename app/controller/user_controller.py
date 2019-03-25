@@ -5,7 +5,6 @@ import datetime
 import jwt
 from ..utils.validation import Valid
 from ..utils.auth import my_secret_key
-
 from ..models.user_model import (
     Person, User, UserDB)
 
@@ -14,18 +13,7 @@ class UserController:
 
     user_db = UserDB()
     validator = Valid()
-
-    def __init__(self):
-        pass
-
-    def index(self):
-        """ function for the index route."""
-
-        data = [{'message': 'Welcome to Epic Mail.'}]
-        return jsonify({
-            'data': data,
-            'status': 200
-        }), 200
+    
 
     def register_user(self):
         """ Controller logic for signup method.
@@ -101,12 +89,39 @@ class UserController:
                             "is_admin": is_admin,
                             'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=20)},
                            my_secret_key).decode('UTF-8')
-
-        payload = jwt.decode(token, my_secret_key)
-
+        # payload = jwt.decode(token, my_secret_key)
         return jsonify({
             "status": 201,
             'data': [{
                 'token': token
             }]
         }), 201
+
+
+    def log_in(self):
+        """ Class method to log in user
+        """
+        login = request.get_json()
+
+        email = login.get("email")
+        password = login.get("password")
+
+        error = self.user_db.check_credentials(email, password)
+
+        if error:
+            return jsonify({
+                'message': error,
+                "status": 403
+            }), 403
+
+        token = jwt.encode(
+            {"email": email, 'exp': datetime.datetime.utcnow(
+            ) + datetime.timedelta(minutes=20)}, my_secret_key).decode('UTF-8')
+        # payload = jwt.decode(token, my_secret_key)
+        return jsonify({
+            'status': 200,
+            'user logged in': [{
+                'token': token
+            }]
+        }), 200
+
