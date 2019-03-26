@@ -11,3 +11,5 @@ omit =
       */usr/lib/python3/dist-packages/*
       *__init__.py
       *tests/*
+      *app/models/user_model.py
+      *app/models/email_model.py
