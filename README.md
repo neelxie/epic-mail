@@ -11,7 +11,8 @@ The internet is increasingly becoming an integral part of lives. Ever since the 
 #
 <b> Site has been built with these tools.</b>
 *   Language - Python
-*   Serverside Framework - Flask
+*   Serverside Framework - [![Flask](http://flask.pocoo.org/static/badges/flask-powered.png)](http://flask.pocoo.org)
+*   [PostgreSQL](https://www.postgresql.org/)
 *   Testing Framework - Pytest
 *   Linting Framework - Pylint
 *   Style GuideLine - Autopep8
@@ -42,20 +43,21 @@ The internet is increasingly becoming an integral part of lives. Ever since the 
   |  PATCH | /api/v2/groups/[group_id]/name | Change group name.
   |  DELETE | /api/v2/groups/[group_id] | Delete group
   |  POST | /api/v2/groups/[group_id]/users/[user_id] | Add user to group.
+  |  DELETE | /api/v2/groups/[group_id]/users/[user_id] | Delete user from group.
   |  POST | /api/v2/docs | API documentation.
 
 ## Installation:
 
 *  Clone [this](https://github.com/neelxie/epic-mail.git) git repo to local directory.
 ``` cd epic-mail ```
-*  Create a virtual environment:
+*  Create a virtual environment with [Virtual Environments- Python](https://virtualenv.pypa.io/en/stable/) :
 ``` virtualenv venv ```
 *  Activate virtual environment:
 ``` venv\Scripts\activate ```
 *  Install dependencies:
 ``` pip install -r requirements.txt ```
 *  Do not forget to run this in the develop branch:
-``` git checkout develop ```
+``` git checkout challenge3 ```
 
 ## Running the application:
 

@@ -136,3 +136,31 @@ class GroupController:
             "data": [added]
         }), 201
 
+
+    def remove_group_member(self, group_id, user_id):
+        """
+        function that gets rid of a member from a group. """
+
+        deletee = db.get_user(user_id)
+        
+        if deletee is None:
+            return jsonify({
+                "error": "Can not delete non existant user.",
+                "status": 404
+            }), 404
+
+        from_group = db.return_group(group_id)
+
+        if from_group is None:
+            return jsonify({
+                "status": 404,
+                "error": "No group by that ID.",
+            }), 404
+
+
+        db.delete_user_from_group(group_id, user_id)
+
+        return jsonify({
+            'message': "User successfully removed from group.",
+            "status": 200
+        }), 200

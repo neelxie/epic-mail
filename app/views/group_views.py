@@ -41,3 +41,10 @@ def add_member_to_group(group_id, user_id):
     """ 
     Add a user as a member to a group. """
     return group_controller.adding_group_member(group_id, user_id)
+
+@group_bp.route('/groups/<int:group_id>/users/<int:user_id>', methods=['DELETE'])
+@token_required
+def remove_group_member(group_id, user_id):
+    """ 
+    Route to remove a user from app group. """
+    return group_controller.remove_group_member(group_id, user_id)
