@@ -14,6 +14,7 @@ class GroupController:
     group_validation = Valid()
     def add_group(self):
         """ This method will create a new group."""
+        
         data = request.get_json()
 
         name = data.get("group_name")
@@ -97,7 +98,7 @@ class GroupController:
 
         if group_exists is None:
             return jsonify({
-                "error": "Can not delete a non existant endpoint.",
+                "error": "Can not delete a non existant group.",
                 "status": 404
             }), 404
 
@@ -108,5 +109,30 @@ class GroupController:
             "message": "Group successfully deleted."
         }), 200
 
+    def adding_group_member(self, group_id, user_id):
+        """
+        Method does add a user in the system to a group. """
 
+        find_group = db.return_group(group_id)
+
+        if find_group is None:
+            return jsonify({
+                "status": 404,
+                "error": "Group not found.",
+            }), 404
+
+        find_user = db.get_user(user_id)
+        
+        if find_user is None:
+            return jsonify({
+                "error": "User not found.",
+                "status": 404
+            }), 404
+
+        added = db.add_user_to_group(group_id, user_id)
+
+        return jsonify({
+            "status": 201,
+            "data": [added]
+        }), 201
 

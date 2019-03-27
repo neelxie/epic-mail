@@ -21,7 +21,7 @@ def all_group():
     fetch all app groups """
     return group_controller.all_groups()
 
-@group_bp.route('/groups/<int:group_id>', methods=['PATCH'])
+@group_bp.route('/groups/<int:group_id>/name', methods=['PATCH'])
 @token_required
 def change_group_name(group_id):
     """ 
@@ -34,3 +34,10 @@ def delete_group(group_id):
     """ 
     delete a group """
     return group_controller.delete_group(group_id)
+
+@group_bp.route('/groups/<int:group_id>/users/<int:user_id>', methods=['POST'])
+@token_required
+def add_member_to_group(group_id, user_id):
+    """ 
+    Add a user as a member to a group. """
+    return group_controller.adding_group_member(group_id, user_id)
