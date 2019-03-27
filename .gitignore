@@ -4,3 +4,5 @@ coverage/*
 venv/
 tests/
 *.pyc
+.prod_env
+.test_env
