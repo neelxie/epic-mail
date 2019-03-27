@@ -47,3 +47,32 @@ class GroupController:
             "status": 404,
             "error": "No groups yet."
         }), 404
+
+    def update_group_name(self, group_id):
+        """
+        Update group name.
+        """
+        group = db.return_group(group_id)
+
+        if group is None:
+            return jsonify({
+                "error": "You can not update the name of a non existant group.",
+                "status": 404
+            }), 404
+        new_group_name = request.get_json()
+
+        name = new_group_name.get("group_name")
+
+        wrong_name = self.group_validation.validate_string(name)
+
+        if wrong_name is None:
+            return jsonify({
+                "error": "Invalid new group name.",
+                "status": 400
+            }), 400
+        
+        updated = db.change_group_name(name, group_id)
+        return jsonify({
+            "status": 200,
+            "data": [updated]
+        }), 200
