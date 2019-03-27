@@ -27,3 +27,10 @@ def change_group_name(group_id):
     """ 
     update an app group name """
     return group_controller.update_group_name(group_id)
+
+@group_bp.route('/groups/<int:group_id>', methods=['DELETE'])
+@token_required
+def delete_group(group_id):
+    """ 
+    delete a group """
+    return group_controller.delete_group(group_id)

@@ -15,7 +15,6 @@ class EmailController:
 
     def index(self):
         """ function for the index route."""
-
         return jsonify({
             'message': 'Welcome to Epic Mail.',
             'status': 200
