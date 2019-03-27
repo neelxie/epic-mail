@@ -15,7 +15,7 @@ class DatabaseConnection:
         pprint(self.db_name)
         try:
             self.connection = psycopg2.connect(
-                dbname=self.db_name, user='postgres', host='localhost', password='', port=5432)
+                dbname='flask_api', user='postgres', host='localhost', password='', port=5432)
             self.connection.autocommit = True
             self.cursor = self.connection.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
             print('Connected to the database successfully')
@@ -46,6 +46,13 @@ class DatabaseConnection:
             sender_status VARCHAR DEFAULT 'sent');"
         self.cursor.execute(create_table)
 
+        create_table = "CREATE TABLE IF NOT EXISTS groups \
+            (group_id SERIAL UNIQUE PRIMARY KEY, \
+            created_on TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,\
+            group_name VARCHAR(15) NOT NULL, \
+            role VARCHAR DEFAULT 'user');"
+        self.cursor.execute(create_table)
+
 
     def add_user(self, first_name, last_name, phone_number, email, password, is_admin):
         query = "INSERT INTO users (first_name, last_name, phone_number, email, password, is_admin) VALUES ('{}', '{}', '{}','{}', '{}', '{}') RETURNING *;".format(first_name, last_name, phone_number, email, password, is_admin)
@@ -60,6 +67,12 @@ class DatabaseConnection:
         self.cursor.execute(query)
         email_message = self.cursor.fetchone()
         return email_message
+
+    def create_group(self, group_name, role):
+        query = "INSERT INTO groups (group_name, role) VALUES ('{}', '{}') RETURNING *;".format(group_name, role)
+        self.cursor.execute(query)
+        group = self.cursor.fetchone()
+        return group
 
     def get_users(self):
         query = "SELECT * FROM users;"
