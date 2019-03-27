@@ -32,3 +32,18 @@ class GroupController:
             "status": 201,
             "data": [group]
         }), 201
+
+    def all_groups(self):
+        """ Retrieve all groups. """
+        groups = db.all_app_groups()
+
+        if groups:
+            return jsonify({
+                "data": [group for group in groups],
+                "status": 200
+            }), 200
+
+        return jsonify({
+            "status": 404,
+            "error": "No groups yet."
+        }), 404

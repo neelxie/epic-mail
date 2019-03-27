@@ -15,7 +15,7 @@ class DatabaseConnection:
         pprint(self.db_name)
         try:
             self.connection = psycopg2.connect(
-                dbname='flask_api', user='postgres', host='localhost', password='', port=5432)
+                dbname=self.db_name, user='postgres', host='localhost', password='', port=5432)
             self.connection.autocommit = True
             self.cursor = self.connection.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
             print('Connected to the database successfully')
@@ -79,6 +79,12 @@ class DatabaseConnection:
         self.cursor.execute(query)
         users = self.cursor.fetchall()
         return users
+
+    def all_app_groups(self):
+        query = "SELECT * FROM groups;"
+        self.cursor.execute(query)
+        groups = self.cursor.fetchall()
+        return groups
 
     def get_received(self, user_id):
         query = "SELECT * FROM messages WHERE receiver_id='{}' AND status='unread' OR status='read';".format(user_id)
