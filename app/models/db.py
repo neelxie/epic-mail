@@ -15,7 +15,7 @@ class DatabaseConnection:
         pprint(self.db_name)
         try:
             self.connection = psycopg2.connect(
-                dbname=self.db_name, user='postgres', host='localhost', password='', port=5432)
+                dbname='flask_api', user='postgres', host='localhost', password='', port=5432)
             self.connection.autocommit = True
             self.cursor = self.connection.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
             print('Connected to the database successfully')
@@ -87,7 +87,7 @@ class DatabaseConnection:
         return groups
 
     def change_group_name(self, new_name, group_id):
-        query = "UPDATE groups SET group_name = '{}' WHERE group_id = '{}' RETURNING *;".format(new_name, group_id)
+        query = "UPDATE groups SET group_name = '{}' WHERE group_id = '{}';".format(new_name, group_id)
         self.cursor.execute(query)
 
     def get_received(self, user_id):
@@ -143,7 +143,7 @@ class DatabaseConnection:
         self.cursor.execute(query)
 
     def drop_tables(self):
-        query = "DROP TABLE messages;DROP TABLE users;"
+        query = "DROP TABLE groups;DROP TABLE messages;DROP TABLE users;"
         self.cursor.execute(query)
         return "Tables-dropped"
 

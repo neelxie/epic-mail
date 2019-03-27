@@ -20,3 +20,10 @@ def all_group():
     """ 
     fetch all app groups """
     return group_controller.all_groups()
+
+@group_bp.route('/groups/<int:group_id>', methods=['PATCH'])
+@token_required
+def change_group_name(group_id):
+    """ 
+    update an app group name """
+    return group_controller.update_group_name(group_id)

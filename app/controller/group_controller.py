@@ -65,14 +65,17 @@ class GroupController:
 
         wrong_name = self.group_validation.validate_string(name)
 
-        if wrong_name is None:
+        if wrong_name is False:
             return jsonify({
                 "error": "Invalid new group name.",
                 "status": 400
             }), 400
         
-        updated = db.change_group_name(name, group_id)
+        db.change_group_name(name, group_id)
+
+        check_update = db.return_group(group_id)
+
         return jsonify({
             "status": 200,
-            "data": [updated]
+            "data": [check_update]
         }), 200
