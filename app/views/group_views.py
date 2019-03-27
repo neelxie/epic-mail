@@ -13,3 +13,10 @@ def make_group():
     """ 
     make new app group """
     return group_controller.add_group()
+
+@group_bp.route('/groups', methods=['GET'])
+@token_required
+def all_group():
+    """ 
+    fetch all app groups """
+    return group_controller.all_groups()
