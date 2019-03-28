@@ -117,8 +117,7 @@ class EmailController:
 
     def unread(self):
         """
-        show all unread mails.
-        """
+        show one user's all unread mails. """
         logged_user = user_identity()
         got_the_user = logged_user.get('user_id')
         all_unread = db.get_unread(got_the_user)

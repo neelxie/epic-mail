@@ -80,6 +80,12 @@ class DatabaseConnection:
         users = self.cursor.fetchall()
         return users
 
+    def all_app_groups(self):
+        query = "SELECT * FROM groups;"
+        self.cursor.execute(query)
+        groups = self.cursor.fetchall()
+        return groups
+
     def get_received(self, user_id):
         query = "SELECT * FROM messages WHERE receiver_id='{}' AND status='unread' OR status='read';".format(user_id)
         self.cursor.execute(query)
