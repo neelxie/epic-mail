@@ -79,3 +79,4 @@ class GroupController:
             "status": 200,
             "data": [check_update]
         }), 200
+        

@@ -85,7 +85,7 @@ class DatabaseConnection:
         self.cursor.execute(query)
         groups = self.cursor.fetchall()
         return groups
-
+      
     def change_group_name(self, new_name, group_id):
         query = "UPDATE groups SET group_name = '{}' WHERE group_id = '{}';".format(new_name, group_id)
         self.cursor.execute(query)
