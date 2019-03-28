@@ -135,4 +135,3 @@ class GroupController:
             "status": 201,
             "data": [added]
         }), 201
-
