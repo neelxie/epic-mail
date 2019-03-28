@@ -157,6 +157,10 @@ class DatabaseConnection:
         query = "DELETE FROM messages WHERE message_id = '{}';".format(message_id)
         self.cursor.execute(query)
 
+    def delete_user_from_group(self, group_id, user_id):
+        query = "DELETE FROM group_members WHERE group_id = '{}' AND user_id = '{}';".format(group_id, user_id)
+        self.cursor.execute(query)
+
     def delete_group(self, created_by, group_id):
         query = "DELETE FROM groups WHERE created_by = '{}' AND group_id = '{}';".format(created_by, group_id)
         self.cursor.execute(query)
