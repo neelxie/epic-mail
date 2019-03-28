@@ -22,7 +22,6 @@ def token_required(my_function):
 
         try:
             data = jwt.decode(token, app_secret_key)
-            print(data)
 
         except (
             jwt.InvalidTokenError,

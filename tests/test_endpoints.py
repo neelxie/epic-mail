@@ -86,6 +86,7 @@ class TestEmail(TestStructure):
             headers=self.headers)
         self.assertEqual(response.status_code, 400)
 
+
     def test_add_message(self):
         """ Add a message email."""
         sign_up = self.sign_up() 
@@ -221,3 +222,151 @@ class TestEmail(TestStructure):
         self.assertEqual(
             sign_up_error.data.decode(),
             '{"error":"Login credentials are invalid.","status":400}\n')
+    
+
+    def test_none_groups(self):
+        """ Method to test no group. """
+        no_group = self.app.get(
+            '/api/v2/groups',
+            content_type='application/json',
+            headers=self.headers)
+        self.assertEqual(no_group.status_code, 404)
+
+    def test_change_group_name_for_none(self):
+        """ Method change group name for none. """
+        non_existant_group_name = self.app.patch(
+            '/api/v2/groups/1/name',
+            content_type='application/json',
+            data=json.dumps(
+                {
+                    "group_name": "emputa"
+                }
+            ),
+            headers=self.headers)
+        self.assertEqual(non_existant_group_name.status_code, 404)
+
+    def test_delete_for_non_existant_group(self):
+        """ Method to delete for non existant group """
+        non_existant_group = self.app.delete(
+            '/api/v2/groups/1',
+            content_type='application/json',
+            headers=self.headers)
+        self.assertEqual(non_existant_group.status_code, 404)
+
+    def test_add_message_for_non_existant_group(self):
+        """ Method to add message to non existant group """
+        msg_non_existant_group = self.app.post(
+            '/api/v2/groups/1/messages',
+            content_type='application/json',
+            headers=self.headers)
+        self.assertEqual(msg_non_existant_group.status_code, 404)
+
+    def test_get_messages_for_non_existant_group(self):
+        """ Method to get messages from non existant group """
+        msg_non_existant_group = self.app.get(
+            '/api/v2/groups/1/messages',
+            content_type='application/json',
+            headers=self.headers)
+        self.assertEqual(msg_non_existant_group.status_code, 404)
+
+    def test_add_user_to_non_existant_group(self):
+        """ Method to add users from non existant group """
+        add_user_non_existant_group = self.app.post(
+            '/api/v2/groups/1/users/9',
+            content_type='application/json',
+            headers=self.headers)
+        self.assertEqual(add_user_non_existant_group.status_code, 404)
+
+    def test_group_feature(self):
+        """ test for goup feature. """
+        new_group = self.app.post(
+            '/api/v2/groups',
+            content_type='application/json',
+            headers=self.headers,
+            data=json.dumps({
+                "group_name": ""
+            }))
+        self.assertEqual(new_group.status_code, 400)
+        new_group = self.app.post(
+            '/api/v2/groups',
+            content_type='application/json',
+            headers=self.headers,
+            data=json.dumps({
+                "group_name": "zaweeze"
+            }))
+        self.assertEqual(new_group.status_code, 201)
+        get_group = self.app.get(
+            '/api/v2/groups',
+            content_type='application/json',
+            headers=self.headers)
+        self.assertEqual(get_group.status_code, 200)
+        get_user_group = self.app.get(
+            '/api/v2/groups',
+            content_type='application/json',
+            headers=self.forth_headers)
+        self.assertEqual(get_user_group.status_code, 404)
+        group_name = self.app.patch(
+            '/api/v2/groups/1/name',
+            content_type='application/json',
+            data=json.dumps(
+                {
+                    "group_name": 565625
+                }
+            ),
+            headers=self.headers)
+        self.assertEqual(group_name.status_code, 400)
+        change_group_name = self.app.patch(
+            '/api/v2/groups/1/name',
+            content_type='application/json',
+            data=json.dumps(
+                {
+                    "group_name": "twazykoze"
+                }
+            ),
+            headers=self.headers)
+        self.assertEqual(change_group_name.status_code, 200)
+        add_to_group = self.app.get(
+            '/api/v2/groups/1/messages',
+            content_type='application/json',
+            headers=self.headers)
+        self.assertEqual(add_to_group.status_code, 200)
+        add_non_existant_user_to_group = self.app.post(
+            '/api/v2/groups/1/users/9',
+            content_type='application/json',
+            headers=self.headers)
+        self.assertEqual(add_non_existant_user_to_group.status_code, 404)
+        epc_user = self.app.post(
+            "/api/v2/auth/signup", content_type='application/json', data=json.dumps(self.test_user_email))
+        add_user_to_group = self.app.post(
+            '/api/v2/groups/1/users/1',
+            content_type='application/json',
+            headers=self.headers)
+        self.assertEqual(add_user_to_group.status_code, 201)
+        delete_user_from_none_group = self.app.delete(
+            '/api/v2/groups/9/users/1',
+            content_type='application/json',
+            headers=self.headers)
+        self.assertEqual(delete_user_from_none_group.status_code, 404)
+        delete_none_user_from_group = self.app.delete(
+            '/api/v2/groups/1/users/9',
+            content_type='application/json',
+            headers=self.headers)
+        self.assertEqual(delete_none_user_from_group.status_code, 404)
+        get_group_msg = self.app.get(
+            '/api/v2/groups/1/messages',
+            content_type='application/json',
+            headers=self.headers)
+        self.assertEqual(get_group_msg.status_code, 200)
+        add_group_msg = self.app.post(
+            '/api/v2/groups/1/messages',
+            content_type='application/json',
+            data=json.dumps(
+                {
+                    "subject": "twakozeky",
+                    "message": "zaweze zaweze"
+                }
+            ),
+            headers=self.headers)
+        self.assertEqual(add_group_msg.status_code, 201)
+
+
