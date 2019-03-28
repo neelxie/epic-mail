@@ -107,6 +107,4 @@ class GroupController:
             "status": 200,
             "message": "Group successfully deleted."
         }), 200
-
-
-
+        
