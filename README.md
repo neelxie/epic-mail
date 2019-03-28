@@ -43,6 +43,8 @@ The internet is increasingly becoming an integral part of lives. Ever since the 
   |  PATCH | /api/v2/groups/[group_id]/name | Change group name.
   |  DELETE | /api/v2/groups/[group_id] | Delete group
   |  POST | /api/v2/groups/[group_id]/users/[user_id] | Add user to group.
+  |  POST | /api/v2/groups/[group_id]/messages | Add message to group.
+  |  GET | /api/v2/groups/[group_id]/messages | Fetch group messages.
   |  DELETE | /api/v2/groups/[group_id]/users/[user_id] | Delete user from group.
   |  POST | /api/v2/docs | API documentation.
 
