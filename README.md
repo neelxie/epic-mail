@@ -37,6 +37,7 @@ The internet is increasingly becoming an integral part of lives. Ever since the 
   |  POST | /api/v2/auth/login | Log into app account.
   |  GET | /api/v2/auth/users | Get all app users.
   |  GET | /api/v2/auth/users/[user_id] | Get one app user.
+  |  POST | /api/v2/groups | Create a group.
   |  GET | /api/v2/docs | API documentation.
 
 ## Installation:

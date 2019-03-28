@@ -4,6 +4,7 @@ from flask import jsonify
 from flask_swagger_ui import get_swaggerui_blueprint
 from .email_views import email_bp
 from .user_views import auth_bp
+from .group_views import group_bp
 
 def create_app():
     """
@@ -14,6 +15,7 @@ def create_app():
     app = Flask(__name__)
     app.register_blueprint(auth_bp, url_prefix='/api/v2/auth')
     app.register_blueprint(email_bp, url_prefix='/api/v2')
+    app.register_blueprint(group_bp, url_prefix='/api/v2')
     app.register_blueprint(swagger_ui_bp, url_prefix="/api/v2/docs")
 
     @app.errorhandler(404)
