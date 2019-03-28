@@ -49,6 +49,7 @@ class DatabaseConnection:
         create_table = "CREATE TABLE IF NOT EXISTS groups \
             (group_id SERIAL UNIQUE PRIMARY KEY, \
             created_on TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,\
+            created_by INTEGER NOT NULL, \
             group_name VARCHAR(15) NOT NULL, \
             role VARCHAR DEFAULT 'user');"
         self.cursor.execute(create_table)
@@ -68,8 +69,8 @@ class DatabaseConnection:
         email_message = self.cursor.fetchone()
         return email_message
 
-    def create_group(self, group_name, role):
-        query = "INSERT INTO groups (group_name, role) VALUES ('{}', '{}') RETURNING *;".format(group_name, role)
+    def create_group(self, group_name, created_by, role):
+        query = "INSERT INTO groups (group_name, created_by, role) VALUES ('{}', '{}', '{}') RETURNING *;".format(group_name, created_by, role)
         self.cursor.execute(query)
         group = self.cursor.fetchone()
         return group
@@ -80,8 +81,8 @@ class DatabaseConnection:
         users = self.cursor.fetchall()
         return users
 
-    def all_app_groups(self):
-        query = "SELECT * FROM groups;"
+    def all_app_groups(self, created_by):
+        query = "SELECT * FROM groups WHERE created_by = '{}';".format(created_by)
         self.cursor.execute(query)
         groups = self.cursor.fetchall()
         return groups
@@ -140,6 +141,10 @@ class DatabaseConnection:
 
     def delete_message(self, message_id):
         query = "DELETE FROM messages WHERE message_id = '{}';".format(message_id)
+        self.cursor.execute(query)
+
+    def delete_group(self, created_by, group_id):
+        query = "DELETE FROM groups WHERE created_by = '{}' AND group_id = '{}';".format(created_by, group_id)
         self.cursor.execute(query)
 
     def drop_tables(self):

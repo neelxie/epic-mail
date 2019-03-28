@@ -25,8 +25,11 @@ class GroupController:
                 'error': "Group name is invalid.",
                 "status": 400
             }), 400
+
+        from_token = user_identity()
+        created_by = from_token.get('user_id')
         
-        group = db.create_group(name, 'admin')
+        group = db.create_group(name, created_by, 'admin')
 
         return jsonify({
             "status": 201,
@@ -35,7 +38,10 @@ class GroupController:
 
     def all_groups(self):
         """ Retrieve all groups. """
-        groups = db.all_app_groups()
+
+        get_user = user_identity()
+        created_by = get_user.get('user_id')
+        groups = db.all_app_groups(created_by)
 
         if groups:
             return jsonify({
@@ -45,7 +51,7 @@ class GroupController:
 
         return jsonify({
             "status": 404,
-            "error": "No groups yet."
+            "error": "No user groups yet."
         }), 404
 
     def update_group_name(self, group_id):
@@ -78,5 +84,27 @@ class GroupController:
         return jsonify({
             "status": 200,
             "data": [check_update]
+        }), 200
+
+    def delete_group(self, group_id):
+        """
+        delete a group you created. """
+        
+        created_by = user_identity()
+        owner = created_by.get('user_id')
+
+        group_exists = db.return_group(group_id)
+
+        if group_exists is None:
+            return jsonify({
+                "error": "Can not delete a non existant endpoint.",
+                "status": 404
+            }), 404
+
+        db.delete_group(owner, group_id)
+
+        return jsonify({
+            "status": 200,
+            "message": "Group successfully deleted."
         }), 200
         
