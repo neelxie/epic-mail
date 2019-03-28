@@ -2,15 +2,15 @@
 from flask import request, jsonify
 from ..utils.validation import Valid
 from ..utils.auth import user_identity
-from ..models.email_model import (
-    Email, EmailDB, Data, Identity)
+from ..models.db import DatabaseConnection
 
+db = DatabaseConnection()
+db.create_db_tables()
 
 class EmailController:
     """
     controller class for email.
     """
-    my_email_db = EmailDB()
     valid = Valid()
 
     def index(self):
@@ -27,7 +27,6 @@ class EmailController:
         """
         email_data = request.get_json()
 
-        email_id = len(self.my_email_db.email_server) + 1
         subject = email_data.get("subject")
         message = email_data.get("message")
         receiver_id = email_data.get("receiver_id")
@@ -46,7 +45,7 @@ class EmailController:
             sender_status = 'saved'
 
         elif isinstance(email_status, int):
-            msg = self.my_email_db.read_message(email_status)
+            msg = db.get_a_message(email_status)
             if msg is None:
                 return jsonify({
                     "status":404,
@@ -82,23 +81,18 @@ class EmailController:
                 "error": compose_error
             }), 400
 
-        new_email = Email(
-            Data(
-                Identity(
-                    receiver_id,
-                    parent_message_id),
-                subject,
-                message,
-                sender_id),
+        new_email = db.add_message(
+            subject,
+            message,
+            sender_id,
+            receiver_id,
+            parent_message_id,
             status,
-            sender_status,
-            email_id)
-
-        self.my_email_db.add_email(new_email)
+            sender_status)
 
         return jsonify({
             "status": 201,
-            'data': [new_email.to_json()]
+            'data': [new_email]
         }), 201
 
     def received(self):
@@ -107,12 +101,12 @@ class EmailController:
         """
         get_user = user_identity()
         user_id = get_user.get('user_id')
-        new_mail_lst = self.my_email_db.get_email(user_id, 'received')
+        new_mail_lst = db.get_received(user_id)
 
         if new_mail_lst:
             return jsonify({
                 "status": 200,
-                "data": [mail.to_json() for mail in new_mail_lst]
+                "data": [mail for mail in new_mail_lst]
             }), 200
 
         return jsonify({
@@ -127,12 +121,12 @@ class EmailController:
         """
         logged_user = user_identity()
         got_the_user = logged_user.get('user_id')
-        all_unread = self.my_email_db.get_email(got_the_user, 'unread')
+        all_unread = db.get_unread(got_the_user)
 
         if all_unread:
             return jsonify({
                 "status": 200,
-                "data": [one_msg.to_json() for one_msg in all_unread]
+                "data": [one_msg for one_msg in all_unread]
             }), 200
 
         return jsonify({
@@ -147,12 +141,12 @@ class EmailController:
         """
         from_token = user_identity()
         sender_id = from_token.get('user_id')
-        user_sent = self.my_email_db.get_email(sender_id, 'sent')
+        user_sent = db.fetch_sent(sender_id)
 
         if user_sent:
             return jsonify({
                 "status": 200,
-                "data": [my_sent.to_json() for my_sent in user_sent]
+                "data": [my_sent for my_sent in user_sent]
             }), 200
 
         return jsonify({
@@ -165,11 +159,11 @@ class EmailController:
         """
         Read an email.
         """
-        one_email = self.my_email_db.read_message(email_id)
+        one_email = db.get_a_message(email_id)
 
         if one_email:
             return jsonify({
-                "data": [one_email.to_json()],
+                "data": [one_email],
                 "status": 200
             }), 200
         return jsonify({
@@ -181,10 +175,10 @@ class EmailController:
         """ 
         delete an email.
         """
-        found = self.my_email_db.read_message(email_id)
+        found = db.get_a_message(email_id)
 
         if found:
-            self.my_email_db.remove_email(email_id)
+            db.delete_message(email_id)
             return jsonify({
                 "status": 200,
                 "data": [{

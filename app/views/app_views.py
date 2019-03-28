@@ -10,11 +10,11 @@ def create_app():
     App factory for the epic mail app.
     """
     API_URL = "https://app.swaggerhub.com/apis-docs/GreatestCoderEverApi/Epic-mail/1.0.0"
-    swagger_ui_bp = get_swaggerui_blueprint("/api/v1/docs", API_URL)    
+    swagger_ui_bp = get_swaggerui_blueprint("/api/v2/docs", API_URL)    
     app = Flask(__name__)
-    app.register_blueprint(auth_bp, url_prefix='/api/v1/auth')
-    app.register_blueprint(email_bp, url_prefix='/api/v1')
-    app.register_blueprint(swagger_ui_bp, url_prefix="/api/v1/docs")
+    app.register_blueprint(auth_bp, url_prefix='/api/v2/auth')
+    app.register_blueprint(email_bp, url_prefix='/api/v2')
+    app.register_blueprint(swagger_ui_bp, url_prefix="/api/v2/docs")
 
     @app.errorhandler(404)
     def page_not_found(e):

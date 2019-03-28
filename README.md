@@ -24,20 +24,20 @@ The internet is increasingly becoming an integral part of lives. Ever since the 
 
   | REQUESTS | APP ROUTES | FUNCTION
   |----------|------------|----------
-  |  GET | /api/v1/ | Default/Home Page.
-  |  GET | /api/v1/messages | Fetch all recieved messages.
-  |  GET | /api/v1/messages/unread | Fetch all unread recieved messages.
-  |  GET | /api/v1/messages/sent | Fetch all sent messages.
-  |  GET | /api/v1/messages/[email_id] | Fetch a specific message by id.
-  |  DELETE | /api/v1/messages/[email_id] | Delete message.
-  |  POST | /api/v1/messages | Create a message record.
-  |  POST | /api/v1/messages/save | Create a message record and save it.
-  |  POST | /api/v1/messages/reply/[email_id] | Create a message as a reply to an email.
-  |  POST | /api/v1/auth/signup | Register for an account as a user.
-  |  POST | /api/v1/auth/login | Log into app account.
-  |  GET | /api/v1/auth/users | Get all app users.
-  |  GET | /api/v1/auth/users/[user_id] | Get one app user.
-  |  GET | /api/v1/docs | API documentation.
+  |  GET | /api/v2/ | Default/Home Page.
+  |  GET | /api/v2/messages | Fetch all recieved messages.
+  |  GET | /api/v2/messages/unread | Fetch all unread recieved messages.
+  |  GET | /api/v2/messages/sent | Fetch all sent messages.
+  |  GET | /api/v2/messages/[email_id] | Fetch a specific message by id.
+  |  DELETE | /api/v2/messages/[email_id] | Delete message.
+  |  POST | /api/v2/messages | Create a message record.
+  |  POST | /api/v2/messages/save | Create a message record and save it.
+  |  POST | /api/v2/messages/reply/[email_id] | Create a message as a reply to an email.
+  |  POST | /api/v2/auth/signup | Register for an account as a user.
+  |  POST | /api/v2/auth/login | Log into app account.
+  |  GET | /api/v2/auth/users | Get all app users.
+  |  GET | /api/v2/auth/users/[user_id] | Get one app user.
+  |  GET | /api/v2/docs | API documentation.
 
 ## Installation:
 

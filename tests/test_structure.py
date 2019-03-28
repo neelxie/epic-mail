@@ -8,9 +8,11 @@ import warnings
 warnings.warn = warn
 import jwt
 from app.utils.auth import app_secret_key
+from app.models.db import DatabaseConnection
 from app.views.app_views import create_app
 
 app = create_app()
+test_db = DatabaseConnection()
 
 
 class TestStructure(unittest.TestCase):
@@ -117,15 +119,14 @@ class TestStructure(unittest.TestCase):
 
         self.forth_token = jwt.encode({"user_id": self.test_user_email['user_id']}, app_secret_key).decode('UTF-8')
         self.forth_headers = {'Authorization': f'Bearer {self.forth_token}'}
-
+        test_db.create_db_tables()
+    
     def sign_up(self):
-        create_user = self.app.post(
-            "/api/v1/auth/signup", content_type='application/json', data=json.dumps(self.test_user))
-        return create_user
+        epc_user = self.app.post(
+            "/api/v2/auth/signup", content_type='application/json', data=json.dumps(self.test_user))
+        return epc_user
 
-    def user_login(self):
-        signed_in = self.sign_up()
-        logged_user = self.app.post('/api/v1/auth/login', content_type='application/json', 
-            data=json.dumps({"email":"dede@cia.gov@gfhf.com", "password":"asdfghj"}))
-        return logged_user
+    def tearDown(self):
+        test_db.drop_tables()
+
 

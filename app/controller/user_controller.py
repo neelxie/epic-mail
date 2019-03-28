@@ -5,13 +5,14 @@ import datetime
 import jwt
 from ..utils.validation import Valid
 from ..utils.auth import app_secret_key
-from ..models.user_model import (
-    Person, User, UserDB)
+from ..models.db import DatabaseConnection
+
+db = DatabaseConnection()
+db.create_db_tables()
 
 class UserController:
     """ Class that implements all app logic for users."""
 
-    user_db = UserDB()
     validator = Valid()
 
     def register_user(self):
@@ -25,7 +26,6 @@ class UserController:
         phone_number = data.get("phone_number")
         password = data.get("password")
         is_admin = data.get("is_admin")
-        user_id = len(self.user_db.all_users) + 1
 
         user_attributes = [
             "first_name",
@@ -63,7 +63,7 @@ class UserController:
             }), 400
 
         # if the email is already registered return error.
-        email_exist = self.user_db.verify_email(email)
+        email_exist = db.check_email(email)
 
         if email_exist is not None: 
             return jsonify({
@@ -71,21 +71,21 @@ class UserController:
                 "error": "Email already in registered."
             }), 401
 
-        user = User(
-            Person(
-                first_name,
-                last_name,
-                phone_number,
-                password),
+        user = db.add_user(
+            first_name,
+            last_name,
+            phone_number,
             email,
-            user_id,
+            password,
             is_admin)
 
-        self.user_db.add_user(user)
+
+        user_id = user.get('user_id')
+        is_admin = user.get('is_admin')
 
         token = jwt.encode({"user_id": user_id,
                             "is_admin": is_admin,
-                            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=20)},
+                            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
                            app_secret_key).decode('UTF-8')
         return jsonify({
             "status": 201,
@@ -102,24 +102,33 @@ class UserController:
         email = login.get("email")
         password = login.get("password")
 
-        error = self.user_db.check_credentials(email, password)
+        bad_data = self.validator.validate_login(email, password)
 
-        if error:
+        if bad_data:
             return jsonify({
-                'message': error,
+                'error': bad_data,
+                "status": 400
+            }), 400
+
+        user = db.login(password, email)
+        print(user)
+
+        if user is None:
+            return jsonify({
+                'error': "The log in credentials you entered are wrong.",
                 "status": 403
             }), 403
 
-        user = self.user_db.verify_email(email)
-        print(user)
-        user = user.to_dict()
-        print(user)
+        user = db.check_email(email)
+        
         user_id = user.get('user_id')
-        print(user_id)
+        is_admin = user.get('is_admin')
 
         token = jwt.encode(
-            {"user_id": user_id, 'exp': datetime.datetime.utcnow(
-            ) + datetime.timedelta(minutes=20)}, app_secret_key).decode('UTF-8')
+            {"user_id": user_id,
+             "is_admin": is_admin,
+             'exp': datetime.datetime.utcnow(
+            ) + datetime.timedelta(minutes=30)}, app_secret_key).decode('UTF-8')
         return jsonify({
             'status': 200,
             'message':'user logged in',
@@ -130,12 +139,12 @@ class UserController:
     def app_users(self):
         """ fetch all users.
         """
-        users = self.user_db.all_users
+        users = db.get_users()
 
         if len(users) > 0:
             return jsonify({
                 "status": 200,
-                "data": [user.to_dict() for user in users]
+                "data": [user for user in users]
             }), 200
         # this case is logically impossible but catered for.
         return jsonify({
@@ -147,15 +156,14 @@ class UserController:
     def fetch_user(self, user_id):
         """ fetch a single user.
         """
-        user = self.user_db.one_user(user_id)
+        user = db.get_user(user_id)
 
         if user:
             return jsonify({
                 "status": 200,
-                "data": [user.to_dict()]
+                "data": [user]
             }), 200
         return jsonify({
             "status": 404,
             "error": "No user by that ID."
         }), 404
-
