@@ -85,6 +85,10 @@ class DatabaseConnection:
         self.cursor.execute(query)
         groups = self.cursor.fetchall()
         return groups
+      
+    def change_group_name(self, new_name, group_id):
+        query = "UPDATE groups SET group_name = '{}' WHERE group_id = '{}';".format(new_name, group_id)
+        self.cursor.execute(query)
 
     def get_received(self, user_id):
         query = "SELECT * FROM messages WHERE receiver_id='{}' AND status='unread' OR status='read';".format(user_id)
@@ -116,6 +120,12 @@ class DatabaseConnection:
         my_sent = self.cursor.fetchall()
         return my_sent
 
+    def return_group(self, group_id):
+        query = "SELECT * FROM groups WHERE group_id='{}';".format(group_id)
+        self.cursor.execute(query)
+        one_group = self.cursor.fetchone()
+        return one_group
+
     def check_email(self, email):
         query = "SELECT * FROM users WHERE email='{}';".format(email)
         self.cursor.execute(query)
@@ -133,7 +143,7 @@ class DatabaseConnection:
         self.cursor.execute(query)
 
     def drop_tables(self):
-        query = "DROP TABLE messages;DROP TABLE users;"
+        query = "DROP TABLE groups;DROP TABLE messages;DROP TABLE users;"
         self.cursor.execute(query)
         return "Tables-dropped"
 
