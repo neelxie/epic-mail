@@ -51,7 +51,15 @@ class DatabaseConnection:
             created_on TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,\
             created_by INTEGER NOT NULL, \
             group_name VARCHAR(15) NOT NULL, \
-            role VARCHAR DEFAULT 'user');"
+            role VARCHAR DEFAULT 'admin');"
+        self.cursor.execute(create_table)
+
+        create_table = "CREATE TABLE IF NOT EXISTS group_members \
+            (member_id SERIAL UNIQUE PRIMARY KEY, \
+            added_on TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,\
+            user_id INTEGER NOT NULL, \
+            group_id INTEGER REFERENCES groups(group_id), \
+            user_role VARCHAR DEFAULT 'member');"
         self.cursor.execute(create_table)
 
 
@@ -74,6 +82,12 @@ class DatabaseConnection:
         self.cursor.execute(query)
         group = self.cursor.fetchone()
         return group
+
+    def add_user_to_group(self, group_id, user_id):
+        query = "INSERT INTO group_members (group_id, user_id) VALUES ('{}', '{}') RETURNING *;".format(group_id, user_id)
+        self.cursor.execute(query)
+        group_member = self.cursor.fetchone()
+        return group_member
 
     def get_users(self):
         query = "SELECT * FROM users;"
@@ -148,7 +162,7 @@ class DatabaseConnection:
         self.cursor.execute(query)
 
     def drop_tables(self):
-        query = "DROP TABLE groups;DROP TABLE messages;DROP TABLE users;"
+        query = "DROP TABLE group_members;DROP TABLE groups;DROP TABLE messages;DROP TABLE users;"
         self.cursor.execute(query)
         return "Tables-dropped"
 
