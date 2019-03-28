@@ -62,6 +62,16 @@ class DatabaseConnection:
             user_role VARCHAR DEFAULT 'member');"
         self.cursor.execute(create_table)
 
+        create_table = "CREATE TABLE IF NOT EXISTS group_messages \
+            (message_id SERIAL UNIQUE PRIMARY KEY, \
+            added_on TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,\
+            sender_id INTEGER NOT NULL, \
+            group_id INTEGER NOT NULL, \
+            subject VARCHAR(30) NOT NULL, \
+            message VARCHAR(200) NOT NULL, \
+            parent_message_id INTEGER DEFAULT 0 );"
+        self.cursor.execute(create_table)
+
 
     def add_user(self, first_name, last_name, phone_number, email, password, is_admin):
         query = "INSERT INTO users (first_name, last_name, phone_number, email, password, is_admin) VALUES ('{}', '{}', '{}','{}', '{}', '{}') RETURNING *;".format(first_name, last_name, phone_number, email, password, is_admin)
@@ -89,6 +99,18 @@ class DatabaseConnection:
         group_member = self.cursor.fetchone()
         return group_member
 
+    def add_group_message(self, sender_id, group_id, subject, message, parent_message_id):
+        query = "INSERT INTO group_messages (sender_id, group_id, subject, message, parent_message_id) VALUES ('{}', '{}', '{}', '{}','{}')RETURNING *;".format(sender_id, group_id, subject, message, parent_message_id)
+        self.cursor.execute(query)
+        group_message = self.cursor.fetchone()
+        return group_message
+
+    def get_group_messages(self, group_id):
+        query = "SELECT * FROM group_messages WHERE group_id='{}';".format(group_id)
+        self.cursor.execute(query)
+        all_group_messages = self.cursor.fetchall()
+        return all_group_messages
+
     def get_users(self):
         query = "SELECT * FROM users;"
         self.cursor.execute(query)
@@ -100,6 +122,12 @@ class DatabaseConnection:
         self.cursor.execute(query)
         groups = self.cursor.fetchall()
         return groups
+
+    def group_admin(self, group_id, user_id):
+        query = "SELECT * FROM groups WHERE group_id= '{}' AND created_by = '{}';".format(group_id, user_id)
+        self.cursor.execute(query)
+        admin = self.cursor.fetchone()
+        return admin
 
     def change_group_name(self, new_name, group_id):
         query = "UPDATE groups SET group_name = '{}' WHERE group_id = '{}';".format(new_name, group_id)
@@ -146,6 +174,12 @@ class DatabaseConnection:
         self.cursor.execute(query)
         user = self.cursor.fetchone()
         return user
+
+    def return_member(self, group_id, user_id):
+        query = "SELECT * FROM group_members WHERE group_id='{}' AND user_id ='{}';".format(group_id, user_id)
+        self.cursor.execute(query)
+        in_group = self.cursor.fetchone()
+        return in_group
 
     def login(self, password, email):
         query = "SELECT email, password FROM users WHERE email='{}' and password='{}';".format(email, password)

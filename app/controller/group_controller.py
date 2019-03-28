@@ -21,7 +21,7 @@ class GroupController:
 
         error = self.group_validation.validate_string(name)
 
-        if error:
+        if error is False:
             return jsonify({
                 'error': "Group name is invalid.",
                 "status": 400
@@ -164,3 +164,76 @@ class GroupController:
             'message': "User successfully removed from group.",
             "status": 200
         }), 200
+
+    def add_group_message(self, group_id):
+        """ method that adds a group message. """
+        verify_group = db.return_group(group_id)
+
+        if verify_group is None:
+            return jsonify({
+                "status": 404,
+                "error": "Given ID group does not exist.",
+            }), 404
+
+        payload = user_identity()
+        current_user = payload.get('user_id')
+
+        user = db.return_member(group_id, current_user)
+
+        message_data = request.get_json()
+
+        subject = message_data.get("subject")
+        message = message_data.get("message")
+        # my default value
+        parent_message_id = 0
+
+        admin = db.group_admin(group_id, current_user)
+
+        if user or admin:
+            group_message = db.add_group_message(current_user, group_id, subject, message, parent_message_id)
+
+            return jsonify({
+                "status": 201,
+                "data": [group_message]
+            }), 201
+        
+        return jsonify({
+            "status": 404,
+            "error": "User is not member of group."
+        }), 404
+
+
+    def get_group_messsages(self, group_id):
+        """ get all group messages.
+        """
+        payload = user_identity()
+        user = payload.get('user_id')
+
+        check_group = db.return_group(group_id)
+
+        if check_group is None:
+            return jsonify({
+                "error": "Given group ID does not exist.",
+                "status": 404
+            }), 404
+
+        group_member = db.return_member(group_id, user)
+
+        if group_member is None and user is None:
+            return jsonify({
+                "error": "You are not member of this group.",
+                "status": 404
+            }), 404
+
+        group_messages = db.get_group_messages(group_id)
+
+        if len(group_messages) > 0:
+            return jsonify({
+                "status": 200,
+                "data": [message for message in group_messages]
+            }), 200
+
+        return jsonify({
+            "error": "No group messages.",
+            "status": 404
+        }), 404

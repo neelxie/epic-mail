@@ -48,3 +48,17 @@ def remove_group_member(group_id, user_id):
     """ 
     Route to remove a user from app group. """
     return group_controller.remove_group_member(group_id, user_id)
+
+@group_bp.route('/groups/<int:group_id>/messages', methods=['POST'])
+@token_required
+def add_group_message(group_id):
+    """ 
+    Add a message to app group. """
+    return group_controller.add_group_message(group_id)
+
+@group_bp.route('/groups/<int:group_id>/messages', methods=['GET'])
+@token_required
+def all_group_messages(group_id):
+    """ 
+    Fetch all messages from app group. """
+    return group_controller.get_group_messsages(group_id)
