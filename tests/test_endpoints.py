@@ -354,7 +354,7 @@ class TestEmail(TestStructure):
             '/api/v2/groups/1/messages',
             content_type='application/json',
             headers=self.headers)
-        self.assertEqual(get_group_msg.status_code, 200)
+        self.assertEqual(get_group_msg.status_code, 404)
         add_group_msg = self.app.post(
             '/api/v2/groups/1/messages',
             content_type='application/json',
