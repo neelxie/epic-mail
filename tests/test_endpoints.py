@@ -311,8 +311,7 @@ class TestEmail(TestStructure):
             data=json.dumps(
                 {
                     "group_name": 565625
-                }
-            ),
+                }),
             headers=self.headers)
         self.assertEqual(group_name.status_code, 400)
         change_group_name = self.app.patch(
@@ -321,8 +320,7 @@ class TestEmail(TestStructure):
             data=json.dumps(
                 {
                     "group_name": "twazykoze"
-                }
-            ),
+                }),
             headers=self.headers)
         self.assertEqual(change_group_name.status_code, 200)
         add_to_group = self.app.get(
