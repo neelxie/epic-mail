@@ -7,15 +7,13 @@ import os
 class DatabaseConnection:
     def __init__(self):
         
-        if os.getenv('DB_NAME') == "test_flask":
-            self.db_name = 'test_flask'
-        else:
-            self.db_name = 'flask_api'
-
-        pprint(self.db_name)
         try:
             self.connection = psycopg2.connect(
-                dbname=self.db_name, user='postgres', host='localhost', password='', port=5432)
+                dbname="d948o7njccndh6",
+                user='bdbfssdboeprhi',
+                host='ec2-54-225-242-183.compute-1.amazonaws.com',
+                password='3a9b4fbe2cdf7504837c84c71ed741806a02e9441fbad891597f86b52b251d59',
+                port=5432)
             self.connection.autocommit = True
             self.cursor = self.connection.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
             print('Connected to the database successfully')
@@ -72,7 +70,6 @@ class DatabaseConnection:
             parent_message_id INTEGER DEFAULT 0 );"
         self.cursor.execute(create_table)
 
-
     def add_user(self, first_name, last_name, phone_number, email, password):
         query = "INSERT INTO users (first_name, last_name, phone_number, email, password) VALUES ('{}', '{}', '{}','{}', '{}') RETURNING *;".format(first_name, last_name, phone_number, email, password)
         self.cursor.execute(query)
@@ -82,31 +79,36 @@ class DatabaseConnection:
 
     def add_message(self, subject, message, sender_id, receiver_id, parent_message_id, status, sender_status):
 
-        query = "INSERT INTO messages (subject, message, sender_id, receiver_id, parent_message_id, status, sender_status) VALUES ('{}', '{}', '{}', '{}', '{}', '{}','{}')RETURNING *;".format(subject, message, sender_id, receiver_id, parent_message_id, status, sender_status)
+        query = "INSERT INTO messages (subject, message, sender_id, receiver_id, parent_message_id, status, sender_status) VALUES ('{}', '{}', '{}', '{}', '{}', '{}','{}')RETURNING *;".format(
+            subject, message, sender_id, receiver_id, parent_message_id, status, sender_status)
         self.cursor.execute(query)
         email_message = self.cursor.fetchone()
         return email_message
 
     def create_group(self, group_name, created_by, role):
-        query = "INSERT INTO groups (group_name, created_by, role) VALUES ('{}', '{}', '{}') RETURNING *;".format(group_name, created_by, role)
+        query = "INSERT INTO groups (group_name, created_by, role) VALUES ('{}', '{}', '{}') RETURNING *;".format(
+            group_name, created_by, role)
         self.cursor.execute(query)
         group = self.cursor.fetchone()
         return group
 
     def add_user_to_group(self, group_id, user_id):
-        query = "INSERT INTO group_members (group_id, user_id) VALUES ('{}', '{}') RETURNING *;".format(group_id, user_id)
+        query = "INSERT INTO group_members (group_id, user_id) VALUES ('{}', '{}') RETURNING *;".format(
+            group_id, user_id)
         self.cursor.execute(query)
         group_member = self.cursor.fetchone()
         return group_member
 
     def add_group_message(self, sender_id, group_id, subject, message, parent_message_id):
-        query = "INSERT INTO group_messages (sender_id, group_id, subject, message, parent_message_id) VALUES ('{}', '{}', '{}', '{}','{}')RETURNING *;".format(sender_id, group_id, subject, message, parent_message_id)
+        query = "INSERT INTO group_messages (sender_id, group_id, subject, message, parent_message_id) VALUES ('{}', '{}', '{}', '{}','{}')RETURNING *;".format(
+            sender_id, group_id, subject, message, parent_message_id)
         self.cursor.execute(query)
         group_message = self.cursor.fetchone()
         return group_message
 
     def get_group_messages(self, group_id):
-        query = "SELECT * FROM group_messages WHERE group_id='{}';".format(group_id)
+        query = "SELECT * FROM group_messages WHERE group_id='{}';".format(
+            group_id)
         self.cursor.execute(query)
         all_group_messages = self.cursor.fetchall()
         return all_group_messages
@@ -118,29 +120,34 @@ class DatabaseConnection:
         return users
 
     def all_app_groups(self, created_by):
-        query = "SELECT * FROM groups WHERE created_by = '{}';".format(created_by)
+        query = "SELECT * FROM groups WHERE created_by = '{}';".format(
+            created_by)
         self.cursor.execute(query)
         groups = self.cursor.fetchall()
         return groups
 
     def group_admin(self, group_id, user_id):
-        query = "SELECT * FROM groups WHERE group_id= '{}' AND created_by = '{}';".format(group_id, user_id)
+        query = "SELECT * FROM groups WHERE group_id= '{}' AND created_by = '{}';".format(
+            group_id, user_id)
         self.cursor.execute(query)
         admin = self.cursor.fetchone()
         return admin
 
     def change_group_name(self, new_name, group_id):
-        query = "UPDATE groups SET group_name = '{}' WHERE group_id = '{}';".format(new_name, group_id)
+        query = "UPDATE groups SET group_name = '{}' WHERE group_id = '{}';".format(
+            new_name, group_id)
         self.cursor.execute(query)
 
     def get_received(self, user_id):
-        query = "SELECT * FROM messages WHERE receiver_id='{}' AND status='unread' OR status='read';".format(user_id)
+        query = "SELECT * FROM messages WHERE receiver_id='{}' AND status='unread' OR status='read';".format(
+            user_id)
         self.cursor.execute(query)
         messages = self.cursor.fetchall()
         return messages
 
     def get_a_message(self, message_id):
-        query = "SELECT * FROM messages WHERE message_id= '{}';".format(message_id)
+        query = "SELECT * FROM messages WHERE message_id= '{}';".format(
+            message_id)
         self.cursor.execute(query)
         red_flag = self.cursor.fetchone()
         return red_flag
@@ -152,13 +159,15 @@ class DatabaseConnection:
         return user
 
     def get_unread(self, user_id):
-        query = "SELECT * FROM messages WHERE receiver_id='{}' AND status='unread';".format(user_id)
+        query = "SELECT * FROM messages WHERE receiver_id='{}' AND status='unread';".format(
+            user_id)
         self.cursor.execute(query)
         all_unread = self.cursor.fetchall()
         return all_unread
 
     def fetch_sent(self, user_id):
-        query = "SELECT * FROM messages WHERE sender_id='{}' AND status='sent';".format(user_id)
+        query = "SELECT * FROM messages WHERE sender_id='{}' AND status='sent';".format(
+            user_id)
         self.cursor.execute(query)
         my_sent = self.cursor.fetchall()
         return my_sent
@@ -176,27 +185,32 @@ class DatabaseConnection:
         return user
 
     def return_member(self, group_id, user_id):
-        query = "SELECT * FROM group_members WHERE group_id='{}' AND user_id ='{}';".format(group_id, user_id)
+        query = "SELECT * FROM group_members WHERE group_id='{}' AND user_id ='{}';".format(
+            group_id, user_id)
         self.cursor.execute(query)
         in_group = self.cursor.fetchone()
         return in_group
 
     def login(self, password, email):
-        query = "SELECT email, password FROM users WHERE email='{}' and password='{}';".format(email, password)
+        query = "SELECT email, password FROM users WHERE email='{}' and password='{}';".format(
+            email, password)
         self.cursor.execute(query)
         user_exists = self.cursor.fetchone()
         return user_exists
 
     def delete_message(self, message_id):
-        query = "DELETE FROM messages WHERE message_id = '{}';".format(message_id)
+        query = "DELETE FROM messages WHERE message_id = '{}';".format(
+            message_id)
         self.cursor.execute(query)
 
     def delete_user_from_group(self, group_id, user_id):
-        query = "DELETE FROM group_members WHERE group_id = '{}' AND user_id = '{}';".format(group_id, user_id)
+        query = "DELETE FROM group_members WHERE group_id = '{}' AND user_id = '{}';".format(
+            group_id, user_id)
         self.cursor.execute(query)
 
     def delete_group(self, created_by, group_id):
-        query = "DELETE FROM groups WHERE created_by = '{}' AND group_id = '{}';".format(created_by, group_id)
+        query = "DELETE FROM groups WHERE created_by = '{}' AND group_id = '{}';".format(
+            created_by, group_id)
         self.cursor.execute(query)
 
     def drop_tables(self):

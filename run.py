@@ -7,5 +7,5 @@ app = create_app() # return app
 db = DatabaseConnection()
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
     db.create_db_tables()
