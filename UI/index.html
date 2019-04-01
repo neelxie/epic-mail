@@ -23,10 +23,11 @@
         <div class="log-in">
             <h3>Already registered?</h3>
             <h3>Sign Into Your account.</h3>
-            <form class="input-form" id="epicform" onsubmit="return checkAdminEmail();">
+            <form class="input-form" id="loginForm">
+                <span id="myStatus"></span>
                 <p><input type="email" id="email" placeholder="Enter Email" required/></p>
                 <p><input type="password" id="password" placeholder="Enter Password" required/></p>
-                <p><input type="submit" class="btn" value="Sign In"></p>
+                <p><input type="submit" class="submit" value="Sign In"></p>
             </form>
             <p class="mylink"><a href="signup.html">Or sign up.</a></p>
             <p>
@@ -35,5 +36,5 @@
         </div>
     </div>
 </body>
-<script src="./assets/js/script.js"></script>
+<script src="./assets/js/login.js"></script>
 </html>
