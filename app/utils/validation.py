@@ -166,3 +166,7 @@ class Valid:
             big_error = "Email message is has to be words."
 
         return big_error
+
+    def validate_group_message(self, subject, msg):
+        if not isinstance(subject, str) or subject.isspace() or not isinstance(msg, str) or msg.isspace():
+            return "Subject/Message is invalid."
