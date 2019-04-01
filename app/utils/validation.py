@@ -86,7 +86,7 @@ class Valid:
             return error_list
 
 
-    def check_other(self, email, pass_word, ad_min):
+    def check_other(self, email, pass_word):
         """ Method to validate other user credentials.
         """
         other = None
@@ -97,9 +97,6 @@ class Valid:
         
         elif self.valid_password(pass_word) is not None:
             other = self.valid_password(pass_word)
-
-        elif not isinstance(ad_min, bool):
-            other = "is_admin must be a boolean."
 
         return other
 

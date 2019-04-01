@@ -28,7 +28,7 @@ class DatabaseConnection:
             phone_number VARCHAR(15), \
             email VARCHAR(20), \
             password VARCHAR(15), \
-            is_admin BOOLEAN DEFAULT FALSE, \
+            is_admin BOOLEAN DEFAULT TRUE, \
             user_id SERIAL UNIQUE PRIMARY KEY);"
         self.cursor.execute(create_table)
 
@@ -70,10 +70,8 @@ class DatabaseConnection:
             parent_message_id INTEGER DEFAULT 0 );"
         self.cursor.execute(create_table)
 
-
-    def add_user(self, first_name, last_name, phone_number, email, password, is_admin):
-        query = "INSERT INTO users (first_name, last_name, phone_number, email, password, is_admin) VALUES ('{}', '{}', '{}','{}', '{}', '{}') RETURNING *;".format(
-            first_name, last_name, phone_number, email, password, is_admin)
+    def add_user(self, first_name, last_name, phone_number, email, password):
+        query = "INSERT INTO users (first_name, last_name, phone_number, email, password) VALUES ('{}', '{}', '{}','{}', '{}') RETURNING *;".format(first_name, last_name, phone_number, email, password)
         self.cursor.execute(query)
         new_user = self.cursor.fetchone()
         return new_user

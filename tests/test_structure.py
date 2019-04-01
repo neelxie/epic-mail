@@ -71,7 +71,6 @@ class TestStructure(unittest.TestCase):
             phone_number ="0705828612",
             password = "asdfghj",
             email = "dede@cia.gov",
-            is_admin = False,
             user_id = 1,
         )
         self.test_app_user = dict(
@@ -80,7 +79,6 @@ class TestStructure(unittest.TestCase):
             phone_number ="0705828612",
             password = "asdfghj",
             email = "today@cia.gov",
-            is_admin = False,
             user_id = 3,
         )
         self.test_user_email = dict(
@@ -89,7 +87,6 @@ class TestStructure(unittest.TestCase):
             phone_number ="0705828612",
             password = "asdfghj",
             email = "haxor@cia.gov",
-            is_admin = False,
             user_id = 2,
         )
         self.test_user_no_msgs = dict(
@@ -98,7 +95,6 @@ class TestStructure(unittest.TestCase):
             phone_number ="0705828612",
             password = "asdfghj",
             email = "tewaly@cia.gov",
-            is_admin = False,
             user_id = 5,
         )
         self.test_user_error = dict(
@@ -107,7 +103,6 @@ class TestStructure(unittest.TestCase):
             phone_number ="0705828612",
             password = "asdfghj",
             email = "haxor@cia.gov",
-            is_admin = False,
             user_id = 4,
         )
 
