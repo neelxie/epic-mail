@@ -2,6 +2,7 @@
 from flask import Flask
 from flask import jsonify
 from flask_swagger_ui import get_swaggerui_blueprint
+from flask_cors import CORS
 from .email_views import email_bp
 from .user_views import auth_bp
 from .group_views import group_bp
@@ -13,6 +14,9 @@ def create_app():
     API_URL = "https://app.swaggerhub.com/apis-docs/GreatestCoderEverApi/Epic-mail/1.0.0"
     swagger_ui_bp = get_swaggerui_blueprint("/api/v2/docs", API_URL)    
     app = Flask(__name__)
+    # Allow CORS for all routes
+    CORS(app)
+
     app.register_blueprint(auth_bp, url_prefix='/api/v2/auth')
     app.register_blueprint(email_bp, url_prefix='/api/v2')
     app.register_blueprint(group_bp, url_prefix='/api/v2')

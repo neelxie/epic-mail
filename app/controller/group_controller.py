@@ -187,6 +187,14 @@ class GroupController:
         # my default value
         parent_message_id = 0
 
+        grp_msg_error = self.group_validation.validate_group_message(subject, message)
+        
+        if grp_msg_error:
+            return jsonify({
+                "status": 400,
+                "error": grp_msg_error
+            }), 400
+
         admin = db.group_admin(group_id, current_user)
 
         if user or admin:

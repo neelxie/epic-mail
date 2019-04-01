@@ -363,7 +363,7 @@ class TestEmail(TestStructure):
             data=json.dumps(
                 {
                     "subject": "twakozeky",
-                    "message": "zaweze zaweze"
+                    "message": "zawezezaweze"
                 }
             ),
             headers=self.headers)
