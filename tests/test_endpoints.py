@@ -327,7 +327,7 @@ class TestEmail(TestStructure):
             '/api/v2/groups/1/messages',
             content_type='application/json',
             headers=self.headers)
-        self.assertEqual(add_to_group.status_code, 404)
+        self.assertEqual(add_to_group.status_code, 200)
         add_non_existant_user_to_group = self.app.post(
             '/api/v2/groups/1/users/9',
             content_type='application/json',
