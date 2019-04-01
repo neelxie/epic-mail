@@ -62,16 +62,12 @@ class TestValidClass(unittest.TestCase):
         
         self.assertEqual(
             test_valid.check_other(
-                "asdgob", "sdsdsds", False),
+                "asdgob", "sdsdsds"),
             "Enter a valid email address.")
         self.assertEqual(
             test_valid.check_other(
-                "asd@hdd.gob", "sd", False),
+                "asd@hdd.gob", "sd"),
             "Password has have 6 to 15 characters.")
-        self.assertEqual(
-            test_valid.check_other(
-                "asd@hdd.gob", "sdsdsds", "asasas"),
-            "is_admin must be a boolean.")
 
 
     def test_validate_login(self):

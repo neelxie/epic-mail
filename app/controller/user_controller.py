@@ -25,15 +25,13 @@ class UserController:
         email = data.get("email")
         phone_number = data.get("phone_number")
         password = data.get("password")
-        is_admin = data.get("is_admin")
 
         user_attributes = [
             "first_name",
             "last_name",
             "phone_number",
             "email",
-            "password",
-            "is_admin"]
+            "password"]
 
         user_attribute_error = self.validator.validate_attributes(
             data,
@@ -53,8 +51,7 @@ class UserController:
                 last_name,
                 phone_number), self.validator.check_other(
                 email,
-                password,
-                is_admin))
+                password))
 
         if error:
             return jsonify({
@@ -76,15 +73,12 @@ class UserController:
             last_name,
             phone_number,
             email,
-            password,
-            is_admin)
+            password)
 
 
         user_id = user.get('user_id')
-        is_admin = user.get('is_admin')
 
         token = jwt.encode({"user_id": user_id,
-                            "is_admin": is_admin,
                             'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
                            app_secret_key).decode('UTF-8')
         return jsonify({
@@ -122,11 +116,9 @@ class UserController:
         user = db.check_email(email)
         
         user_id = user.get('user_id')
-        is_admin = user.get('is_admin')
 
         token = jwt.encode(
             {"user_id": user_id,
-             "is_admin": is_admin,
              'exp': datetime.datetime.utcnow(
             ) + datetime.timedelta(minutes=30)}, app_secret_key).decode('UTF-8')
         return jsonify({
