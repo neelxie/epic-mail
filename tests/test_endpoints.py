@@ -311,8 +311,7 @@ class TestEmail(TestStructure):
             data=json.dumps(
                 {
                     "group_name": 565625
-                }
-            ),
+                }),
             headers=self.headers)
         self.assertEqual(group_name.status_code, 400)
         change_group_name = self.app.patch(
@@ -321,15 +320,14 @@ class TestEmail(TestStructure):
             data=json.dumps(
                 {
                     "group_name": "twazykoze"
-                }
-            ),
+                }),
             headers=self.headers)
         self.assertEqual(change_group_name.status_code, 200)
         add_to_group = self.app.get(
             '/api/v2/groups/1/messages',
             content_type='application/json',
             headers=self.headers)
-        self.assertEqual(add_to_group.status_code, 200)
+        self.assertEqual(add_to_group.status_code, 404)
         add_non_existant_user_to_group = self.app.post(
             '/api/v2/groups/1/users/9',
             content_type='application/json',
@@ -356,7 +354,7 @@ class TestEmail(TestStructure):
             '/api/v2/groups/1/messages',
             content_type='application/json',
             headers=self.headers)
-        self.assertEqual(get_group_msg.status_code, 200)
+        self.assertEqual(get_group_msg.status_code, 404)
         add_group_msg = self.app.post(
             '/api/v2/groups/1/messages',
             content_type='application/json',

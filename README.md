@@ -3,15 +3,15 @@ The internet is increasingly becoming an integral part of lives. Ever since the 
 
 #
 
-[![Build Status](https://travis-ci.org/neelxie/epic-mail.svg?branch=challenge2)](https://travis-ci.org/neelxie/epic-mail)
+[![Build Status](https://travis-ci.org/neelxie/epic-mail.svg?branch=challenge3)](https://travis-ci.org/neelxie/epic-mail)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/a439c5890cce4f94b3b50e53036c014e)](https://www.codacy.com/app/neelxie/epic-mail?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=neelxie/epic-mail&amp;utm_campaign=Badge_Grade)
-[![Coverage Status](https://coveralls.io/repos/github/neelxie/epic-mail/badge.svg?branch=challenge2)](https://coveralls.io/github/neelxie/epic-mail?branch=challenge2)
+[![Coverage Status](https://coveralls.io/repos/github/neelxie/epic-mail/badge.svg?branch=challenge3)](https://coveralls.io/github/neelxie/epic-mail?branch=challenge3)
 [![Maintainability](https://api.codeclimate.com/v1/badges/a7d91faedd84ef10c429/maintainability)](https://codeclimate.com/github/neelxie/epic-mail/maintainability)
 
 #
 <b> Site has been built with these tools.</b>
 *   Language - Python
-*   Serverside Framework - [![Flask](http://flask.pocoo.org/static/badges/flask-powered.png)](http://flask.pocoo.org)
+*   Serverside Framework [![Flask](http://flask.pocoo.org/static/badges/flask-powered.png)](http://flask.pocoo.org)
 *   [PostgreSQL](https://www.postgresql.org/)
 *   Testing Framework - Pytest
 *   Linting Framework - Pylint
@@ -43,6 +43,8 @@ The internet is increasingly becoming an integral part of lives. Ever since the 
   |  PATCH | /api/v2/groups/[group_id]/name | Change group name.
   |  DELETE | /api/v2/groups/[group_id] | Delete group
   |  POST | /api/v2/groups/[group_id]/users/[user_id] | Add user to group.
+  |  POST | /api/v2/groups/[group_id]/messages | Add message to group.
+  |  GET | /api/v2/groups/[group_id]/messages | Fetch group messages.
   |  DELETE | /api/v2/groups/[group_id]/users/[user_id] | Delete user from group.
   |  POST | /api/v2/docs | API documentation.
 
