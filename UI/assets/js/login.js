@@ -16,6 +16,7 @@ function loginForm(event) {
         method: 'POST',
         headers: {
             'content-type': 'application/json'
+
         },
         body: JSON.stringify(user)
     })
@@ -30,11 +31,11 @@ function loginForm(event) {
         if (data.status === 200){
 
             document.getElementById('myStatus').style.display = "none";
-            alert("Successfully logged in.");
 
-            localStorage.setItem('epicMailToken', data.token);
+            sessionStorage.setItem('token', data.token);
 
             window.location.replace('user.html');
+            alert("Successfully logged in.");
         }
     })
     .catch((err) => console.log(err))
