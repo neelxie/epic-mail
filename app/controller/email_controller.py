@@ -28,7 +28,7 @@ class EmailController:
 
         subject = email_data.get("subject")
         message = email_data.get("message")
-        receiver_email = email_data.get("receiver_email")
+        receiver_id = email_data.get("receiver_id")
         payload = user_identity()
         sender_id = payload.get('user_id')
 
@@ -72,7 +72,7 @@ class EmailController:
             }), 400
 
         compose_error = self.valid.validate_composed_msg(
-            subject, message, receiver_email)
+            subject, message, receiver_id)
 
         if compose_error:
             return jsonify({
@@ -80,15 +80,6 @@ class EmailController:
                 "error": compose_error
             }), 400
 
-        get_user = db.check_email(receiver_email)
-
-        if get_user is None:
-            return jsonify({
-                'error': 'No user with that email.',
-                'status': 404
-            }), 404
-
-        receiver_id = get_user.get("receiver_id")
 
         new_email = db.add_message(
             subject,

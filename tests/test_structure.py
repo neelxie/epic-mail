@@ -27,7 +27,7 @@ class TestStructure(unittest.TestCase):
             subject = "We ate mangoes.",
             message = "We should eat only young mangoes for lunch",
             sender_id = 1,
-            receiver_email = "dede@cia.gov",
+            receiver_id = 2,
             parent_message_id = 0,
             status = "unread",
             sender_status = "sent"
@@ -38,7 +38,7 @@ class TestStructure(unittest.TestCase):
             subject = "We ate mangoes.",
             message = "We should eat only young mangoes for lunch",
             sender_id = 1,
-            receiver_email = "dede@cia.gov",
+            receiver_id = 2,
             parent_message_id = 0,
             status = "unread",
             sender_status = "sent"
@@ -49,7 +49,7 @@ class TestStructure(unittest.TestCase):
             subject = "We ate mangoes.",
             message = "We should eat only young mangoes for lunch",
             sender_id = 2,
-            receiver_email = "dede@cia.gov",
+            receiver_id = 1,
             parent_message_id = 0,
             status = "unread",
             sender_status = "sent"
@@ -60,7 +60,7 @@ class TestStructure(unittest.TestCase):
             subject = "We ate mangoes.",
             message = "We should eat only young mangoes for lunch",
             sender_id = 1,
-            receiver_email = "dede@cia.gov",
+            receiver_id = 2,
             parent_message_id = 0,
             status = "unread",
             sender_status = "sent"
