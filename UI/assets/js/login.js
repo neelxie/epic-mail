@@ -25,8 +25,11 @@ function loginForm(event) {
         if (data.status != 200){
 
             document.getElementById('myStatus').style.display = "block";
-            document.getElementById('myStatus').innerHTML = data.error;
             alert(data.error)
+            document.getElementById('myStatus').innerHTML = data.error;
+            setTimeout(() => { 
+                document.getElementById('myStatus').style.display = "none";
+            }, 4000);
         }
         if (data.status === 200){
 
