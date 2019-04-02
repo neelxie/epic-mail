@@ -156,8 +156,8 @@ class Valid:
                 subject) > 55 or len(subject) < 2:
             big_error = "The subject is invalid."
 
-        elif not isinstance(receiver, int):
-            big_error = "Receiver ID has to be a number."
+        elif self.valid_email(receiver) is not None:
+            big_error = "Receiver email has to be valid."
 
         elif not isinstance(message, str) or message.isspace():
             big_error = "Email message is has to be words."

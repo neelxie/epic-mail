@@ -38,9 +38,9 @@ class TestValidClass(unittest.TestCase):
         self.assertEqual(test_valid.validate_attributes("", empty_lst), "No data was entered.")
 
     def test_validate_composed_msg(self):
-        self.assertEqual(test_valid.validate_composed_msg('', "gdshgdsh", 1), "The subject is invalid.")
-        self.assertEqual(test_valid.validate_composed_msg('gdhshdsg', 1, "dfhd"), "Receiver ID has to be a number.")
-        self.assertEqual(test_valid.validate_composed_msg('sdhshds', " ", 5), "Email message is has to be words.")
+        self.assertEqual(test_valid.validate_composed_msg('', "gdshgdsh", "sad@dffd.cok"), "The subject is invalid.")
+        self.assertEqual(test_valid.validate_composed_msg('gdhshdsg', 1, "dfhd"), "Receiver email has to be valid.")
+        self.assertEqual(test_valid.validate_composed_msg('sdhshds', " ", "sad@dffd.cok"), "Email message is has to be words.")
 
     def test_check_base(self):
         """ validation method check user base."""
