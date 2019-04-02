@@ -31,8 +31,9 @@ function loginForm(event) {
         if (data.status === 200){
 
             document.getElementById('myStatus').style.display = "none";
+            console.log(data.token)
 
-            sessionStorage.setItem('token', data.token);
+            localStorage.setItem('token', data.token);
 
             window.location.replace('user.html');
             alert("Successfully logged in.");
