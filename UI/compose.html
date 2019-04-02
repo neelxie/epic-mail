@@ -56,9 +56,10 @@
             <div class="content">
                 <form class="compose-form" id="composeForm">
                     <ol>
+                        <span id="myStatus"></span>
                         <li>
                             <label for="contact">Add Contact</label>
-                            <input type="email" id="contact" placeholder="Send to..." required/>
+                            <input type="number" id="reciever" placeholder="Send to..." required/>
                         </li>
                         <li>
                             <label for="subject">Subject</label>
@@ -69,8 +70,8 @@
                             <textarea id="message" placeholder="Type your message"></textarea>
                         </li>
                         <li>
-                            <input type="submit" id="save" value="Save" onclick="saveDraft()">
-                            <input type="submit" id="delete" value="Delete" onclick="deleteDraft()">
+                            <input type="submit" id="submit" value="Save">
+                            <input type="submit" id="send" value="Send">
                         </li>
                     </ol>
                 </form>
