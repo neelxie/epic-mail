@@ -116,7 +116,7 @@ class TestEmail(TestStructure):
         self.assertEqual(reply_nonexstant_msg.status_code, 404)
         response = self.app.get(
             '/api/v2/messages', headers=self.headers)
-        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.status_code, 200)
         read_msg = self.app.get(
             '/api/v2/messages/1', headers=self.headers)
         self.assertEqual(read_msg.status_code, 200)
