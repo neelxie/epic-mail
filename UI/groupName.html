@@ -7,7 +7,7 @@
     <meta name="author" content="SEKIDDE DERRICK">
     <title>Epic Mail</title>
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/styles.css" />
-    <script src="./assets/js/createGroup.js"></script>
+    <script src="./assets/js/patchGroupName.js"></script>
 
 </head>
 <body>
@@ -19,7 +19,8 @@
                 <li>
                     <div>
                         <a href="compose.html" class="mails">
-                        <span>Compose</span></a>
+                            <span>Compose</span>
+                        </a>
                     </div>
                 </li>
                 <li>
@@ -31,7 +32,7 @@
                 </li>
                 <li>
                     <div>
-                        <a href="user.html" class="mails">
+                        <a href="sent.html" class="mails">
                             <span>Sent</span>
                         </a>
                     </div>
@@ -39,13 +40,13 @@
                 <li>
                     <div>
                         <a href="user.html" class="mails">
-                            <span>Saved</span>
+                            <span>Drafts</span>
                         </a>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <a href="#" class="mails">
+                        <a href="groups.html" class="mails">
                             <span>Groups</span>
                         </a>
                     </div>
@@ -70,12 +71,12 @@
 
             <div class="content">
 
-                <form id="createGroup" class="input-form">
+                <form id="renameGroup" class="input-form">
 
-                    <h3 class="darken"> To create a group enter group name: </h3>
+                    <h3 class="darken"> To change group name enter group name: </h3>
                     <span id="myStatus"></span>
-                    <p><input type="text" id="groupName" placeholder="Enter a group name." required/></p>
-                    <p><input type="submit" id="submit" value="Create Group"></p>
+                    <p><input type="text" id="groupName" placeholder="Enter new group name." required/></p>
+                    <p><input type="submit" id="submit" value=" Change Name"></p>
 
                 </form>
 
@@ -89,5 +90,5 @@
         </div>
     </div>
 </body>
-<script src="./assets/js/createGroup.js"></script>
+<script src="./assets/js/patchGroupName.js"></script>
 </html>
