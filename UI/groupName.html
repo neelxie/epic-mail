@@ -7,9 +7,11 @@
     <meta name="author" content="SEKIDDE DERRICK">
     <title>Epic Mail</title>
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/styles.css" />
-    <script src="./assets/js/getMsg.js"></script>
+    <script src="./assets/js/patchGroupName.js"></script>
+
 </head>
-<body onload="inbox()">
+<body>
+
     <div class="container">
         <div class="menu">
             <h5>Welcome User</h5>
@@ -38,7 +40,7 @@
                 <li>
                     <div>
                         <a href="user.html" class="mails">
-                            <span>Saved</span>
+                            <span>Drafts</span>
                         </a>
                     </div>
                 </li>
@@ -60,22 +62,26 @@
                     </a>
                 </li>
             </ul>
-        </div>    
+        </div>
         <div class="main">
+
             <div class="banner">
                 <h1>Epic Mail</h1>
             </div>
+
             <div class="content">
-                <h3 class="darken">Inbox messages </h3>
-                <div class="myMsgs">
-                    <div id="blank"></div>
-                    <div class="allMsgs">
-                        <table>
-                            <tbody id="everyThng"></tbody>
-                        </table>
-                    </div>
-                </div>
+
+                <form id="renameGroup" class="input-form">
+
+                    <h3 class="darken"> To change group name enter group name: </h3>
+                    <span id="myStatus"></span>
+                    <p><input type="text" id="groupName" placeholder="Enter new group name." required/></p>
+                    <p><input type="submit" id="submit" value=" Change Name"></p>
+
+                </form>
+
             </div>
+
             <div class="footer">
                 <footer>
                     <p>&copy 2019 Epic-Mail. <small>All rights Reserved.</small></p>
@@ -84,5 +90,5 @@
         </div>
     </div>
 </body>
-<script src="./assets/js/getMsg.js"></script>
+<script src="./assets/js/patchGroupName.js"></script>
 </html>

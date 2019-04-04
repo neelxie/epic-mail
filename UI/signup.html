@@ -7,6 +7,7 @@
     <meta name="author" content="SEKIDDE DERRICK">
     <title>Epic-Mail | sign up</title>
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/form.css" />
+    <script src="./assets/js/signup.js"></script>
 </head>
 
 <body>
@@ -26,18 +27,20 @@
             <h3>Sign up and get started.</h3>
           </div>
           <div class="registerForm">
-            <form class="input-form" id="epicform" action="user.html">
-                <p><input type="text" id="full_name" placeholder="Full Name" required /></p>
+            <form class="input-form" id="epicRegister">
+                <span id="myStatus"></span>
+                <p><input type="text" id="firstName" placeholder="First Name" required /></p>
+                <p><input type="text" id="lastName" placeholder="Last Name" required/></p>
                 <p><input type="email" id="email" placeholder="Email" required /></p>
-                <p><input type="tel" id="number" placeholder="Phone Number" required /></p>
+                <p><input type="tel" id="phoneNumber" placeholder="Phone Number" required /></p>
                 <p><input type="password" id="password" placeholder="Password" required /></p>
-                <p><input type="password" id="confirm_password" placeholder="Confirm Passowrd"/></p>
-                <input type="submit" class="btn" value="Create Account">
+                <p><input type="submit" class="submit" value="Create Account"></p>
                 <p class="mylink"><a href="index.html">Or Log In here.</a></p>
             </form>
           </div>
         </div>
     </div>
+<script src="./assets/js/signup.js"></script>
 </body>
 
 </html>

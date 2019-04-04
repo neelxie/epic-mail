@@ -75,6 +75,14 @@ form{
     width: 80%;
 }
 
+/* error status */
+#myStatus{
+    text-align: center;
+    color: red;
+    background: white;
+    display: none;
+}
+
 .input-form input[type="email"],
 .input-form input[type="text"],
 .input-form input[type="tel"],
@@ -133,5 +141,4 @@ a:hover{
 }
 .mylink a:hover{
     color: black;
-    /* background-color: white; */
 }

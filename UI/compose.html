@@ -7,6 +7,7 @@
     <meta name="author" content="SEKIDDE DERRICK">
     <title>Epic Mail</title>
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/styles.css" />
+    <script src="./assets/js/composeMsg.js"></script>
 </head>
 <body>
     <div class="container">
@@ -17,47 +18,59 @@
             <div class="menu">
                 <ul>
                     <li>
-                        <h5>Welcome User</h5>
-                    </li>
-                    <li>
                         <div>
                             <a href="compose.html" class="mails">
-                            <span>Compose</span></a>
+                                <span>Compose</span>
+                            </a>
                         </div>
                     </li>
                     <li>
                         <div>
                             <a href="user.html" class="mails">
-                            <span>INBOX</span>
-                            <span class="badge">15</span></a>
+                                <span>Inbox</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div>
+                            <a href="sent.html" class="mails">
+                                <span>Sent</span>
+                            </a>
                         </div>
                     </li>
                     <li>
                         <div>
                             <a href="user.html" class="mails">
-                            <span>SENT</span>
-                            <span class="badge">29</span></a>
+                                <span>Saved</span>
+                            </a>
                         </div>
                     </li>
                     <li>
                         <div>
-                            <a href="user.html" class="mails">
-                            <span>SAVED</span>
-                            <span class="badge">7</span></a>
+                            <a href="groups.html" class="mails">
+                                <span>Groups</span>
+                            </a>
                         </div>
+                    </li>
+                    <li>
+                        <a href="createGroup.html" class="mails">
+                            <span>Create Group</span>
+                        </a>
                     </li>
                     <li>
                         <a href="index.html" class="mails">
-                        <span>Log Out</span></a>
+                            <span>Log Out</span>
+                        </a>
                     </li>
                 </ul>
             </div>
             <div class="content">
-                <form class="compose-form">
+                <form class="compose-form" id="composeForm">
                     <ol>
+                        <span id="myStatus"></span>
                         <li>
                             <label for="contact">Add Contact</label>
-                            <input type="email" id="contact" placeholder="Send to..." required/>
+                            <input type="number" id="reciever" placeholder="Send to..." required/>
                         </li>
                         <li>
                             <label for="subject">Subject</label>
@@ -68,8 +81,8 @@
                             <textarea id="message" placeholder="Type your message"></textarea>
                         </li>
                         <li>
-                            <input type="submit" id="save" value="Save" onclick="saveDraft()">
-                            <input type="submit" id="delete" value="Delete" onclick="deleteDraft()">
+                            <input type="submit" id="submit" value="Save">
+                            <input type="submit" id="send" value="Send">
                         </li>
                     </ol>
                 </form>
@@ -80,5 +93,5 @@
         </footer>
     </div>
 </body>
-<script src="./assets/js/script.js"></script>
+<script src="./assets/js/composeMsg.js"></script>
 </html>
