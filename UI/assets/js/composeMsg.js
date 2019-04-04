@@ -14,7 +14,7 @@ function composeForm(event) {
     let subject = document.getElementById('subject').value;
     let message = document.getElementById('message').value;
 
-    var contact = parseInt(reciever);
+    let contact = parseInt(reciever);
 
     const send = {
         "receiver_id": contact,
@@ -24,6 +24,7 @@ function composeForm(event) {
 
     fetch('https://my-epic-mail.herokuapp.com/api/v2/messages', {
         method: 'POST',
+        cache: 'no-cache',
         headers: {
             'content-type': 'application/json',
             'Authorization': `Bearer ${token}`

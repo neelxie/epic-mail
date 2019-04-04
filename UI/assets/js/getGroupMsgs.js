@@ -1,25 +1,27 @@
-document.getElementById('createGroup').addEventListener('submit', createGroup);
+document.getElementById('composeForm').addEventListener('submit', composeForm);
 
-function createGroup(event) {
+function composeForm(event) {
     event.preventDefault();
 
     token = localStorage.getItem('token');
-
+    
     if (token === null) {
-    alert('You must log in');
-    window.location.replace('index.html');
+        alert('You must log in');
+        window.location.replace('index.html');
     }
 
-    let name = document.getElementById('groupName').value;
+    let reciever = document.getElementById('group_id').value;
+    let subject = document.getElementById('subject').value;
+    let message = document.getElementById('message').value;
 
-    fetch('https://my-epic-mail.herokuapp.com/api/v2/groups', {
-        method: 'POST',
-        cache: 'no-cache',
+    var group_id = parseInt(reciever);
+
+    const URL = 'https://my-epic-mail.herokuapp.com/api/v2/groups/'+group_id+'/messages'
+
+    fetch(URL, {
         headers: {
-            'content-type': 'application/json',
             'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({"group_name": name})
+        }
     })
     .then((res) => res.json())
     .then((data) => {
@@ -38,7 +40,7 @@ function createGroup(event) {
             document.getElementById('myStatus').style.display = "none";
 
             window.location.replace('user.html');
-            alert("Your Group has been successfully created.");
+            alert("Message sent.");
         }
     })
     .catch((err) => console.log(err))

@@ -12,9 +12,9 @@ function allGroups(){
     })
     .then((res) => res.json())
     .then((data) => {
-        if (data.status === 400){
+        if (data.status === 404){
             document.getElementById('blank').style.display = "block";
-            document.getElementById('blank').innerHTML = data.error;
+            document.getElementById('blank').innerHTML = "You have not created any groups";
         }
         if (data.status === 401){
             document.getElementById('blank').style.display = "block";
@@ -27,9 +27,10 @@ function allGroups(){
             data.data.forEach((group) => {
                 myGroups +=
                     `<tr>
-                     <td class="senders">Group ID: ${group.group_id} </td>
-                     <td><a href ="oneGroup.html?group_id=${group.group_id}">${group.group_name}</a></td>
-                     <td class="date"> ${group.created_on} </td>
+                        <td class="senders">Group ID: ${group.group_id} </td>
+                        <td><a href ="oneGroup.html?group_id=${group.group_id}">${group.group_name}</a></td>
+                        <td><button onclick="deleteGroup(${group.group_id})">Delete</button></td>
+                        <td><a href ="groupName.html"><button>Change Name</button></a></td>
                     </tr>`;
                 });
             document.getElementById('myGroups').innerHTML = myGroups;

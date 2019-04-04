@@ -1,11 +1,11 @@
-function inbox(){
+function appUsers(){
     token = localStorage.getItem('token');
     
     if (token === null) {
         alert('You must log in');
         window.location.replace('index.html');
     }
-    fetch('https://my-epic-mail.herokuapp.com/api/v2/messages', {
+    fetch('https://my-epic-mail.herokuapp.com/api/v2/auth/users', {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -23,17 +23,17 @@ function inbox(){
         }
         if (data.status === 200){
             console.log(data.data)
-            let everyThng = "";
-            data.data.forEach((msg) => {
-                everyThng +=
+            let allUsers = "";
+            data.data.forEach((user) => {
+                allUsers +=
                     `<tr class="row">
-                        <td class="senders">From User: ${msg.sender_id} </td>
-                        <td><a href ="oneMsg.html?message_id=${msg.message_id}">${msg.subject}</a></td>
-                        <td class="date"> ${msg.created_on} </td>
-                        <td><button onclick="deleteMsg(${msg.message_id})">Delete</button></td>
+                        <td class="senders">User ID: ${user.user_id} </td>
+                        <td><a href ="oneUser.html?user_id=${user.user_id}">${user.first_name}</a></td>
+                        <td>${user.last_name}</td>
+                        <td class="date"> ${user.email} </td>
                     </tr>`;
                 });
-            document.getElementById('everyThng').innerHTML = everyThng;
+            document.getElementById('allUsers').innerHTML = allUsers;
         }
     })
 }
