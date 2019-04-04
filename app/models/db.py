@@ -139,7 +139,7 @@ class DatabaseConnection:
         self.cursor.execute(query)
 
     def get_received(self, user_id):
-        query = "SELECT * FROM messages WHERE receiver_id='{}' AND status='unread' OR status='read';".format(
+        query = "SELECT * FROM messages WHERE receiver_id='{}' AND status='unread';".format(
             user_id)
         self.cursor.execute(query)
         messages = self.cursor.fetchall()
@@ -166,7 +166,7 @@ class DatabaseConnection:
         return all_unread
 
     def fetch_sent(self, user_id):
-        query = "SELECT * FROM messages WHERE sender_id='{}' AND status='sent';".format(
+        query = "SELECT * FROM messages WHERE sender_id='{}' AND sender_status='sent';".format(
             user_id)
         self.cursor.execute(query)
         my_sent = self.cursor.fetchall()
