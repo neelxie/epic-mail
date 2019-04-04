@@ -7,9 +7,9 @@
     <meta name="author" content="SEKIDDE DERRICK">
     <title>Epic Mail</title>
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/styles.css" />
-    <script src="./assets/js/getMsg.js"></script>
+    <script src="./assets/js/oneMsg.js"></script>
 </head>
-<body onload="inbox()">
+<body onload="oneUser()">
     <div class="container">
         <div class="menu">
             <h5>Welcome User</h5>
@@ -30,8 +30,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="users.html" class="mails">
-                        <span>Users</span>
+                    <a href="user.html" class="mails">
+                        <span>Saved</span>
                     </a>
                 </li>
                 <li>
@@ -56,13 +56,38 @@
                 <h1>Epic Mail</h1>
             </div>
             <div class="content">
-                <h3 class="darken">Inbox messages </h3>
+                <h3 class="darken">Current Users </h3>
                 <div class="myMsgs">
                     <div id="blank"></div>
                     <div class="allMsgs">
-                        <table>
-                            <tbody id="everyThng"></tbody>
-                        </table>
+                        <div class="one_stuff">
+                            <h5>One User</h5>
+                            <table>
+                                <tbody class="tableBody">
+                                    <tr>
+                                        <th>User ID:</th>
+                                        <td><div id="user_id"></div></td>
+                                    </tr>
+                                    <tr>   
+                                        <th>Email:</th>
+                                        <td><div id="email"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <th>First Name:</th>
+                                        <td><div id="first_name"></div></td>
+                                    </tr>
+                                    <tr>         
+                                        <th>Last Name:</th>
+                                        <td><div id="last_name"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Phone Number:</th>
+                                        <td><div id="phone_number"></div></td>
+                                    </tr>           
+                                </tbody>
+                            </table>
+                        </div>
+
                     </div>
                 </div>
             </div>
@@ -74,6 +99,5 @@
         </div>
     </div>
 </body>
-<script src="./assets/js/getUsers.js"></script>
-<script src="./assets/js/deleteMsg.js"></script>
+<script src="./assets/js/oneUser.js"></script>
 </html>

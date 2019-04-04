@@ -72,6 +72,7 @@ body {
 .myMsgs{
     width: 100%;
     text-align: center;
+    overflow: auto;
 }
 h3{
     text-align: center;
@@ -139,6 +140,20 @@ li input[type="email"]:hover,
     color: #4772ff;
 }
 
+.tableBody th,
+.tableBody td{
+    border: 1px solid #2339ff;
+    width: 50%;
+}
+.tableBody th{
+    background-color: #2339ff;
+    color: white;
+}
+.onestuff{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
 
 ul, ol{
     list-style-type: none;
