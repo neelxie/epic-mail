@@ -7,9 +7,9 @@
     <meta name="author" content="SEKIDDE DERRICK">
     <title>Epic Mail</title>
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/styles.css" />
-    <script src="./assets/js/sendGroupMsg.js"></script>
+    <script src="./assets/js/oneGroup.js"></script>
 </head>
-<body>
+<body onload="oneUser()">
     <div class="container">
         <div class="menu">
             <h5>Welcome User</h5>
@@ -50,35 +50,50 @@
                     </a>
                 </li>
             </ul>
-        </div>
+        </div>    
         <div class="main">
-            <div class="banner"> 
+            <div class="banner">
                 <h1>Epic Mail</h1>
             </div>
             <div class="content">
-                <h3 class="darken">Add User to Group. </h3>
-                <form class="compose-form" id="composeForm">
-                    <ol>
-                        <span id="myStatus"></span>
-                        <li>
-                            <label for="contact">Add Group ID</label>
-                            <input type="number" id="group_id" placeholder="Group ID..." required/>
-                        </li>
-                        <li>
-                            <label for="contact">Add User ID</label>
-                            <input type="number" id="User_id" placeholder="User ID..." required/>
-                        </li>
-                        <li>
-                            <input type="submit" id="submit" value="Send">
-                        </li>
-                    </ol>
-                </form>
+                <h3 class="darken">Current Users </h3>
+                <div class="myMsgs">
+                    <div id="blank"></div>
+                    <div class="allMsgs">
+                        <div class="one_stuff">
+                            <h5>One User</h5>
+                            <table>
+                                <tbody class="tableBody">
+                                    <tr>
+                                        <th>User ID:</th>
+                                        <td><div id="user_id"></div></td>
+                                    </tr>
+                                    <tr>   
+                                        <th>Group ID:</th>
+                                        <td><div id="group_id"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Group Name:</th>
+                                        <td><div id="group_name"></div></td>
+                                    </tr>
+                                    <tr>         
+                                        <th>Created On:</th>
+                                        <td><div id="created_on"></div></td>
+                                    </tr>        
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <footer>
+                    <p>&copy 2019 Epic-Mail. <small>All rights Reserved.</small></p>
+                </footer>
             </div>
         </div>
-        <footer class="footer">
-            <p>&copy 2019 Epic-Mail. <small>All rights Reserved.</small></p>
-        </footer>
     </div>
 </body>
-<script src="./assets/js/addGroupUser.js"></script>
+<script src="./assets/js/oneGroup.js"></script>
 </html>
