@@ -6,8 +6,8 @@ function composeForm(event) {
     token = localStorage.getItem('token');
     
     if (token === null) {
-    alert('You must log in');
-    window.location.replace('index.html');
+        alert('You must log in');
+        window.location.replace('index.html');
     }
 
     let reciever = document.getElementById('reciever').value;

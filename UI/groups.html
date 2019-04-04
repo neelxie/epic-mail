@@ -7,11 +7,9 @@
     <meta name="author" content="SEKIDDE DERRICK">
     <title>Epic Mail</title>
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/styles.css" />
-    <script src="./assets/js/createGroup.js"></script>
-
+    <script src="./assets/js/groups.js"></script>
 </head>
-<body>
-
+<body onload="allGroups()">
     <div class="container">
         <div class="menu">
             <h5>Welcome User</h5>
@@ -19,7 +17,8 @@
                 <li>
                     <div>
                         <a href="compose.html" class="mails">
-                        <span>Compose</span></a>
+                            <span>Compose</span>
+                        </a>
                     </div>
                 </li>
                 <li>
@@ -31,7 +30,7 @@
                 </li>
                 <li>
                     <div>
-                        <a href="user.html" class="mails">
+                        <a href="sent.html" class="mails">
                             <span>Sent</span>
                         </a>
                     </div>
@@ -39,13 +38,13 @@
                 <li>
                     <div>
                         <a href="user.html" class="mails">
-                            <span>Saved</span>
+                            <span>Drafts</span>
                         </a>
                     </div>
                 </li>
                 <li>
                     <div>
-                        <a href="#" class="mails">
+                        <a href="groups.html" class="mails">
                             <span>Groups</span>
                         </a>
                     </div>
@@ -61,26 +60,22 @@
                     </a>
                 </li>
             </ul>
-        </div>
+        </div>    
         <div class="main">
-
             <div class="banner">
                 <h1>Epic Mail</h1>
             </div>
-
             <div class="content">
-
-                <form id="createGroup" class="input-form">
-
-                    <h3 class="darken"> To create a group enter group name: </h3>
-                    <span id="myStatus"></span>
-                    <p><input type="text" id="groupName" placeholder="Enter a group name." required/></p>
-                    <p><input type="submit" id="submit" value="Create Group"></p>
-
-                </form>
-
+                <h3 class="darken">All Groups You Own </h3>
+                <div class="myMsgs">
+                    <div id="blank"></div>
+                    <div class="allMsgs">
+                        <table>
+                            <tbody id="myGroups"></tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
-
             <div class="footer">
                 <footer>
                     <p>&copy 2019 Epic-Mail. <small>All rights Reserved.</small></p>
@@ -89,5 +84,5 @@
         </div>
     </div>
 </body>
-<script src="./assets/js/createGroup.js"></script>
+<script src="./assets/js/groups.js"></script>
 </html>
