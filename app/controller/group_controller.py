@@ -37,6 +37,20 @@ class GroupController:
             "data": [group]
         }), 201
 
+    def get_group_membas(self, group_id):
+        groups = db.get_group_members(group_id)
+
+        if groups:
+            return jsonify({
+                "data": [group for group in groups],
+                "status": 200
+            }), 200
+
+        return jsonify({
+            "status": 404,
+            "error": "No group members yet."
+        }), 404
+
     def all_groups(self):
         """ Retrieve all groups. """
 
@@ -54,6 +68,20 @@ class GroupController:
             "status": 404,
             "error": "No user groups yet."
         }), 404
+
+    def one_group(self, group_id):
+        check_group = db.return_group(group_id)
+
+        if check_group is None:
+            return jsonify({
+                "error": "Given group ID does not exist.",
+                "status": 404
+            }), 404
+            
+        return jsonify({
+            "status": 200,
+            "data": [check_group]
+        }), 200
 
     def update_group_name(self, group_id):
         """
@@ -140,15 +168,11 @@ class GroupController:
         }), 201
 
 
-    def remove_group_member(self, group_id):
+    def remove_group_member(self, group_id, user_id):
         """
         function that gets rid of a member from a group. """
 
-        new_group_name = request.get_json()
-
-        receiver_email  = new_group_name.get("receiver_email")
-
-        deletee = db.check_email(receiver_email)
+        deletee = db.get_user(user_id)
         
         if deletee is None:
             return jsonify({
@@ -164,13 +188,14 @@ class GroupController:
                 "error": "No group by that ID.",
             }), 404
 
-
+        receiver_email = deletee.get('email')
         db.delete_user_from_group(group_id, receiver_email)
 
         return jsonify({
             'message': "User successfully removed from group.",
             "status": 200
         }), 200
+
 
     def add_group_message(self, group_id):
         """ method that adds a group message. """

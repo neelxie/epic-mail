@@ -213,6 +213,12 @@ class DatabaseConnection:
             created_by, group_id)
         self.cursor.execute(query)
 
+    def get_group_members(self, group_id):
+        query = "SELECT * FROM group_members WHERE group_id='{}';".format(group_id)
+        self.cursor.execute(query)
+        members = self.cursor.fetchall()
+        return members
+
     def drop_tables(self):
         query = "DROP TABLE group_members;DROP TABLE groups;DROP TABLE messages;DROP TABLE users;"
         self.cursor.execute(query)
