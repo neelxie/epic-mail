@@ -19,6 +19,7 @@ function epicRegister(event) {
 
     fetch('https://my-epic-mail.herokuapp.com/api/v2/auth/signup', {
         method: 'POST',
+        cache: 'no-cache',
         headers: {
             'content-type': 'application/json'
         },

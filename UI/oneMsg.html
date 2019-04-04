@@ -7,7 +7,7 @@
     <meta name="author" content="SEKIDDE DERRICK">
     <title>Epic Mail</title>
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/styles.css" />
-    <script src="./assets/js/getMsg.js"></script>
+    <script src="./assets/js/oneMsg.js"></script>
 </head>
 <body onload="inbox()">
     <div class="container">
@@ -15,39 +15,29 @@
             <h5>Welcome User</h5>
             <ul>
                 <li>
-                    <div>
-                        <a href="compose.html" class="mails">
-                            <span>Compose</span>
-                        </a>
-                    </div>
+                    <a href="compose.html" class="mails">
+                        <span>Compose</span>
+                    </a>
                 </li>
                 <li>
-                    <div>
-                        <a href="user.html" class="mails">
-                            <span>Inbox</span>
-                        </a>
-                    </div>
+                    <a href="user.html" class="mails">
+                        <span>Inbox</span>
+                    </a>
                 </li>
                 <li>
-                    <div>
-                        <a href="sent.html" class="mails">
-                            <span>Sent</span>
-                        </a>
-                    </div>
+                    <a href="sent.html" class="mails">
+                        <span>Sent</span>
+                    </a>
                 </li>
                 <li>
-                    <div>
-                        <a href="user.html" class="mails">
-                            <span>Saved</span>
-                        </a>
-                    </div>
+                    <a href="user.html" class="mails">
+                        <span>Saved</span>
+                    </a>
                 </li>
                 <li>
-                    <div>
-                        <a href="groups.html" class="mails">
-                            <span>Groups</span>
-                        </a>
-                    </div>
+                    <a href="groups.html" class="mails">
+                        <span>Groups</span>
+                    </a>
                 </li>
                 <li>
                     <a href="createGroup.html" class="mails">
@@ -70,9 +60,32 @@
                 <div class="myMsgs">
                     <div id="blank"></div>
                     <div class="allMsgs">
-                        <table>
-                            <tbody id="everyThng"></tbody>
-                        </table>
+                        <h5>One message</h5>
+                        <div class="sendees">
+                            <span>Message ID</span>
+                            <p id="message_id"></p>                  
+                        </div>
+                        <div class="sendees">
+                            <span>From</span>
+                            <p id="sender_id"></p>                 
+                        </div>
+                        <div class="sendees">
+                            <span>To</span>
+                            <p id="receiver_id"></p>                  
+                        </div>
+                        <div class="sendees">
+                            <span>Subject</span>
+                            <p id="subject"></p>                  
+                        </div>
+                        <div class="sendees">
+                            <span>Date Created</span>
+                            <p id="created_on"></p>                  
+                        </div>                        
+                        <div class="sendees">
+                            <span>Message</span>
+                            <p id="message"></p>                 
+                        </div><br>
+
                     </div>
                 </div>
             </div>
@@ -84,5 +97,5 @@
         </div>
     </div>
 </body>
-<script src="./assets/js/getMsg.js"></script>
+<script src="./assets/js/oneMsg.js"></script>
 </html>
