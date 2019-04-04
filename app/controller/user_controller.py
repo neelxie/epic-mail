@@ -77,9 +77,11 @@ class UserController:
 
 
         user_id = user.get('user_id')
+        email = user.get('email')
 
         token = jwt.encode({"user_id": user_id,
-                            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=30)},
+                            "email":email,
+                            'exp': datetime.datetime.utcnow() + datetime.timedelta(minutes=60)},
                            app_secret_key).decode('UTF-8')
         return jsonify({
             "status": 201,
@@ -116,11 +118,13 @@ class UserController:
         user = db.check_email(email)
         
         user_id = user.get('user_id')
+        email = user.get('email')
 
         token = jwt.encode(
             {"user_id": user_id,
+             "email":email,
              'exp': datetime.datetime.utcnow(
-            ) + datetime.timedelta(minutes=30)}, app_secret_key).decode('UTF-8')
+            ) + datetime.timedelta(minutes=60)}, app_secret_key).decode('UTF-8')
         return jsonify({
             'status': 200,
             'message':'user logged in',

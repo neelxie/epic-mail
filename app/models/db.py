@@ -8,11 +8,12 @@ class DatabaseConnection:
     def __init__(self):
         
         try:
+            print("started")
             self.connection = psycopg2.connect(
-                dbname="d948o7njccndh6",
-                user='bdbfssdboeprhi',
-                host='ec2-54-225-242-183.compute-1.amazonaws.com',
-                password='3a9b4fbe2cdf7504837c84c71ed741806a02e9441fbad891597f86b52b251d59',
+                dbname="flask_api",
+                user='postgres',
+                host='localhost',
+                password='',
                 port=5432)
             self.connection.autocommit = True
             self.cursor = self.connection.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
@@ -37,8 +38,8 @@ class DatabaseConnection:
             created_on TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,\
             subject VARCHAR(30) NOT NULL, \
             message VARCHAR(200) NOT NULL, \
-            sender_id INTEGER REFERENCES users(user_id), \
-            receiver_id INTEGER NOT NULL, \
+            sender_email TEXT NOT NULL, \
+            receiver_email TEXT NOT NULL, \
             parent_message_id INTEGER DEFAULT 0, \
             status VARCHAR DEFAULT 'unread', \
             sender_status VARCHAR DEFAULT 'sent');"
@@ -47,7 +48,7 @@ class DatabaseConnection:
         create_table = "CREATE TABLE IF NOT EXISTS groups \
             (group_id SERIAL UNIQUE PRIMARY KEY, \
             created_on TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,\
-            created_by INTEGER NOT NULL, \
+            created_by TEXT NOT NULL, \
             group_name VARCHAR(15) NOT NULL, \
             role VARCHAR DEFAULT 'admin');"
         self.cursor.execute(create_table)
@@ -55,7 +56,7 @@ class DatabaseConnection:
         create_table = "CREATE TABLE IF NOT EXISTS group_members \
             (member_id SERIAL UNIQUE PRIMARY KEY, \
             added_on TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,\
-            user_id INTEGER NOT NULL, \
+            receiver_email TEXT NOT NULL, \
             group_id INTEGER REFERENCES groups(group_id), \
             user_role VARCHAR DEFAULT 'member');"
         self.cursor.execute(create_table)
@@ -63,7 +64,7 @@ class DatabaseConnection:
         create_table = "CREATE TABLE IF NOT EXISTS group_messages \
             (message_id SERIAL UNIQUE PRIMARY KEY, \
             added_on TIMESTAMP WITHOUT TIME ZONE DEFAULT CURRENT_TIMESTAMP,\
-            sender_id INTEGER NOT NULL, \
+            sender_email TEXT NOT NULL, \
             group_id INTEGER NOT NULL, \
             subject VARCHAR(30) NOT NULL, \
             message VARCHAR(200) NOT NULL, \
@@ -77,10 +78,10 @@ class DatabaseConnection:
         return new_user
 
 
-    def add_message(self, subject, message, sender_id, receiver_id, parent_message_id, status, sender_status):
+    def add_message(self, subject, message, sender_email, receiver_email, parent_message_id, status, sender_status):
 
-        query = "INSERT INTO messages (subject, message, sender_id, receiver_id, parent_message_id, status, sender_status) VALUES ('{}', '{}', '{}', '{}', '{}', '{}','{}')RETURNING *;".format(
-            subject, message, sender_id, receiver_id, parent_message_id, status, sender_status)
+        query = "INSERT INTO messages (subject, message, sender_email, receiver_email, parent_message_id, status, sender_status) VALUES ('{}', '{}', '{}', '{}', '{}', '{}','{}')RETURNING *;".format(
+            subject, message, sender_email, receiver_email, parent_message_id, status, sender_status)
         self.cursor.execute(query)
         email_message = self.cursor.fetchone()
         return email_message
@@ -92,16 +93,16 @@ class DatabaseConnection:
         group = self.cursor.fetchone()
         return group
 
-    def add_user_to_group(self, group_id, user_id):
-        query = "INSERT INTO group_members (group_id, user_id) VALUES ('{}', '{}') RETURNING *;".format(
-            group_id, user_id)
+    def add_user_to_group(self, group_id, receiver_email):
+        query = "INSERT INTO group_members (group_id, receiver_email) VALUES ('{}', '{}') RETURNING *;".format(
+            group_id, receiver_email)
         self.cursor.execute(query)
         group_member = self.cursor.fetchone()
         return group_member
 
-    def add_group_message(self, sender_id, group_id, subject, message, parent_message_id):
-        query = "INSERT INTO group_messages (sender_id, group_id, subject, message, parent_message_id) VALUES ('{}', '{}', '{}', '{}','{}')RETURNING *;".format(
-            sender_id, group_id, subject, message, parent_message_id)
+    def add_group_message(self, sender_email, group_id, subject, message, parent_message_id):
+        query = "INSERT INTO group_messages (sender_email, group_id, subject, message, parent_message_id) VALUES ('{}', '{}', '{}', '{}','{}')RETURNING *;".format(
+            sender_email, group_id, subject, message, parent_message_id)
         self.cursor.execute(query)
         group_message = self.cursor.fetchone()
         return group_message
@@ -138,9 +139,9 @@ class DatabaseConnection:
             new_name, group_id)
         self.cursor.execute(query)
 
-    def get_received(self, user_id):
-        query = "SELECT * FROM messages WHERE receiver_id='{}' AND status='unread';".format(
-            user_id)
+    def get_received(self, receiver_email):
+        query = "SELECT * FROM messages WHERE receiver_email='{}' AND status='unread';".format(
+            receiver_email)
         self.cursor.execute(query)
         messages = self.cursor.fetchall()
         return messages
@@ -165,9 +166,9 @@ class DatabaseConnection:
         all_unread = self.cursor.fetchall()
         return all_unread
 
-    def fetch_sent(self, user_id):
-        query = "SELECT * FROM messages WHERE sender_id='{}' AND sender_status='sent';".format(
-            user_id)
+    def fetch_sent(self, sender_email):
+        query = "SELECT * FROM messages WHERE sender_email='{}' AND sender_status='sent';".format(
+            sender_email)
         self.cursor.execute(query)
         my_sent = self.cursor.fetchall()
         return my_sent
@@ -184,9 +185,9 @@ class DatabaseConnection:
         user = self.cursor.fetchone()
         return user
 
-    def return_member(self, group_id, user_id):
-        query = "SELECT * FROM group_members WHERE group_id='{}' AND user_id ='{}';".format(
-            group_id, user_id)
+    def return_member(self, group_id, receiver_email):
+        query = "SELECT * FROM group_members WHERE group_id='{}' AND receiver_email='{}';".format(
+            group_id, receiver_email)
         self.cursor.execute(query)
         in_group = self.cursor.fetchone()
         return in_group
@@ -203,9 +204,9 @@ class DatabaseConnection:
             message_id)
         self.cursor.execute(query)
 
-    def delete_user_from_group(self, group_id, user_id):
-        query = "DELETE FROM group_members WHERE group_id = '{}' AND user_id = '{}';".format(
-            group_id, user_id)
+    def delete_user_from_group(self, group_id, receiver_email):
+        query = "DELETE FROM group_members WHERE group_id = '{}' AND receiver_email = '{}';".format(
+            group_id, receiver_email)
         self.cursor.execute(query)
 
     def delete_group(self, created_by, group_id):

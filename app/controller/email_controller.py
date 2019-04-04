@@ -28,9 +28,9 @@ class EmailController:
 
         subject = email_data.get("subject")
         message = email_data.get("message")
-        receiver_id = email_data.get("receiver_id")
+        receiver_email = email_data.get("receiver_email")
         payload = user_identity()
-        sender_id = payload.get('user_id')
+        sender_id = payload.get('email')
 
         # only replies have this taking 0 as default value
         parent_message_id = 0
@@ -60,7 +60,7 @@ class EmailController:
                 "error": "You entered wrong reply email ID."
             }), 400
 
-        email_list = ['subject', 'message', 'receiver_id']
+        email_list = ['subject', 'message', 'receiver_email']
 
         email_error = self.valid.validate_attributes(email_data, email_list)
 
@@ -72,7 +72,7 @@ class EmailController:
             }), 400
 
         compose_error = self.valid.validate_composed_msg(
-            subject, message, receiver_id)
+            subject, message, receiver_email)
 
         if compose_error:
             return jsonify({
@@ -80,12 +80,22 @@ class EmailController:
                 "error": compose_error
             }), 400
 
+        valid_email = db.check_email(receiver_email) 
+
+        if valid_email is None:
+            return jsonify(
+                {
+                    "status": 400,
+                    "error": "No user by that email"
+                }
+            ), 400
+
 
         new_email = db.add_message(
             subject,
             message,
             sender_id,
-            receiver_id,
+            receiver_email,
             parent_message_id,
             status,
             sender_status)
@@ -100,8 +110,8 @@ class EmailController:
         function fetching received mails.
         """
         get_user = user_identity()
-        user_id = get_user.get('user_id')
-        new_mail_lst = db.get_received(user_id)
+        receiver_email = get_user.get('email')
+        new_mail_lst = db.get_received(receiver_email)
 
         if new_mail_lst:
             return jsonify({
@@ -139,8 +149,8 @@ class EmailController:
         show all user sent mails.
         """
         from_token = user_identity()
-        sender_id = from_token.get('user_id')
-        user_sent = db.fetch_sent(sender_id)
+        sender_email = from_token.get('email')
+        user_sent = db.fetch_sent(sender_email)
 
         if user_sent:
             return jsonify({

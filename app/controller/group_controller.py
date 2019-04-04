@@ -28,7 +28,7 @@ class GroupController:
             }), 400
 
         from_token = user_identity()
-        created_by = from_token.get('user_id')
+        created_by = from_token.get('email')
         
         group = db.create_group(name, created_by, 'admin')
 
@@ -41,7 +41,7 @@ class GroupController:
         """ Retrieve all groups. """
 
         get_user = user_identity()
-        created_by = get_user.get('user_id')
+        created_by = get_user.get('email')
         groups = db.all_app_groups(created_by)
 
         if groups:
@@ -92,7 +92,7 @@ class GroupController:
         delete a group you created. """
         
         created_by = user_identity()
-        owner = created_by.get('user_id')
+        owner = created_by.get('email')
 
         group_exists = db.return_group(group_id)
 
@@ -109,9 +109,12 @@ class GroupController:
             "message": "Group successfully deleted."
         }), 200
 
-    def adding_group_member(self, group_id, user_id):
+    def adding_group_member(self, group_id):
         """
         Method does add a user in the system to a group. """
+        new_group_name = request.get_json()
+
+        receiver_email  = new_group_name.get("receiver_email")
 
         find_group = db.return_group(group_id)
 
@@ -121,7 +124,7 @@ class GroupController:
                 "error": "Group not found.",
             }), 404
 
-        find_user = db.get_user(user_id)
+        find_user = db.check_email(receiver_email)
         
         if find_user is None:
             return jsonify({
@@ -129,7 +132,7 @@ class GroupController:
                 "status": 404
             }), 404
 
-        added = db.add_user_to_group(group_id, user_id)
+        added = db.add_user_to_group(group_id, receiver_email)
 
         return jsonify({
             "status": 201,
@@ -137,11 +140,15 @@ class GroupController:
         }), 201
 
 
-    def remove_group_member(self, group_id, user_id):
+    def remove_group_member(self, group_id):
         """
         function that gets rid of a member from a group. """
 
-        deletee = db.get_user(user_id)
+        new_group_name = request.get_json()
+
+        receiver_email  = new_group_name.get("receiver_email")
+
+        deletee = db.check_email(receiver_email)
         
         if deletee is None:
             return jsonify({
@@ -158,7 +165,7 @@ class GroupController:
             }), 404
 
 
-        db.delete_user_from_group(group_id, user_id)
+        db.delete_user_from_group(group_id, receiver_email)
 
         return jsonify({
             'message': "User successfully removed from group.",
@@ -176,7 +183,7 @@ class GroupController:
             }), 404
 
         payload = user_identity()
-        current_user = payload.get('user_id')
+        current_user = payload.get('email')
 
         user = db.return_member(group_id, current_user)
 
@@ -215,7 +222,7 @@ class GroupController:
         """ get all group messages.
         """
         payload = user_identity()
-        user = payload.get('user_id')
+        user = payload.get('email')
 
         check_group = db.return_group(group_id)
 

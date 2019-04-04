@@ -35,19 +35,19 @@ def delete_group(group_id):
     delete a group """
     return group_controller.delete_group(group_id)
 
-@group_bp.route('/groups/<int:group_id>/users/<int:user_id>', methods=['POST'])
+@group_bp.route('/groups/<int:group_id>/users', methods=['POST'])
 @token_required
-def add_member_to_group(group_id, user_id):
+def add_member_to_group(group_id):
     """ 
     Add a user as a member to a group. """
-    return group_controller.adding_group_member(group_id, user_id)
+    return group_controller.adding_group_member(group_id)
 
-@group_bp.route('/groups/<int:group_id>/users/<int:user_id>', methods=['DELETE'])
+@group_bp.route('/groups/<int:group_id>/users', methods=['DELETE'])
 @token_required
-def remove_group_member(group_id, user_id):
+def remove_group_member(group_id):
     """ 
     Route to remove a user from app group. """
-    return group_controller.remove_group_member(group_id, user_id)
+    return group_controller.remove_group_member(group_id)
 
 @group_bp.route('/groups/<int:group_id>/messages', methods=['POST'])
 @token_required
