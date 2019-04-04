@@ -26,6 +26,11 @@ body {
     color: white;
     background-color: #23397f;
 }
+
+.darken{
+    color: #005;
+    text-shadow: none;
+}
 .main{
     background-color: white;
     height: 700px;
@@ -62,11 +67,10 @@ h3{
 }
 .content{
     float: left;
-    width: 78%;
+    width: 100%;
     height: 73%;
     color: #23397f;
     background: white;
-    padding-left: 5px;
 }
 /* page footer */
 .footer{
@@ -76,6 +80,8 @@ h3{
     clear: both;
     font-family: 'Times New Roman', Times, serif;
 }
+
+.input-form input[type="text"],
 .input-form input[type="email"]{
     margin: 0.5px 2px;
     padding: 6px 5px;
@@ -90,6 +96,11 @@ h3{
     box-sizing: border-box;
     background-color: rgb(251, 253, 253);
 }
+
+.input-form input[type="text"]:hover{
+    width: 30%;
+}
+
 .input-form input[type="email"]:hover{
     width: 30%;
 }
@@ -133,10 +144,7 @@ label{
     font-size: 20px;
     font-family: cursive;
 }
-.compose-form{
-    text-align: center;
-}
-#reciever, #subject, #message{
+#contact, #subject, #message{
     border: 1px solid #000;
     font-size: 20px;
     width: 80%;
@@ -147,6 +155,12 @@ label{
 }
 #message{
     height: 150px;
+}
+
+#createGroup{
+    text-align: center;
+    padding-top: 2%;
+    margin-top: 2%;
 }
 
 .mails{

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="SEKIDDE DERRICK">
+    <title>Epic Mail</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/styles.css" />
+    <script src="./assets/js/createGroup.js"></script>
+
+</head>
+<body>
+
+    <div class="container">
+        <div class="menu">
+            <h5>Welcome User</h5>
+            <ul>
+                <li>
+                    <div>
+                        <a href="compose.html" class="mails">
+                        <span>Compose</span></a>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <a href="user.html" class="mails">
+                        <span>Inbox</span>
+                        <span class="badge">15</span></a>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <a href="user.html" class="mails">
+                        <span>Sent</span>
+                        <span class="badge">29</span></a>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <a href="user.html" class="mails">
+                        <span>Saved</span>
+                        <span class="badge">7</span></a>
+                    </div>
+                </li>
+                <li>
+                    <div>
+                        <a href="#" class="mails">
+                        <span>Groups</span>
+                        <span class="badge">4</span></a>
+                    </div>
+                </li>
+                <li>
+                    <a href="#" class="mails">
+                    <span>Contacts</span></a>
+                </li>
+                <li>
+                    <a href="index.html" class="mails">
+                    <span>Log Out</span></a>
+                </li>
+            </ul>
+        </div>
+        <div class="main">
+
+            <div class="banner">
+                <h1>Epic Mail</h1>
+            </div>
+
+            <div class="content">
+
+                <form id="createGroup" class="input-form">
+
+                    <h3 class="darken"> To create a group enter group name: </h3>
+                    <span id="myStatus"></span>
+                    <p><input type="text" id="groupName" placeholder="Enter a group name." required/></p>
+                    <p><input type="submit" id="submit" value="Create Group"></p>
+
+                </form>
+
+            </div>
+
+            <div class="footer">
+                <footer>
+                    <p>&copy 2019 Epic-Mail. <small>All rights Reserved.</small></p>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="./assets/js/createGroup.js"></script>
+</html>
