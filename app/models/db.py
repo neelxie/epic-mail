@@ -8,12 +8,11 @@ class DatabaseConnection:
     def __init__(self):
         
         try:
-            print("started")
             self.connection = psycopg2.connect(
-                dbname="flask_api",
-                user='postgres',
-                host='localhost',
-                password='',
+                dbname="d948o7njccndh6",
+                user='bdbfssdboeprhi',
+                host='ec2-54-225-242-183.compute-1.amazonaws.com',
+                password='3a9b4fbe2cdf7504837c84c71ed741806a02e9441fbad891597f86b52b251d59',
                 port=5432)
             self.connection.autocommit = True
             self.cursor = self.connection.cursor(cursor_factory=psycopg2.extras.RealDictCursor)
