@@ -31,7 +31,7 @@ function allGroups(){
                         <td><a href ="oneGroup.html?group_id=${group.group_id}">${group.group_name}</a></td>
                         <td><button onclick="deleteGroup(${group.group_id})">Delete</button></td>
                         <td><a href ="groupName.html"><button>Change Name</button></a></td>
-                        <td><a href ="oneGroupUser.html?group_id=${group.group_id}/users">GroupMembers</a></td>
+                        <td><a href ="groupMembers.html?group_id=${group.group_id}">GroupMembers</a></td>
                     </tr>`;
                 });
             document.getElementById('myGroups').innerHTML = myGroups;

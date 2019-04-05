@@ -10,14 +10,13 @@ function composeForm(event) {
         window.location.replace('index.html');
     }
 
-    let receiver = document.getElementById('receiver').value;
+    let contact = document.getElementById('receiver').value;
     let subject = document.getElementById('subject').value;
     let message = document.getElementById('message').value;
 
-    let contact = parseInt(receiver);
 
     const send = {
-        "receiver_id": contact,
+        "receiver_email": contact,
         "subject": subject,
         "message": message,
     }
@@ -36,7 +35,6 @@ function composeForm(event) {
         if (data.status != 201){
 
             document.getElementById('myStatus').style.display = "block";
-            alert(data.error)
             document.getElementById('myStatus').innerHTML = data.error;
             setTimeout(() => { 
                 document.getElementById('myStatus').style.display = "none";
@@ -45,10 +43,12 @@ function composeForm(event) {
 
         if (data.status === 201){
 
-            document.getElementById('myStatus').style.display = "none";
+            document.getElementById('myStatus').innerHTML = "Message sent successfully";
+            setTimeout(() => { 
+                document.getElementById('myStatus').style.display = "block";
+            }, 4000);
 
-            window.location.replace('user.html');
-            alert("Message sent.");
+            window.location.replace('sent.html');
         }
     })
     .catch((err) => console.log(err))

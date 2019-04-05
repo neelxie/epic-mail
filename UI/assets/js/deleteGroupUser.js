@@ -1,4 +1,4 @@
-document.getElementById('deleteGroupUser').addEventListener('submit', deleteGroupUser);
+document.getElementById('deleteUserForm').addEventListener('submit', deleteGroupUser);
 
 function deleteGroupUser(event) {
     event.preventDefault();
@@ -16,7 +16,7 @@ function deleteGroupUser(event) {
     let group_id = parseInt(group);
     let user_id = parseInt(user);
 
-    const URL = 'https://my-epic-mail.herokuapp.com/api/v2/groups/'+group_id+'/users/'+user_id
+    const URL = 'http://my-epic-mail.herokuapp.com/api/v2/groups/'+group_id+'/users/'+user_id
 
     fetch(URL, {
         method: 'DELETE',
@@ -42,7 +42,7 @@ function deleteGroupUser(event) {
             }, 4000);
         }
 
-        if (data.status === 201){
+        if (data.status === 200){
 
             document.getElementById('myStatus').innerHTML = "User has been successfully deleted from Group.";
             setTimeout(() => { 

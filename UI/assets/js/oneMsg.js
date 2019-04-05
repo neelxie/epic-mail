@@ -32,8 +32,8 @@ function getOneMessage(msg_id){
             console.log(data['data'])
             data.data.forEach((msg) => {
                 document.getElementById("message_id").innerHTML=`${msg.message_id}`;
-                document.getElementById("sender_id").innerHTML=`${msg.sender_id}`;
-                document.getElementById("receiver_id").innerHTML=`${msg.receiver_id}`;
+                document.getElementById("sender_id").innerHTML=`${msg.sender_email}`;
+                document.getElementById("receiver_id").innerHTML=`${msg.receiver_email}`;
                 document.getElementById("subject").innerHTML=`${msg.subject}`;
                 document.getElementById("created_on").innerHTML=`${msg.created_on}`;
                 document.getElementById("message").innerHTML=`${msg.message}`;
