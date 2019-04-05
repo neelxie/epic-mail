@@ -23,7 +23,6 @@ function deleteGroup(group_id){
             window.location.replace('groups.html');
         }
         if (data.status === 200){
-            alert("Group successfully deleted.")
             document.getElementById('blank').innerHTML = "Group successfully deleted.";
             setTimeout(() => { 
                 document.getElementById('blank').style.display = "block";

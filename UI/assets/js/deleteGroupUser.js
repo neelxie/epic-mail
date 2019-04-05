@@ -28,30 +28,28 @@ function deleteGroupUser(event) {
     .then((data) => {
         if (data.error === "No group by that ID."){
 
-            document.getElementById('myStatus').style.display = "block";
-            alert(data.error)
             document.getElementById('myStatus').innerHTML = data.error;
             setTimeout(() => { 
-                document.getElementById('myStatus').style.display = "none";
+                document.getElementById('myStatus').style.display = "block";
             }, 4000);
         }
 
         if (data.error === "Can not delete non existant user."){
 
-            document.getElementById('myStatus').style.display = "block";
-            alert(data.error)
             document.getElementById('myStatus').innerHTML = data.error;
             setTimeout(() => { 
-                document.getElementById('myStatus').style.display = "none";
+                document.getElementById('myStatus').style.display = "block";
             }, 4000);
         }
 
         if (data.status === 201){
 
-            document.getElementById('myStatus').style.display = "none";
+            document.getElementById('myStatus').innerHTML = "User has been successfully deleted from Group.";
+            setTimeout(() => { 
+                document.getElementById('myStatus').style.display = "block";
+            }, 4000);
 
             window.location.replace('groups.html');
-            alert("User has been successfully deleted from Group.");
         }
     })
     .catch((err) => console.log(err))

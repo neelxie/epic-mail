@@ -23,7 +23,7 @@ function deleteMsg(msg_id){
             window.location.replace('user.html');
         }
         if (data.status === 200){
-            alert("Message successfully deleted.")
+            
             document.getElementById('blank').innerHTML = "Message successfully deleted.";
             setTimeout(() => { 
                 document.getElementById('blank').style.display = "block";

@@ -40,13 +40,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="createGroup.html" class="mails">
-                        <span>Create Group</span>
-                    </a>
-                </li>
-                <li>
                     <a href="index.html" class="mails">
-                        <span>Log Out</span>
+                        <span onclick="logout()">Log Out</span>
                     </a>
                 </li>
             </ul>
@@ -61,8 +56,8 @@
                     <ol>
                         <span id="myStatus"></span>
                         <li>
-                            <label for="contact">Add Contact</label>
-                            <input type="number" id="reciever" placeholder="Send to..." required/>
+                            <label for="email">Add Contact ID</label>
+                            <input type="email" id="receiver" placeholder="Send to..." required/>
                         </li>
                         <li>
                             <label for="subject">Subject</label>
@@ -73,7 +68,6 @@
                             <textarea id="message" placeholder="Type your message"></textarea>
                         </li>
                         <li>
-                            <input type="submit" id="save" value="Save">
                             <input type="submit" id="send" value="Send">
                         </li>
                     </ol>
@@ -86,5 +80,5 @@
     </div>
 </body>
 <script src="./assets/js/composeMsg.js"></script>
-<script src="./assets/js/saveMsg.js"></script>
+<script src="./assets/js/script.js"></script>
 </html>

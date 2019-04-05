@@ -31,7 +31,6 @@ function addGroupUser(event) {
         if (data.error === "Group not found."){
 
             document.getElementById('myStatus').style.display = "block";
-            alert(data.error)
             document.getElementById('myStatus').innerHTML = data.error;
             setTimeout(() => { 
                 document.getElementById('myStatus').style.display = "none";

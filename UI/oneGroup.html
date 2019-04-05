@@ -7,9 +7,9 @@
     <meta name="author" content="SEKIDDE DERRICK">
     <title>Epic Mail</title>
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/styles.css" />
-    <script src="./assets/js/oneMsg.js"></script>
+    <script src="./assets/js/oneGroup.js"></script>
 </head>
-<body onload="inbox()">
+<body onload="oneUser()">
     <div class="container">
         <div class="menu">
             <h5>Welcome User</h5>
@@ -40,6 +40,11 @@
                     </a>
                 </li>
                 <li>
+                    <a href="createGroup.html" class="mails">
+                        <span>Create Group</span>
+                    </a>
+                </li>
+                <li>
                     <a href="index.html" class="mails">
                         <span onclick="logout()">Log Out</span>
                     </a>
@@ -51,38 +56,30 @@
                 <h1>Epic Mail</h1>
             </div>
             <div class="content">
-                <h3 class="darken">Inbox messages </h3>
+                <h3 class="darken">Current Groups </h3>
                 <div class="myMsgs">
                     <div id="blank"></div>
                     <div class="allMsgs">
                         <div class="one_stuff">
-                            <h5>One message</h5>
+                            <h5>One Group</h5>
                             <table>
                                 <tbody class="tableBody">
                                     <tr>
-                                        <th>Message ID:</th>
-                                        <td><div id="message_id"></div></td>
+                                        <th>Group ID::</th>
+                                        <td><div id="group_id"></div></td>
                                     </tr>
                                     <tr>   
-                                        <th>From User ID:</th>
-                                        <td><div id="sender_id"></div></td>
+                                        <th>Group Name</th>
+                                        <td><div id="group_name"></div></td>
                                     </tr>
                                     <tr>
-                                        <th>To User ID:</th>
-                                        <td><div id="receiver_id"></div></td>
+                                        <th>Group Admin:</th>
+                                        <td><div id="admin"></div></td>
                                     </tr>
                                     <tr>         
-                                        <th>Subject:</th>
-                                        <td><div id="subject"></div></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Date Created:</th>
+                                        <th>Created On:</th>
                                         <td><div id="created_on"></div></td>
-                                    </tr>
-                                    <tr>               
-                                        <th>Message:</th>
-                                        <td><div id="message"></div></td>
-                                    </tr>              
+                                    </tr>        
                                 </tbody>
                             </table>
                         </div>
@@ -98,6 +95,6 @@
         </div>
     </div>
 </body>
-<script src="./assets/js/oneMsg.js"></script>
+<script src="./assets/js/oneGroup.js"></script>
 <script src="./assets/js/script.js"></script>
 </html>
