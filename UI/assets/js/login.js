@@ -30,7 +30,6 @@ function loginForm(event) {
             localStorage.setItem('token', data.token);
 
             window.location.replace('user.html');
-            alert("Successfully logged in.");
         }
         if (data.status === 403){
 
@@ -40,8 +39,6 @@ function loginForm(event) {
             setTimeout(() => { 
                 document.getElementById('myStatus').style.display = "block";
             }, 4000);
-            
-            alert("Please sign up now.");
 
             window.location.replace('signup.html');
         }

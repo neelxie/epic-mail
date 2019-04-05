@@ -27,7 +27,7 @@ function inbox(){
             data.data.forEach((msg) => {
                 everyThng +=
                     `<tr class="row">
-                        <td class="senders">From User: ${msg.sender_id} </td>
+                        <td class="senders">From User: ${msg.sender_email} </td>
                         <td><a href ="oneMsg.html?message_id=${msg.message_id}">${msg.subject}</a></td>
                         <td class="date"> ${msg.created_on} </td>
                         <td><button onclick="deleteMsg(${msg.message_id})">Delete</button></td>

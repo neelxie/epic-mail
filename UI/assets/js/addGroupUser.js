@@ -11,12 +11,15 @@ function addGroupUser(event) {
     }
 
     let group = document.getElementById('group_id').value;
-    let user = document.getElementById('user_id').value;
+    let user = document.getElementById('user_email').value;
 
     let group_id = parseInt(group);
-    let user_id = parseInt(user);
 
-    const URL = 'https://my-epic-mail.herokuapp.com/api/v2/groups/'+group_id+'/users/'+user_id
+    const uzza = {
+        "receiver_email": user,
+    }
+
+    const URL = 'https://my-epic-mail.herokuapp.com/api/v2/groups/'+group_id+'/users'
 
     fetch(URL, {
         method: 'POST',
@@ -24,7 +27,8 @@ function addGroupUser(event) {
         headers: {
             'content-type': 'application/json',
             'Authorization': `Bearer ${token}`
-        }
+        },
+        body: JSON.stringify(uzza)
     })
     .then((res) => res.json())
     .then((data) => {
@@ -40,7 +44,6 @@ function addGroupUser(event) {
         if (data.error === "User not found."){
 
             document.getElementById('myStatus').style.display = "block";
-            alert(data.error)
             document.getElementById('myStatus').innerHTML = data.error;
             setTimeout(() => { 
                 document.getElementById('myStatus').style.display = "none";

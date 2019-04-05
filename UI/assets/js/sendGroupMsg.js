@@ -1,12 +1,11 @@
-document.getElementById('composeForm').addEventListener('submit', composeForm);
+document.getElementById('gropForm').addEventListener('submit', gruopForm);
 
-function composeForm(event) {
+function gruopForm(event) {
     event.preventDefault();
 
     token = localStorage.getItem('token');
     
     if (token === null) {
-        alert('You must log in');
         window.location.replace('index.html');
     }
 

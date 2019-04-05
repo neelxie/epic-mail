@@ -7,9 +7,9 @@
     <meta name="author" content="SEKIDDE DERRICK">
     <title>Epic Mail</title>
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/styles.css" />
-    <script src="./assets/js/groups.js"></script>
+    <script src="./assets/js/groupMembers.js"></script>
 </head>
-<body onload="allGroups()">
+<body>
     <div class="container">
         <div class="menu">
             <h5>Welcome User</h5>
@@ -65,11 +65,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="deleteGroupuser.html" class="mails">
-                        <span>Delete Group User</span>
-                    </a>
-                </li>
-                <li>
                     <a href="index.html" class="mails">
                         <span onclick="logout()">Log Out</span>
                     </a>
@@ -81,12 +76,12 @@
                 <h1>Epic Mail</h1>
             </div>
             <div class="content">
-                <h3 class="darken">All Groups You Own </h3>
+                <h3 class="darken">All Groups Members </h3>
                 <div class="myMsgs">
                     <div id="blank"></div>
                     <div class="allMsgs">
                         <table>
-                            <tbody id="myGroups"></tbody>
+                            <tbody id="myGmembas"></tbody>
                         </table>
                     </div>
                 </div>
@@ -99,7 +94,6 @@
         </div>
     </div>
 </body>
-<script src="./assets/js/groups.js"></script>
-<script src="./assets/js/deleteGroup.js"></script>
+<script src="./assets/js/groupMembers.js"></script>
 <script src="./assets/js/script.js"></script>
 </html>

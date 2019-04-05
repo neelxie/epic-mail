@@ -1,6 +1,6 @@
-document.getElementById('composeForm').addEventListener('submit', composeForm);
+document.getElementById('gropMsgForm').addEventListener('submit', gropMsgForm);
 
-function composeForm(event) {
+function gropMsgForm(event) {
     event.preventDefault();
 
     token = localStorage.getItem('token');

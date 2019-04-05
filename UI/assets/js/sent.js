@@ -30,9 +30,10 @@ function allSent(){
             data.data.forEach((msg) => {
                 allSent +=
                     `<tr>
-                     <td class="senders">To User: ${msg.receiver_id} </td>
+                     <td class="senders">To User: ${msg.receiver_email} </td>
                      <td><a href ="oneMsg.html?message_id=${msg.message_id}">${msg.subject}</a></td>
                      <td class="date"> ${msg.created_on} </td>
+                     <td><button onclick="deleteMsg(${msg.message_id})">Delete</button></td>
                     </tr>`;
                 });
             document.getElementById('allSent').innerHTML = allSent;
