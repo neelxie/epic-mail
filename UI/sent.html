@@ -9,7 +9,8 @@
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/styles.css" />
     <script src="./assets/js/sent.js"></script>
 </head>
-<body onload="allGroups()">
+<body onload="allsent()">
+<script src="./assets/js/sent.js"></script>
     <div class="container">
         <div class="menu">
             <h5>Welcome User</h5>
@@ -30,8 +31,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="user.html" class="mails">
-                        <span>Saved</span>
+                    <a href="users.html" class="mails">
+                        <span>Users</span>
                     </a>
                 </li>
                 <li>
@@ -40,13 +41,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="createGroup.html" class="mails">
-                        <span>Create Group</span>
-                    </a>
-                </li>
-                <li>
                     <a href="index.html" class="mails">
-                        <span>Log Out</span>
+                        <span onclick="logout()">Log Out</span>
                     </a>
                 </li>
             </ul>
@@ -75,4 +71,6 @@
     </div>
 </body>
 <script src="./assets/js/sent.js"></script>
+<script src="./assets/js/deleteMsg.js"></script>
+<script src="./assets/js/script.js"></script>
 </html>

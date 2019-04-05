@@ -35,20 +35,19 @@ function composeForm(event) {
     .then((data) => {
         if (data.status != 201){
 
-            document.getElementById('myStatus').style.display = "block";
-            alert(data.error)
             document.getElementById('myStatus').innerHTML = data.error;
             setTimeout(() => { 
-                document.getElementById('myStatus').style.display = "none";
+                document.getElementById('myStatus').style.display = "block";
             }, 4000);
         }
 
         if (data.status === 201){
+            document.getElementById('myStatus').innerHTML = "Message successfully sent to Group";
+            setTimeout(() => { 
+                document.getElementById('myStatus').style.display = "block";
+            }, 4000);
 
-            document.getElementById('myStatus').style.display = "none";
-
-            window.location.replace('user.html');
-            alert("Message sent.");
+            window.location.replace('groups.html');
         }
     })
     .catch((err) => console.log(err))

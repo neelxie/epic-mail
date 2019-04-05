@@ -28,9 +28,10 @@ function renameGroup(event) {
     .then((data) => {
         if (data.status != 200){
 
-            document.getElementById('myStatus').style.display = "block";
             document.getElementById('myStatus').innerHTML = data.error;
-            alert(data.error)
+            setTimeout(() => { 
+                document.getElementById('myStatus').style.display = "block";
+            }, 4000);
         }
 
         if (data.status === 200){

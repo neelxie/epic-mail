@@ -27,11 +27,9 @@ function composeForm(event) {
     .then((data) => {
         if (data.status != 201){
 
-            document.getElementById('myStatus').style.display = "block";
-            alert(data.error)
             document.getElementById('myStatus').innerHTML = data.error;
             setTimeout(() => { 
-                document.getElementById('myStatus').style.display = "none";
+                document.getElementById('myStatus').style.display = "block";
             }, 4000);
         }
 
@@ -39,7 +37,7 @@ function composeForm(event) {
 
             document.getElementById('myStatus').style.display = "none";
 
-            window.location.replace('user.html');
+            window.location.replace('groups.html');
             alert("Message sent.");
         }
     })

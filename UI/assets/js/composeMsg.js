@@ -10,11 +10,11 @@ function composeForm(event) {
         window.location.replace('index.html');
     }
 
-    let reciever = document.getElementById('reciever').value;
+    let receiver = document.getElementById('receiver').value;
     let subject = document.getElementById('subject').value;
     let message = document.getElementById('message').value;
 
-    let contact = parseInt(reciever);
+    let contact = parseInt(receiver);
 
     const send = {
         "receiver_id": contact,

@@ -30,8 +30,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="user.html" class="mails">
-                        <span>Saved</span>
+                    <a href="users.html" class="mails">
+                        <span>Users</span>
                     </a>
                 </li>
                 <li>
@@ -46,7 +46,7 @@
                 </li>
                 <li>
                     <a href="index.html" class="mails">
-                        <span>Log Out</span>
+                        <span onclick="logout()">Log Out</span>
                     </a>
                 </li>
             </ul>
@@ -56,25 +56,25 @@
                 <h1>Epic Mail</h1>
             </div>
             <div class="content">
-                <h3 class="darken">Current Users </h3>
+                <h3 class="darken">Current Groups </h3>
                 <div class="myMsgs">
                     <div id="blank"></div>
                     <div class="allMsgs">
                         <div class="one_stuff">
-                            <h5>One User</h5>
+                            <h5>One Group</h5>
                             <table>
                                 <tbody class="tableBody">
                                     <tr>
-                                        <th>User ID:</th>
-                                        <td><div id="user_id"></div></td>
-                                    </tr>
-                                    <tr>   
-                                        <th>Group ID:</th>
+                                        <th>Group ID::</th>
                                         <td><div id="group_id"></div></td>
                                     </tr>
-                                    <tr>
-                                        <th>Group Name:</th>
+                                    <tr>   
+                                        <th>Group Name</th>
                                         <td><div id="group_name"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Group Admin:</th>
+                                        <td><div id="admin"></div></td>
                                     </tr>
                                     <tr>         
                                         <th>Created On:</th>
@@ -96,4 +96,5 @@
     </div>
 </body>
 <script src="./assets/js/oneGroup.js"></script>
+<script src="./assets/js/script.js"></script>
 </html>

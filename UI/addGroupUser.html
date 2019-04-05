@@ -30,8 +30,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="user.html" class="mails">
-                        <span>Saved</span>
+                    <a href="users.html" class="mails">
+                        <span>Users</span>
                     </a>
                 </li>
                 <li>
@@ -40,13 +40,8 @@
                     </a>
                 </li>
                 <li>
-                    <a href="createGroup.html" class="mails">
-                        <span>Create Group</span>
-                    </a>
-                </li>
-                <li>
                     <a href="index.html" class="mails">
-                        <span>Log Out</span>
+                        <span onclick="logout()">Log Out</span>
                     </a>
                 </li>
             </ul>
@@ -61,15 +56,11 @@
                     <ol>
                         <span id="myStatus"></span>
                         <li>
-                            <label for="contact">Add Group ID</label>
-                            <input type="number" id="group_id" placeholder="Group ID..." required/>
+                            <label for="contact">Add User EMAIL</label>
+                            <input type="email" id="User_email" placeholder="User EMAIL..." required/>
                         </li>
                         <li>
-                            <label for="contact">Add User ID</label>
-                            <input type="number" id="User_id" placeholder="User ID..." required/>
-                        </li>
-                        <li>
-                            <input type="submit" id="submit" value="Send">
+                            <input type="submit" id="submit" value="Add User">
                         </li>
                     </ol>
                 </form>
@@ -81,4 +72,5 @@
     </div>
 </body>
 <script src="./assets/js/addGroupUser.js"></script>
+<script src="./assets/js/script.js"></script>
 </html>

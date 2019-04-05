@@ -1,4 +1,4 @@
-function allGroups(){
+function allSent(){
     token = localStorage.getItem('token');
     
     if (token === null) {
@@ -12,17 +12,20 @@ function allGroups(){
     })
     .then((res) => res.json())
     .then((data) => {
+        console.log("gytrdesdtyug")
         if (data.status === 400){
             document.getElementById('blank').style.display = "block";
             document.getElementById('blank').innerHTML = "You have no sent messages";
         }
         if (data.status === 401){
-            document.getElementById('blank').style.display = "block";
-            document.getElementById('blank').innerHTML = data.error;
+            document.getElementById('myStatus').innerHTML = data.error;
+            setTimeout(() => { 
+                document.getElementById('myStatus').style.display = "block";
+            }, 4000);
             window.location.replace('index.html');
         }
         if (data.status === 200){
-            console.log(data.data)
+            console.log(data)
             let allSent = "";
             data.data.forEach((msg) => {
                 allSent +=
@@ -36,3 +39,4 @@ function allGroups(){
         }
     })
 }
+ allSent()
