@@ -7,7 +7,6 @@
     <meta name="author" content="SEKIDDE DERRICK">
     <title>Epic Mail</title>
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/styles.css" />
-    <script src="./assets/js/patchGroupName.js"></script>
 
 </head>
 <body>
@@ -17,39 +16,29 @@
             <h5>Welcome User</h5>
             <ul>
                 <li>
-                    <div>
-                        <a href="compose.html" class="mails">
-                            <span>Compose</span>
-                        </a>
-                    </div>
+                    <a href="compose.html" class="mails">
+                        <span>Compose</span>
+                    </a>
                 </li>
                 <li>
-                    <div>
-                        <a href="user.html" class="mails">
-                            <span>Inbox</span>
-                        </a>
-                    </div>
+                    <a href="user.html" class="mails">
+                        <span>Inbox</span>
+                    </a>
                 </li>
                 <li>
-                    <div>
-                        <a href="sent.html" class="mails">
-                            <span>Sent</span>
-                        </a>
-                    </div>
+                    <a href="sent.html" class="mails">
+                        <span>Sent</span>
+                    </a>
                 </li>
                 <li>
-                    <div>
-                        <a href="user.html" class="mails">
-                            <span>Drafts</span>
-                        </a>
-                    </div>
+                    <a href="users.html" class="mails">
+                        <span>Users</span>
+                    </a>
                 </li>
                 <li>
-                    <div>
-                        <a href="groups.html" class="mails">
-                            <span>Groups</span>
-                        </a>
-                    </div>
+                    <a href="groups.html" class="mails">
+                        <span>Groups</span>
+                    </a>
                 </li>
                 <li>
                     <a href="createGroup.html" class="mails">
@@ -58,7 +47,7 @@
                 </li>
                 <li>
                     <a href="index.html" class="mails">
-                        <span>Log Out</span>
+                        <span onclick="logout()">Log Out</span>
                     </a>
                 </li>
             </ul>
@@ -75,6 +64,7 @@
 
                     <h3 class="darken"> To change group name enter group name: </h3>
                     <span id="myStatus"></span>
+                    <p><input type="number" id="group_id" placeholder="Enter Group ID." required/></p>
                     <p><input type="text" id="groupName" placeholder="Enter new group name." required/></p>
                     <p><input type="submit" id="submit" value=" Change Name"></p>
 
@@ -91,4 +81,5 @@
     </div>
 </body>
 <script src="./assets/js/patchGroupName.js"></script>
+<script src="./assets/js/script.js"></script>
 </html>

@@ -14,6 +14,7 @@ function createGroup(event) {
 
     fetch('https://my-epic-mail.herokuapp.com/api/v2/groups', {
         method: 'POST',
+        cache: 'no-cache',
         headers: {
             'content-type': 'application/json',
             'Authorization': `Bearer ${token}`
@@ -25,7 +26,6 @@ function createGroup(event) {
         if (data.status != 201){
 
             document.getElementById('myStatus').style.display = "block";
-            alert(data.error)
             document.getElementById('myStatus').innerHTML = data.error;
             setTimeout(() => { 
                 document.getElementById('myStatus').style.display = "none";
@@ -34,10 +34,10 @@ function createGroup(event) {
 
         if (data.status === 201){
 
-            document.getElementById('myStatus').style.display = "none";
+            document.getElementById('myStatus').style.display = "block";
+            document.getElementById('myStatus').innerHTML = "Your Group has been successfully created.";
 
-            window.location.replace('user.html');
-            alert("Your Group has been successfully created.");
+            window.location.replace('groups.html');
         }
     })
     .catch((err) => console.log(err))

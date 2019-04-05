@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/styles.css" />
     <script src="./assets/js/oneMsg.js"></script>
 </head>
-<body onload="inbox()">
+<body onload="oneUser()">
     <div class="container">
         <div class="menu">
             <h5>Welcome User</h5>
@@ -51,38 +51,34 @@
                 <h1>Epic Mail</h1>
             </div>
             <div class="content">
-                <h3 class="darken">Inbox messages </h3>
+                <h3 class="darken">Current Users </h3>
                 <div class="myMsgs">
                     <div id="blank"></div>
                     <div class="allMsgs">
                         <div class="one_stuff">
-                            <h5>One message</h5>
+                            <h5>One User</h5>
                             <table>
                                 <tbody class="tableBody">
                                     <tr>
-                                        <th>Message ID:</th>
-                                        <td><div id="message_id"></div></td>
+                                        <th>User ID:</th>
+                                        <td><div id="user_id"></div></td>
                                     </tr>
                                     <tr>   
-                                        <th>From User ID:</th>
-                                        <td><div id="sender_id"></div></td>
+                                        <th>Email:</th>
+                                        <td><div id="email"></div></td>
                                     </tr>
                                     <tr>
-                                        <th>To User ID:</th>
-                                        <td><div id="receiver_id"></div></td>
+                                        <th>First Name:</th>
+                                        <td><div id="first_name"></div></td>
                                     </tr>
                                     <tr>         
-                                        <th>Subject:</th>
-                                        <td><div id="subject"></div></td>
+                                        <th>Last Name:</th>
+                                        <td><div id="last_name"></div></td>
                                     </tr>
                                     <tr>
-                                        <th>Date Created:</th>
-                                        <td><div id="created_on"></div></td>
-                                    </tr>
-                                    <tr>               
-                                        <th>Message:</th>
-                                        <td><div id="message"></div></td>
-                                    </tr>              
+                                        <th>Phone Number:</th>
+                                        <td><div id="phone_number"></div></td>
+                                    </tr>           
                                 </tbody>
                             </table>
                         </div>
@@ -98,6 +94,6 @@
         </div>
     </div>
 </body>
-<script src="./assets/js/oneMsg.js"></script>
+<script src="./assets/js/oneUser.js"></script>
 <script src="./assets/js/script.js"></script>
 </html>

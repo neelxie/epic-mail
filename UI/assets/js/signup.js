@@ -19,6 +19,7 @@ function epicRegister(event) {
 
     fetch('https://my-epic-mail.herokuapp.com/api/v2/auth/signup', {
         method: 'POST',
+        cache: 'no-cache',
         headers: {
             'content-type': 'application/json'
         },
@@ -28,16 +29,17 @@ function epicRegister(event) {
     .then((data) => {
         if (data.status != 201){
 
-            document.getElementById('myStatus').style.display = "block";
-            alert(data.error)
             document.getElementById('myStatus').innerHTML = data.error;
             setTimeout(() => { 
-                document.getElementById('myStatus').style.display = "none";
+                document.getElementById('myStatus').style.display = "block";
             }, 4000);
         }
         if (data.status === 201){
-            document.getElementById('myStatus').style.display = "none";
-            alert("Account successfully created.");
+            document.getElementById('myStatus').style.display = "Account successfully created";
+            setTimeout(() => { 
+                document.getElementById('myStatus').style.display = "block";
+            }, 4000);
+
             window.location.replace('index.html');
         }
     })

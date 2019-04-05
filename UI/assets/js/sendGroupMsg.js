@@ -1,27 +1,27 @@
-document.getElementById('composeForm').addEventListener('submit', composeForm);
+document.getElementById('gropForm').addEventListener('submit', gruopForm);
 
-function composeForm(event) {
+function gruopForm(event) {
     event.preventDefault();
 
     token = localStorage.getItem('token');
     
     if (token === null) {
-        alert('You must log in');
         window.location.replace('index.html');
     }
 
-    let contact = document.getElementById('receiver').value;
+    let reciever = document.getElementById('group_id').value;
     let subject = document.getElementById('subject').value;
     let message = document.getElementById('message').value;
 
+    var group_id = parseInt(reciever);
 
     const send = {
-        "receiver_email": contact,
         "subject": subject,
-        "message": message,
+        "message": message
     }
+    const URL = 'https://my-epic-mail.herokuapp.com/api/v2/groups/'+group_id+'/messages'
 
-    fetch('https://my-epic-mail.herokuapp.com/api/v2/messages', {
+    fetch(URL, {
         method: 'POST',
         cache: 'no-cache',
         headers: {
@@ -34,21 +34,19 @@ function composeForm(event) {
     .then((data) => {
         if (data.status != 201){
 
-            document.getElementById('myStatus').style.display = "block";
             document.getElementById('myStatus').innerHTML = data.error;
             setTimeout(() => { 
-                document.getElementById('myStatus').style.display = "none";
+                document.getElementById('myStatus').style.display = "block";
             }, 4000);
         }
 
         if (data.status === 201){
-
-            document.getElementById('myStatus').innerHTML = "Message sent successfully";
+            document.getElementById('myStatus').innerHTML = "Message successfully sent to Group";
             setTimeout(() => { 
                 document.getElementById('myStatus').style.display = "block";
             }, 4000);
 
-            window.location.replace('sent.html');
+            window.location.replace('groups.html');
         }
     })
     .catch((err) => console.log(err))

@@ -11,66 +11,53 @@
 </head>
 <body>
     <div class="container">
-        <div class="banner">
-            <h1>Epic Mail</h1>
+        <div class="menu">
+            <h5>Welcome User</h5>
+            <ul>
+                <li>
+                    <a href="compose.html" class="mails">
+                        <span>Compose</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="user.html" class="mails">
+                        <span>Inbox</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="sent.html" class="mails">
+                        <span>Sent</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="user.html" class="mails">
+                        <span>Saved</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="groups.html" class="mails">
+                        <span>Groups</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html" class="mails">
+                        <span onclick="logout()">Log Out</span>
+                    </a>
+                </li>
+            </ul>
         </div>
         <div class="main">
-            <div class="menu">
-                <ul>
-                    <li>
-                        <div>
-                            <a href="compose.html" class="mails">
-                                <span>Compose</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="user.html" class="mails">
-                                <span>Inbox</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="sent.html" class="mails">
-                                <span>Sent</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="user.html" class="mails">
-                                <span>Saved</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <div>
-                            <a href="groups.html" class="mails">
-                                <span>Groups</span>
-                            </a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="createGroup.html" class="mails">
-                            <span>Create Group</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="index.html" class="mails">
-                            <span>Log Out</span>
-                        </a>
-                    </li>
-                </ul>
+            <div class="banner"> 
+                <h1>Epic Mail</h1>
             </div>
             <div class="content">
+                <h3 class="darken">Compose and Send Message. </h3>
+                <span id="myStatus"></span>
                 <form class="compose-form" id="composeForm">
                     <ol>
-                        <span id="myStatus"></span>
                         <li>
-                            <label for="contact">Add Contact</label>
-                            <input type="number" id="reciever" placeholder="Send to..." required/>
+                            <label for="email">Add Contact Email</label>
+                            <input type="email" id="receiver" placeholder="Send to..." required/>
                         </li>
                         <li>
                             <label for="subject">Subject</label>
@@ -81,7 +68,6 @@
                             <textarea id="message" placeholder="Type your message"></textarea>
                         </li>
                         <li>
-                            <input type="submit" id="submit" value="Save">
                             <input type="submit" id="send" value="Send">
                         </li>
                     </ol>
@@ -94,4 +80,5 @@
     </div>
 </body>
 <script src="./assets/js/composeMsg.js"></script>
+<script src="./assets/js/script.js"></script>
 </html>

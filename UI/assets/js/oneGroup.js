@@ -1,11 +1,18 @@
-function inbox(){
+window.onload = function(){
+    let my_url = location.href
+    let url = new URL(my_url)
+    let group_id = url.searchParams.get('group_id')
+    getOneGroupy(group_id);
+}
+
+function getOneGroupy(groupy_id){
     token = localStorage.getItem('token');
     
     if (token === null) {
         alert('You must log in');
         window.location.replace('index.html');
     }
-    fetch('https://my-epic-mail.herokuapp.com/api/v2/messages', {
+    fetch('https://my-epic-mail.herokuapp.com/api/v2/groups/'+groupy_id, {
         headers: {
             'Authorization': `Bearer ${token}`
         }
@@ -22,18 +29,14 @@ function inbox(){
             window.location.replace('index.html');
         }
         if (data.status === 200){
-            console.log(data.data)
-            let everyThng = "";
-            data.data.forEach((msg) => {
-                everyThng +=
-                    `<tr class="row">
-                        <td class="senders">From User: ${msg.sender_email} </td>
-                        <td><a href ="oneMsg.html?message_id=${msg.message_id}">${msg.subject}</a></td>
-                        <td class="date"> ${msg.created_on} </td>
-                        <td><button onclick="deleteMsg(${msg.message_id})">Delete</button></td>
-                    </tr>`;
-                });
-            document.getElementById('everyThng').innerHTML = everyThng;
+            console.log(data['data'])
+            data.data.forEach((group) => {
+                document.getElementById("group_id").innerHTML=`${group.group_id}`;
+                document.getElementById("group_name").innerHTML=`${group.group_name}`;
+                document.getElementById("admin").innerHTML=`${group.created_by}`;
+                document.getElementById("created_on").innerHTML=`${group.created_on}`;
+            })    
         }
-    })
+    });
+    
 }

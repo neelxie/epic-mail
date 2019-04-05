@@ -27,10 +27,6 @@ body {
     background-color: #23397f;
 }
 
-.darken{
-    color: #005;
-    text-shadow: none;
-}
 .main{
     background-color: white;
     height: 700px;
@@ -39,29 +35,7 @@ body {
     float: left;
     overflow: hidden;
 }
-.main-page{
-    background-color: white;
-    height: 70vh;
-    width: 93vw;
-    margin: 0px auto;
-    border-radius: 0px 0px 20px 20px;
-    display: block;
-    text-align: center;
-    overflow: auto;
-}
-.myMsgs{
-    width: 100%;
-    text-align: center;
-}
-h3{
-    text-align: center;
-    color: white;
-    font-family: cursive;
-    font-size: 30px;
-    text-shadow:
-        2px 2px 0 #000,
-        -1px -1px 0 #000;
-}
+
 .banner{
     background-color: white;
     text-align: center;
@@ -79,6 +53,39 @@ h3{
     border: 2px solid #2339ff;
     box-shadow: inset 0 0 10px #23397f;
 }
+
+.darken{
+    color: #005;
+    text-shadow: none;
+}
+
+.main-page{
+    background-color: white;
+    height: 70vh;
+    width: 93vw;
+    margin: 0px auto;
+    border-radius: 0px 0px 20px 20px;
+    display: block;
+    text-align: center;
+    overflow: auto;
+}
+.myMsgs{
+    width: 100%;
+    text-align: center;
+    overflow: auto;
+}
+h3{
+    text-align: center;
+    color: white;
+    font-family: cursive;
+    font-size: 30px;
+    text-shadow:
+        2px 2px 0 #000,
+        -1px -1px 0 #000;
+}
+.compose-form{
+    text-align: center;
+}
 /* page footer */
 .footer{
     height: 7%;
@@ -88,6 +95,9 @@ h3{
     font-family: 'Times New Roman', Times, serif;
 }
 
+input[type="number"],
+li input[type="text"],
+li input[type="email"],
 .input-form input[type="text"],
 .input-form input[type="email"]{
     margin: 0.5px 2px;
@@ -108,6 +118,9 @@ h3{
     width: 30%;
 }
 
+input[type="number"]:hover,
+li input[type="text"]:hover,
+li input[type="email"]:hover,
 .input-form input[type="email"]:hover{
     width: 30%;
 }
@@ -127,6 +140,20 @@ h3{
     color: #4772ff;
 }
 
+.tableBody th,
+.tableBody td{
+    border: 1px solid #2339ff;
+    width: 50%;
+}
+.tableBody th{
+    background-color: #2339ff;
+    color: white;
+}
+.onestuff{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
 
 ul, ol{
     list-style-type: none;
@@ -141,7 +168,7 @@ ul li{
 }
 h5{
     font-size: 20px;
-    margin-top: 60%;
+    margin-top: 60px;
     padding-bottom: 2px;
     text-align: center;
 }
@@ -151,7 +178,7 @@ label{
     font-size: 20px;
     font-family: cursive;
 }
-#contact, #subject, #message{
+/* #contact, #subject, #message{
     border: 1px solid #000;
     font-size: 20px;
     width: 80%;
@@ -159,10 +186,8 @@ label{
 }
 #contact, #subject{
     height: 30px;
-}
-#message{
-    height: 150px;
-}
+} */
+
 /* error status */
 #myStatus{
     text-align: center;
@@ -191,21 +216,26 @@ table{
 }
 
 .senders{
-    padding-left: 5%;
-    padding-right: 5%;
+    padding-left: 3px;
+    padding-right: 3px;
     display: inline;
-    width: 30%;
+    width: 25%;
 }
 td a{
-    padding-left: 5%;
+    padding-left: 5px;
     display: inline;
+}
+td a button,
+td button{
+    width: 60px;
 }
 
 .date{
-    padding-left: 5%;
+    padding-left: 5px;
     display: inline;
 }
 
+#renameGroup,
 #createGroup{
     text-align: center;
     padding-top: 2%;
@@ -226,25 +256,18 @@ td a{
    background-color:white;
    color: #23397f;
 }
-.mails .badge{
-    position: absolute;
-    top: 6px;
-    right: 1%;
-    padding: 5px 10px;
-    border-radius: 25%;
-    background: red;
-    color: #f1f1f1;
-}
 
 textarea{
     overflow: auto;
     white-space: nowrap;
     resize: none;
-    height: 58%;
+    height: 150px;
     width: 80%;
     outline: none;
+    font-size: 20px;
     border: 1px solid #ff652f;
 }
+    
 li input[type="submit"]{
     background: #4772cf;
     font-size: 20px;
@@ -260,9 +283,7 @@ li input[type="submit"]:hover{
     background-color: white;
     color: #4772cf;
 }
-li input[type="text"]:hover{
-    outline: 1px solid gray;
-}
+
 li input[type="email"]:hover{
     outline: 1px solid gray;
 }
@@ -286,6 +307,11 @@ li .read{
   
 li:last-child .read{
     border-bottom: none;
+}
+.row{
+    border-bottom: 5px solid red;
+    width: 40px;
+    padding-bottom: 15px;
 }
 
 td a{
