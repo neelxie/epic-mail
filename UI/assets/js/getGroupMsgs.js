@@ -1,7 +1,4 @@
-document.getElementById('gropMsgForm').addEventListener('submit', gropMsgForm);
-
-function gropMsgForm(event) {
-    event.preventDefault();
+function gropMsgForm() {
 
     token = localStorage.getItem('token');
     
@@ -11,8 +8,6 @@ function gropMsgForm(event) {
     }
 
     let reciever = document.getElementById('group_id').value;
-    let subject = document.getElementById('subject').value;
-    let message = document.getElementById('message').value;
 
     var group_id = parseInt(reciever);
 
@@ -25,7 +20,7 @@ function gropMsgForm(event) {
     })
     .then((res) => res.json())
     .then((data) => {
-        if (data.status != 201){
+        if (data.status != 200){
 
             document.getElementById('myStatus').innerHTML = data.error;
             setTimeout(() => { 
@@ -33,7 +28,7 @@ function gropMsgForm(event) {
             }, 4000);
         }
 
-        if (data.status === 201){
+        if (data.status === 200){
 
             document.getElementById('myStatus').style.display = "none";
 

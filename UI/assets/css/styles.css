@@ -136,8 +136,8 @@ li input[type="email"]:hover,
     color: white;
 }
 .input-form input[type="submit"]:hover{
-    background-color: white;
-    color: #4772ff;
+    color: white;
+    background: blue;
 }
 
 .tableBody th,
@@ -178,15 +178,6 @@ label{
     font-size: 20px;
     font-family: cursive;
 }
-/* #contact, #subject, #message{
-    border: 1px solid #000;
-    font-size: 20px;
-    width: 80%;
-    margin-top: 15px;
-}
-#contact, #subject{
-    height: 30px;
-} */
 
 /* error status */
 #myStatus{
@@ -321,14 +312,6 @@ td a{
 td a:hover{
     color: white;
     background: #23397f;
-}
-.full-message{
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    padding-right: 20px;
-    width: 400px;
-    float: left;
 }
 
 @media screen and (max-width: 800px){
