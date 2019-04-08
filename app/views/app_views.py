@@ -1,5 +1,5 @@
 """ Main app views file."""
-from flask import Flask
+from flask import Flask, redirect
 from flask import jsonify
 from flask_swagger_ui import get_swaggerui_blueprint
 from flask_cors import CORS
@@ -43,6 +43,11 @@ def create_app():
             "status": 405,
             "error": "The used method is not allowed for this endpoint. Change method or contact Derrick Sekidde."
         }), 405
+
+    @app.route('/')
+    @app.route('/api/v2')
+    def home():
+        return redirect("https://neelxie.github.io/epic-mail/UI/index.html")
 
 
     return app

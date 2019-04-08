@@ -7,11 +7,6 @@ email_controller = EmailController()
 
 email_bp = Blueprint("email_bp", __name__)
 
-@email_bp.route('/')
-def home():
-    """ This is the index route.
-    """
-    return email_controller.index()
 
 @email_bp.route('/messages', methods=['POST'])
 @token_required

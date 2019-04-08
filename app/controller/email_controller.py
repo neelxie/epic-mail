@@ -13,13 +13,6 @@ class EmailController:
     """
     valid = Valid()
 
-    def index(self):
-        """ function for the index route."""
-        return jsonify({
-            'message': 'Welcome to Epic Mail.',
-            'status': 200
-        }), 200
-
     def compose_email(self, email_status):
         """
         Class method to compose email

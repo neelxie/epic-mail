@@ -6,14 +6,6 @@ import json
 class TestEmail(TestStructure):
     """ Test Class for all emails endpoint"""
 
-    def test_index_endpoint(self):
-        """ Test method to test index endpoint of the app."""
-        response = self.app.get('/api/v2/')
-        self.assertEqual(response.status_code, 200)
-        self.assertEqual(
-            response.data.decode(),
-            '{"message":"Welcome to Epic Mail.","status":200}\n')
-
     def test_unauthorized_fetch_all_messages(self):
         """ Test to check route to fetch all emails."""
         response = self.app.get('/api/v2/messages')
