@@ -1,0 +1,346 @@
+html,body{
+    margin: 0px;
+    padding: 0px;
+}
+body {
+    font-size: 18px;
+}
+.container{
+    margin: 0px;
+    padding: 0px;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background-color: white;
+}
+.menu, .main{
+    padding-bottom: 0%;
+    margin-bottom: 0%;
+}
+/* dash board */
+.menu{
+    width: 20%;
+    float: left;
+    height: 700px;
+    overflow: hidden;
+    color: white;
+    background-color: #23397f;
+}
+
+.main{
+    background-color: white;
+    height: 700px;
+    padding-left: 5px;
+    width: 78%;
+    float: left;
+    overflow: hidden;
+}
+
+.banner{
+    background-color: white;
+    text-align: center;
+    color: #23397f;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    height: 20%;
+    display: grid;
+}
+.content{
+    float: left;
+    height: 73%;
+    width: 100%;
+    color: #23397f;
+    background: white;
+    border: 2px solid #2339ff;
+    box-shadow: inset 0 0 10px #23397f;
+}
+
+.darken{
+    color: #005;
+    text-shadow: none;
+}
+
+.main-page{
+    background-color: white;
+    height: 70vh;
+    width: 93vw;
+    margin: 0px auto;
+    border-radius: 0px 0px 20px 20px;
+    display: block;
+    text-align: center;
+    overflow: auto;
+}
+.myMsgs{
+    width: 100%;
+    text-align: center;
+    overflow: auto;
+}
+h3{
+    text-align: center;
+    color: white;
+    font-family: cursive;
+    font-size: 30px;
+    text-shadow:
+        2px 2px 0 #000,
+        -1px -1px 0 #000;
+}
+.compose-form{
+    text-align: center;
+}
+/* page footer */
+.footer{
+    height: 7%;
+    text-align: center;
+    font-size: 15px;
+    clear: both;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+input[type="number"],
+li input[type="text"],
+li input[type="email"],
+.input-form input[type="text"],
+.input-form input[type="email"]{
+    margin: 0.5px 2px;
+    padding: 6px 5px;
+    border: 1px solid grey;
+    outline: 2px;
+    font-size: 20px;
+    height: 40%;
+    width: 25%;
+    border-radius: 17px;
+    text-align: center;
+    transition: 0.4s ease-in-out;
+    box-sizing: border-box;
+    background-color: rgb(251, 253, 253);
+}
+
+.input-form input[type="text"]:hover{
+    width: 30%;
+}
+
+input[type="number"]:hover,
+li input[type="text"]:hover,
+li input[type="email"]:hover,
+.input-form input[type="email"]:hover{
+    width: 30%;
+}
+.input-form input[type="submit"]{
+    background: #4772ff;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    width: 25%;
+    height: 40px;
+    margin-bottom: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+.input-form input[type="submit"]:hover{
+    color: white;
+    background: blue;
+}
+
+.tableBody th,
+.tableBody td{
+    border: 1px solid #2339ff;
+    width: 50%;
+}
+.tableBody th{
+    background-color: #2339ff;
+    color: white;
+}
+.onestuff{
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: space-evenly;
+}
+
+ul, ol{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+ul li{
+    display: block;
+    height: 50px;
+    width: 100%;
+    padding-top: 10px;
+}
+h5{
+    font-size: 20px;
+    margin-top: 60px;
+    padding-bottom: 2px;
+    text-align: center;
+}
+label{
+    display: block;
+    margin-top: 10px;
+    font-size: 20px;
+    font-family: cursive;
+}
+
+/* error status */
+#myStatus{
+    text-align: center;
+    color: red;
+    background: white;
+    display: none;
+}
+
+.blank{
+    text-align: center;
+    color: red;
+    background: white;
+    font-size: 30px;
+    display: none;
+}
+
+table{
+    width: 100%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
+.allMsgs{
+    display: block;
+    border: 2px solid #2339ff;
+    box-shadow: inset 0 0 10px #23397f;
+}
+
+.senders{
+    padding-left: 3px;
+    padding-right: 3px;
+    display: inline;
+    width: 25%;
+}
+td a{
+    padding-left: 5px;
+    display: inline;
+}
+td a button,
+td button{
+    width: 60px;
+}
+
+.date{
+    padding-left: 5px;
+    display: inline;
+}
+
+#renameGroup,
+#createGroup{
+    text-align: center;
+    padding-top: 2%;
+    margin-top: 2%;
+}
+
+.mails{
+    background-color: #4772cf;
+    color: #e2f8f1;
+    text-decoration: none;
+    position: relative;
+    padding: 5% 40%;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    border-radius: 2px;
+    
+}
+.mails:hover{
+   background-color:white;
+   color: #23397f;
+}
+
+textarea{
+    overflow: auto;
+    white-space: nowrap;
+    resize: none;
+    height: 150px;
+    width: 80%;
+    outline: none;
+    font-size: 20px;
+    border: 1px solid #ff652f;
+}
+    
+li input[type="submit"]{
+    background: #4772cf;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    height: 40px;
+    width: 20%;
+    margin-bottom: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+li input[type="submit"]:hover{
+    background-color: white;
+    color: #4772cf;
+}
+
+li input[type="email"]:hover{
+    outline: 1px solid gray;
+}
+textarea:hover{
+    outline: 1px solid gray;
+}
+.read{
+    display: flex;
+    padding: 1px;
+    margin: 1px;
+}
+.from{
+    padding-left: 55px;
+    display: inline;
+    margin-right: 365px;
+}
+li .read{
+    border-bottom: 1px solid #555;
+    align-items: baseline;
+}
+  
+li:last-child .read{
+    border-bottom: none;
+}
+.row{
+    border-bottom: 5px solid red;
+    width: 40px;
+    padding-bottom: 15px;
+}
+
+td a{
+    text-decoration: none;
+    color: #23397f;
+}
+td a:hover{
+    color: white;
+    background: #23397f;
+}
+
+@media screen and (max-width: 800px){
+    .from{
+        padding-left: 45px;
+        margin-right: 250px;
+    }
+    .full-message{
+        padding-right: 15px;
+        width: 380px;
+    }
+}
+@media screen and (max-width: 600px){
+    .from{
+        padding-left: 30px;
+        margin-right: 150px;
+    }
+    .full-message{
+        padding-right: 8px;
+        width: 300px;
+    }
+}
+@media screen and (max-width: 360px){
+    .from{
+        padding-left: 5px;
+        margin-right: 15px;
+    }
+    .full-message{
+        padding-right: 3px;
+        width: 260px;
+    }
+}

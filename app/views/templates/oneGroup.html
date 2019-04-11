@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="SEKIDDE DERRICK">
+    <title>Epic Mail</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/css/styles.css" />
+    <script src="/static/js/oneGroup.js"></script>
+</head>
+<body onload="oneUser()">
+    <div class="container">
+        <div class="menu">
+            <h5>Welcome User</h5>
+            <ul>
+                <li>
+                    <a href="compose.html" class="mails">
+                        <span>Compose</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="user.html" class="mails">
+                        <span>Inbox</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="sent.html" class="mails">
+                        <span>Sent</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="users.html" class="mails">
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="groups.html" class="mails">
+                        <span>Groups</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="createGroup.html" class="mails">
+                        <span>Create Group</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html" class="mails">
+                        <span onclick="logout()">Log Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>    
+        <div class="main">
+            <div class="banner">
+                <h1>Epic Mail</h1>
+            </div>
+            <div class="content">
+                <h3 class="darken">Current Groups </h3>
+                <div class="myMsgs">
+                    <div id="blank"></div>
+                    <div class="allMsgs">
+                        <div class="one_stuff">
+                            <h5>One Group</h5>
+                            <table>
+                                <tbody class="tableBody">
+                                    <tr>
+                                        <th>Group ID::</th>
+                                        <td><div id="group_id"></div></td>
+                                    </tr>
+                                    <tr>   
+                                        <th>Group Name</th>
+                                        <td><div id="group_name"></div></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Group Admin:</th>
+                                        <td><div id="admin"></div></td>
+                                    </tr>
+                                    <tr>         
+                                        <th>Created On:</th>
+                                        <td><div id="created_on"></div></td>
+                                    </tr>        
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <footer>
+                    <p>&copy 2019 Epic-Mail. <small>All rights Reserved.</small></p>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/static/js/oneGroup.js"></script>
+<script src="/static/js/script.js"></script>
+</html>

@@ -1,0 +1,144 @@
+/* main div of the landing page. */
+.main-div{
+    height: 100%;
+    background-color: #4772cf;
+    width: 82%;
+    overflow: hidden;
+    margin: 40px auto;
+    margin-top: 8%;
+    border-radius: 5px;
+    box-shadow: 0 0 50px rgb(14, 13, 13);
+    display: block;
+}
+
+/* the ad side of the index page. */
+.brand{
+    width: 50%;
+    float: left;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    background-color: #4772cf;
+}
+.brand-ad{
+    padding: 0%;
+    margin: 0%;
+    width: 100%;
+    height: 100%;
+    background-color: #4772cf;
+    padding: 5px;
+}
+.brand-ad p {
+    text-align: center;
+    color: white;
+    font-family: 'Source Sans Pro', sans-serif;
+    font-size: 24.9px;
+    mix-blend-mode: lighten;
+}
+
+/* right side of the landing page with the login form. */
+.log-in{
+    height: 100%;
+    width: 50%;
+    float: right;
+    border-radius: 5px;
+    overflow: hidden;
+    background: #4772ef;
+}
+/* all headings. */
+h2, h3 {
+    text-align: center;
+    color: rgb(224, 238, 247);
+    font-family: cursive;
+    font-size: 30px;
+    text-shadow:
+        2px 2px 0 #000,
+        -1px -1px 0 #000;
+}
+
+/* paragraph on the landing page. */
+p{
+    text-align: center;
+    color: white;
+    padding: 2px;
+    font-family: cursive;
+    font-size: 20px;
+}
+form{
+    margin: auto;
+}
+
+#epicform{
+    text-align: center;
+    margin: auto;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    width: 80%;
+}
+
+/* error status */
+#myStatus{
+    text-align: center;
+    color: red;
+    background: white;
+    display: none;
+}
+
+.input-form input[type="email"],
+.input-form input[type="text"],
+.input-form input[type="tel"],
+.input-form input[type="password"]{
+    margin: 0.5px 2px;
+    padding: 6px 5px;
+    border: 1px solid gray;
+    outline: 2px;
+    font-size: 20px;
+    height: 40%;
+    width: 55%;
+    border-radius: 17px;
+    text-align: center;
+    transition: 0.4s ease-in-out;
+    box-sizing: border-box;
+    background-color: rgb(251, 253, 253);
+}
+.input-form input[type="password"]:hover{
+    width: 65%;
+}
+.input-form input[type="email"]:hover{
+    width: 65%;
+}
+.input-form input[type="text"]:hover{
+    width: 65%;
+}
+.input-form input[type="tel"]:hover{
+    width: 65%;
+}
+
+.input-form input[type="submit"]{
+    background: #4772cf;
+    font-size: 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    width: 55%;
+    height: 40px;
+    margin-bottom: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+}
+.input-form input[type="submit"]:hover{
+    background-color: white;
+    color: #4772cf;
+}
+/* links */
+a{
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    text-decoration: none;
+    color: white;
+}
+/* change link text color */ 
+a:hover{
+    color: black;
+}
+.mylink a:hover{
+    color: black;
+}

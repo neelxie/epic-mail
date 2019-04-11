@@ -1,5 +1,5 @@
 """ Main app views file."""
-from flask import Flask, redirect
+from flask import Flask, render_template
 from flask import jsonify
 from flask_swagger_ui import get_swaggerui_blueprint
 from flask_cors import CORS
@@ -46,8 +46,19 @@ def create_app():
 
     @app.route('/')
     @app.route('/api/v2')
-    def home():
-        return redirect("https://neelxie.github.io/epic-mail/UI/index.html")
+    @app.route('/index.html')
+    def myHome():
+        """ 
+        log in as app user
+        """
+        return render_template('index.html')
 
+    @app.route('/signup.html')
+    def signUp():
+        return render_template('signup.html')
+
+    @app.route('/user.html')
+    def userInbox():
+        return render_template('user.html')
 
     return app

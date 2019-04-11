@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="SEKIDDE DERRICK">
+    <title>Epic Mail</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="/static/css/styles.css" />
+    <script src="/static/js/getUsers.js"></script>
+</head>
+<body onload="appUsers()">
+    <div class="container">
+        <div class="menu">
+            <h5>Welcome User</h5>
+            <ul>
+                <li>
+                    <a href="compose.html" class="mails">
+                        <span>Compose</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="user.html" class="mails">
+                        <span>Inbox</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="sent.html" class="mails">
+                        <span>Sent</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="users.html" class="mails">
+                        <span>Users</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="groups.html" class="mails">
+                        <span>Groups</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="index.html" class="mails">
+                        <span onclick="logout()">Log Out</span>
+                    </a>
+                </li>
+            </ul>
+        </div>    
+        <div class="main">
+            <div class="banner">
+                <h1>Epic Mail</h1>
+            </div>
+            <div class="content">
+                <h3 class="darken">Inbox messages </h3>
+                <div class="myMsgs">
+                    <div id="blank"></div>
+                    <div class="allMsgs">
+                        <table>
+                            <tbody id="allUsers"></tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <footer>
+                    <p>&copy 2019 Epic-Mail. <small>All rights Reserved.</small></p>
+                </footer>
+            </div>
+        </div>
+    </div>
+</body>
+<script src="/static/js/getUsers.js"></script>script
+<script src="/static/js/script.js"></script>
+</html>
