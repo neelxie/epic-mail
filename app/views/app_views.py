@@ -61,4 +61,24 @@ def create_app():
     def userInbox():
         return render_template('user.html')
 
+    @app.route('/sent.html')
+    def sentInbox():
+        return render_template('sent.html')
+
+    @app.route('/drafts.html')
+    def draftInbox():
+        return render_template('drafts.html')
+
+    @app.route('/unread.html')
+    def unreadInbox():
+        return render_template('unread.html')
+
+    @app.route('/groups.html')
+    def group():
+        return render_template('groups.html')
+
+    @app.route('/users.html')
+    def allUsers():
+        return render_template('users.html')
+
     return app

@@ -139,18 +139,28 @@ class DatabaseConnection:
         self.cursor.execute(query)
 
     def get_received(self, receiver_email):
-        query = "SELECT * FROM messages WHERE receiver_email='{}' AND status='unread';".format(
+        query = "SELECT * FROM messages WHERE receiver_email='{}' AND status='unread' OR status='read';".format(
             receiver_email)
         self.cursor.execute(query)
         messages = self.cursor.fetchall()
         return messages
 
+    def get_drafts(self, sender_email):
+        query = "SELECT * FROM messages WHERE sender_email='{}' AND status='draft';".format(
+            sender_email)
+        self.cursor.execute(query)
+        messages = self.cursor.fetchall()
+        return messages
+
     def get_a_message(self, message_id):
+        querry = "UPDATE messages SET status = 'read' WHERE message_id = '{}';".format(
+            message_id)
+        self.cursor.execute(querry)
         query = "SELECT * FROM messages WHERE message_id= '{}';".format(
             message_id)
         self.cursor.execute(query)
-        red_flag = self.cursor.fetchone()
-        return red_flag
+        mesg = self.cursor.fetchone()
+        return mesg
 
     def get_user(self, user_id):
         query = "SELECT * FROM users WHERE user_id = '{}';".format(user_id)
@@ -158,9 +168,9 @@ class DatabaseConnection:
         user = self.cursor.fetchone()
         return user
 
-    def get_unread(self, user_id):
-        query = "SELECT * FROM messages WHERE receiver_id='{}' AND status='unread';".format(
-            user_id)
+    def get_unread(self, receiver_email):
+        query = "SELECT * FROM messages WHERE receiver_email='{}' AND status='unread';".format(
+            receiver_email)
         self.cursor.execute(query)
         all_unread = self.cursor.fetchall()
         return all_unread

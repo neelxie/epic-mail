@@ -122,7 +122,7 @@ class EmailController:
         """
         show one user's all unread mails. """
         logged_user = user_identity()
-        got_the_user = logged_user.get('user_id')
+        got_the_user = logged_user.get('email')
         all_unread = db.get_unread(got_the_user)
 
         if all_unread:
@@ -133,6 +133,24 @@ class EmailController:
 
         return jsonify({
             "error": "No unread messages.",
+            "status": 400,
+        }), 400
+
+    def drafts(self):
+        """
+        show one user's all drafts mails. """
+        logged_user = user_identity()
+        got_the_user = logged_user.get('email')
+        my_drafts = db.get_unread(got_the_user)
+
+        if my_drafts:
+            return jsonify({
+                "status": 200,
+                "data": [one_msg for one_msg in my_drafts]
+            }), 200
+
+        return jsonify({
+            "error": "No draft messages.",
             "status": 400,
         }), 400
 

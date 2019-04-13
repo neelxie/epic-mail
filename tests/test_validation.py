@@ -39,7 +39,6 @@ class TestValidClass(unittest.TestCase):
 
     def test_validate_composed_msg(self):
         self.assertEqual(test_valid.validate_composed_msg('', "gdshgdsh", 1), "The subject is invalid.")
-        self.assertEqual(test_valid.validate_composed_msg('gdhshdsg', 1, "dfhd"), "Receiver ID has to be a number.")
         self.assertEqual(test_valid.validate_composed_msg('sdhshds', " ", 5), "Email message is has to be words.")
 
 

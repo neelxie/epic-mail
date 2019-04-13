@@ -1,7 +1,4 @@
-document.getElementById('save').addEventListener('onclick', saveMsg);
-
-function saveMsg(event) {
-    event.preventDefault();
+function addDraft() {
 
     token = localStorage.getItem('token');
     
@@ -43,12 +40,12 @@ function saveMsg(event) {
 
         if (data.status === 201){
 
-            document.getElementById('myStatus').style.display = "Account successfully created";
+            document.getElementById('myStatus').style.display = "Message successfully saved";
             setTimeout(() => { 
                 document.getElementById('myStatus').style.display = "block";
             }, 4000);
 
-            window.location.replace('user.html');
+            window.location.replace('./drafts.html');
             alert("Message saved.");
         }
     })

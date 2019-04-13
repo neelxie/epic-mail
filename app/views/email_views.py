@@ -48,6 +48,14 @@ def unread_messages():
     """
     return email_controller.unread()
 
+@email_bp.route('/messages/drafts', methods=['GET'])
+@token_required
+def draft_messages():
+    """ 
+    all draft emails
+    """
+    return email_controller.drafts()
+
 @email_bp.route('/messages/sent', methods=['GET'])
 @token_required
 def sent_messages():
