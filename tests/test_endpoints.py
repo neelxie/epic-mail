@@ -264,7 +264,7 @@ class TestEmail(TestStructure):
     def test_add_user_to_non_existant_group(self):
         """ Method to add users from non existant group """
         add_user_non_existant_group = self.app.post(
-            '/api/v2/groups/1/users/9',
+            '/api/v2/groups/1/users/99',
             content_type='application/json',
             headers=self.headers)
         self.assertEqual(add_user_non_existant_group.status_code, 404)
@@ -296,7 +296,7 @@ class TestEmail(TestStructure):
             '/api/v2/groups',
             content_type='application/json',
             headers=self.forth_headers)
-        self.assertEqual(get_user_group.status_code, 404)
+        self.assertEqual(get_user_group.status_code, 200)
         group_name = self.app.patch(
             '/api/v2/groups/1/name',
             content_type='application/json',
